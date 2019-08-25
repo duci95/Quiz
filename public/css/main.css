@@ -3,10 +3,15 @@
     margin:0;
     font-family: "Segoe UI Semibold";
 }
-.title{
-    font-size:29px;
+.background{
+    height: 100%;
+    width:100%;
+    z-index: -1;
+    position: absolute;
+    background:   -webkit-linear-gradient(45deg, #1c7430, #0091a0bf,#1b4b72,#1f6fb2);
 }
-.card-title{
-    font-size: 20px;
-    color:dodgerblue;
+.d-flex{
+    height:100vh;
+    border-radius: 10px;
 }
+
