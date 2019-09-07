@@ -2,13 +2,16 @@
     padding :0;
     margin:0;
     font-family: "Segoe UI Semibold";
+    text-decoration: none;
 }
 .background{
     height: 100%;
     width:100%;
     z-index: -1;
     position: absolute;
-    background:   -webkit-linear-gradient(45deg, #1c7430, #0091a0bf,#1b4b72,#1f6fb2);
+    background:   -webkit-linear-gradient(45deg, #0c2461, #3498db, #0a3d62);
+    background:   -moz-linear-gradient(45deg, #0c2461, #3498db, #0a3d62);
+    background:   -ms-linear-gradient(45deg, #0c2461, #3498db, #0a3d62);
 }
 .d-flex{
     height:100vh;
@@ -16,19 +19,17 @@
 }
 .card{
     margin-left:2px;
-    width:49%;
+    width:47%;
 }
 .card-title{
     font-size:20px;
     color:#1b4b72;
 }
-.big{
-    font-size: 20px;
-}
-.smaller{
-    font-size:18px;
-}
 .d-inline-flex{
     height:50%;
     width:98%;
 }
+.animate{
+    height:8px;
+}
+

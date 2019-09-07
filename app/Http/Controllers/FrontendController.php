@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function index()
+    public function logReg()
     {
-        return view('pages.login');
+        return view('pages.log-reg');
     }
+
 }

@@ -11,4 +11,5 @@
 |
 */
 
-Route::get('/','FrontendController@index')->name('home');
+Route::get('/','FrontendController@logReg');
+Route::post("/register", "RegisterController@register")->name("register");
