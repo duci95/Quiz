@@ -17,6 +17,12 @@
     height:100vh;
     border-radius: 10px;
 }
+#fade1{
+    width:35%;
+}
+#fade2{
+    width:43%;
+}
 .card{
     margin-left:2px;
     width:47%;
