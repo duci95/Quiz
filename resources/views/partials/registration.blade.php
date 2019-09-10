@@ -53,7 +53,7 @@
     <div class="card-footer">
         <div class="d-inline-flex align-items-center justify-content-around">
             <span class="text-muted">Već imaš nalog?</span>
-            <span class="p-sm-2 btn btn-outline-info text-center" id="log-link" >Prijavi se!</span>
+            <span class="p-sm-2 btn btn-outline-info text-center" onclick="loginForm()">Prijavi se!</span>
         </div>
     </div>
 </div>

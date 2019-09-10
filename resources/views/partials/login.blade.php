@@ -2,7 +2,7 @@
     <div>
         <span class="animate-div progress-bar progress-bar-striped progress-bar-animated"></span>
     </div>
-    <div id="errors2" class="alert-danger text-center">
+    <div  class="errors bg-danger text-white text-center">
 
     </div>
     <div class="card-header bg-dark text-center">
@@ -15,14 +15,14 @@
             <input type="text" class="form-control" id="emailLog">
             <label for="password" class="text-muted">Lozinka</label>
             <input type="text" class="form-control" id="password">
-            <a href="#" class="text-muted small">Zaboravljena lozinka?</a>
+            <a href="#" onclick="passwordRecoveryForm()" class="text-muted small">Zaboravljena lozinka?</a>
             <input type="button"  class="form-control btn btn-info text-uppercase mt-lg-3" value="prijavi se" id="logBtn">
         </form>
     </div>
     <div class="card-footer">
         <div class="d-inline-flex align-items-center justify-content-around">
             <span class="text-muted">Nisi registrovan?</span>
-            <span class="p-sm-2 btn btn-outline-info text-center" id="reg-link">Registruj se!</span>
+            <span class="p-sm-2 btn btn-outline-info text-center" onclick="registrationForm();">Registruj se!</span>
         </div>
     </div>
 </div>

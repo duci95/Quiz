@@ -3,12 +3,29 @@ $("#logBtn").on("click", function(){
     let password = $("#password");
     let errors = [];
 
-    if(!reEmail.test(email.val()))
-        errors.push("Email nije u ispravnom formatu");
+    checkForInputErrors(reEmail, email,errors, emailWarning);
+    checkForInputErrors(rePassword, password,errors, passwordWarning);
 
-    if(!rePassword.test(password.val()))
-        errors.push("Lozinka nije u ispravnom formatu");
+    printErrors(errors);
+    if(errors.length > 0)
+        return;
 
+    var objectToSend = {};
+    objectToSend.email = email.val();
+    objectToSend.password = password.val();
+    sendCSRFToken();
+    animation();
+    $.ajax({
+       url : "/login",
+       method : "POST",
+       dataType : "JSON",
+       data : objectToSend,
+       success : function () {
+
+       },
+       error: function(){
+
+       }
+    });
 
 });
-
