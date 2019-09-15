@@ -9,6 +9,7 @@
         <span class="text-white text-uppercase h5">registracija</span>
         <noscript class="alert-danger h6">Moraš uključiti JavaScript kako bi mogao da se registruješ!</noscript>
     </div>
+
     <div class="card-body">
         <form  class="form-group">
             <div class="row justify-content-center">
@@ -42,7 +43,7 @@
                 </div>
                 {{--<div class="col-12">--}}
                 {{--<input type="checkbox" class="small" id="agree">--}}
-                {{--<label for="agree" class="col-form-label text-muted" >Potvrđujem da sam upoznat sa pravima korišćenja</label>--}}
+                {{--<label for="agree" class="col-form-label text-muted">Potvrđujem da sam upoznat sa pravima korišćenja</label>--}}
                 {{--</div>--}}
                 <div class="col-12">
                     <input type="button" id="regBtn" class="text-uppercase btn btn-info mt-3 form-control" value="Registruj se">
@@ -53,7 +54,9 @@
     <div class="card-footer">
         <div class="d-inline-flex align-items-center justify-content-around">
             <span class="text-muted">Već imaš nalog?</span>
-            <span class="p-sm-2 btn btn-outline-info text-center" onclick="loginForm()">Prijavi se!</span>
+            <span class="p-sm-2 btn btn-outline-info text-center" data-toggle="modal" data-target="#myModal" onclick="loginForm();">Prijavi se!</span>
         </div>
     </div>
 </div>
+{{--@include("modals.passwordRecovery")--}}
+

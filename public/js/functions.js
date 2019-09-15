@@ -47,6 +47,7 @@ function checkForInputErrors(regex, element, array, message){
     }
     else{
         element.removeClass("border-danger");
+        $(".errors").empty();
     }
 }
 function checkForPasswordsMatching(password, passwordAgain, array){
@@ -58,6 +59,7 @@ function checkForPasswordsMatching(password, passwordAgain, array){
     else{
         password.removeClass("border-danger");
         passwordAgain.removeClass("border-danger");
+        $(".errors").empty();
     }
 }
 function validatePicture(image, array){
@@ -78,10 +80,10 @@ function validatePicture(image, array){
             $.each(permittedExtensions, function(index, value){
                 permittedExtensionsString+= value + " ";
             });
-            array.push("Dozvoljene ekstenzije slike su: <span class='text-uppercase '> " + permittedExtensionsString + "</span>");
+            array.push("Dozvoljene ekstenzije slike su: <span class='text-uppercase'> " + permittedExtensionsString + "</span>");
         }
-        if(file.size > 3000000 && validExtension === true ) {
-            array.push("Slika ne sme biti veca od 3 MB");
+        if(file.size > 3000000  && validExtension === true ) {
+            array.push("Slika ne sme biti veća od 3 MB");
         }
     }
 }

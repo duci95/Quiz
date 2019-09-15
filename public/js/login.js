@@ -7,7 +7,7 @@ $("#logBtn").on("click", function(){
     checkForInputErrors(rePassword, password,errors, passwordWarning);
 
     printErrors(errors);
-    if(errors.length > 0)
+    if(errors.length)
         return;
 
     var objectToSend = {};
@@ -27,5 +27,4 @@ $("#logBtn").on("click", function(){
 
        }
     });
-
 });

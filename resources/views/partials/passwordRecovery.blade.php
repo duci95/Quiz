@@ -13,7 +13,7 @@
         <form class="form-group">
             <label for="emailRecovery" class="text-muted">Email</label>
             <input type="text" class="form-control" id="emailRecovery">
-            <input type="button"  class="form-control btn btn-info text-uppercase mt-lg-3" value="Pošalji" id="recoveryBtn">
+            <input type="button" class="form-control btn btn-info text-uppercase mt-lg-3" value="Pošalji" id="recoveryBtn">
         </form>
     </div>
     <div class="card-footer">
@@ -28,3 +28,4 @@
         </div>
     </div>
 </div>
+

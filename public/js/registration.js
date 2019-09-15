@@ -21,7 +21,7 @@ $("#regBtn").on("click",function() {
 
     if(errors.length)
         return;
-
+    $(".errors").empty();
     var form = new FormData();
     form.append("image", file);
 
@@ -34,12 +34,19 @@ $("#regBtn").on("click",function() {
     sendCSRFToken();
     animation();
     $.ajax({
-
+        url : "/register",
+        method : "POST",
+        dataType : "JSON",
+        data : form,
+        cache : false,
+        processData : false,
+        contentType : false,
         success: function (response) {
             console.log("uspesno i ide bootbox probaj");
         },
         error: function (xhr, status, error) {
             console.log("probaj i ovde bootbox samo da ima smisla");
+            $("#myModal").removeClass("d-none");
         }
     });
 });
