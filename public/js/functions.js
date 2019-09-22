@@ -92,7 +92,7 @@ function printErrors(array)
     if (array.length > 0) {
         let error = "";
         for (let item of array) {
-            error += `<span class='text-white h6'>${item}</span> <br/>`;
+            error += `<span class="h6 text-white">${item}</span> </br>`;
         }
         $(".errors").html(error);
     }

@@ -19,7 +19,6 @@
             <script src="{{asset("/")}}js/login.js"></script>
             <script src="{{asset("/")}}js/registration.js"></script>
             <script src="{{asset("/")}}js/passwordRecovery.js"></script>
-
         @endsection
     </div>
 </div>

@@ -46,7 +46,9 @@ $("#regBtn").on("click",function() {
         },
         error: function (xhr, status, error) {
             console.log("probaj i ovde bootbox samo da ima smisla");
-            $("#myModal").removeClass("d-none");
+        },
+        complete : function () {
+            $("#reg-success").removeClass("d-none");
         }
     });
 });

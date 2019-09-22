@@ -18,10 +18,10 @@ class CreateUsersTable extends Migration
             $table->string("email",50)->unique();
             $table->string("password",64);
             $table->string("token", 120);
-            $table->boolean("active");
-            $table->boolean("is_deleted");
-            $table->unsignedInteger("role_id")->index();
-//            $table->foreign("role_id")->references("id")->on("roles");
+            $table->boolean("active")->default(0);
+            $table->boolean("is_deleted")->default(0);
+            $table->bigInteger('role_id')->unsigned()->default(3);
+            $table->foreign('role_id')->references('id')->on("roles");
             $table->timestamps();
             $table->softDeletes();
         });

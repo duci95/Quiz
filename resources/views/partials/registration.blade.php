@@ -9,7 +9,10 @@
         <span class="text-white text-uppercase h5">registracija</span>
         <noscript class="alert-danger h6">Moraš uključiti JavaScript kako bi mogao da se registruješ!</noscript>
     </div>
-
+    <div class="alert alert-success alert-dismissible fade show d-none" id="reg-success">
+    <strong>Success!</strong> Your message has been sent successfully.
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
     <div class="card-body">
         <form  class="form-group">
             <div class="row justify-content-center">
