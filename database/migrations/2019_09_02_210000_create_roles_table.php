@@ -19,7 +19,7 @@ class CreateRolesTable extends Migration
             $table->string("role_name",20);
         });
         DB::table('roles')->insert([
-            ["role_name" => "admin"],
+            ["role_name" => "administrator"],
             ["role_name" => "moderator"],
             ["role_name" => "regular"]
         ]);

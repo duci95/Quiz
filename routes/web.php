@@ -11,5 +11,6 @@
 |
 */
 
-Route::get('/','FrontendController@logReg');
+Route::get('/','FrontendController@index');
+Route::post('/login','LoginController@login')->name('login');
 Route::post("/register", "RegisterController@register")->name("register");

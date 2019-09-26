@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Picture extends Model
 {
+    private $image_name;
+    private $user_id;
+
     public function user()
     {
-        return $this->hasOne('CreatePicturesTable');
+        return $this->belongsTo(User::class);
     }
 }

@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function logReg()
+    public function index()
     {
         return view('pages.log-reg');
     }

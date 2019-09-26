@@ -1,4 +1,5 @@
 $("#regBtn").on("click",function() {
+    $("#reg-success").html('');
     let firstname = $("#firstname");
     let lastname = $("#lastname");
     let password = $("#pass");
@@ -34,21 +35,29 @@ $("#regBtn").on("click",function() {
     sendCSRFToken();
     animation();
     $.ajax({
-        url : "/register",
+        url : "register",
         method : "POST",
-        dataType : "JSON",
         data : form,
         cache : false,
         processData : false,
         contentType : false,
         success: function (response) {
-            console.log("uspesno i ide bootbox probaj");
+            $("#reg-success").html
+            (`
+                <strong>Poslat je mejl sa aktivacionim linkom!</strong>
+            `)
         },
         error: function (xhr, status, error) {
-            console.log("probaj i ovde bootbox samo da ima smisla");
-        },
-        complete : function () {
-            $("#reg-success").removeClass("d-none");
+            switch(xhr.status)
+            {
+                case 409:
+                    $('.errors').html('Već postoji korisnik sa mejlom ' + email.val());
+                    break;
+
+                case 500:
+                    $('.errors').html('Trenutno nije moguće registrovanje, pokušaj kasnije');
+                    break;
+            }
         }
     });
 });

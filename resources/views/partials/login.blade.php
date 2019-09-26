@@ -14,7 +14,7 @@
             <label for="emailLog" class="text-muted">Email</label>
             <input type="text" class="form-control" id="emailLog">
             <label for="password" class="text-muted">Lozinka</label>
-            <input type="text" class="form-control" id="password">
+            <input type="password" class="form-control" id="password">
             <a href="#" onclick="passwordRecoveryForm()" class="text-muted small">Zaboravljena lozinka?</a>
             <input type="button"  class="form-control btn btn-info text-uppercase mt-lg-3" value="prijavi se" id="logBtn">
         </form>

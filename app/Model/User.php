@@ -3,93 +3,35 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class User extends Model
 {
-     private $firstName;
-     private $lastName;
-     private $email;
-     private $password;
-     private $created_at;
+    private $first_name;
+    private $last_name;
+    private $email;
+    private $password;
+    private $token;
 
-    /**
-     * @return mixed
-     */
-    public function getFirstName()
+    public $timestamps = true;
+
+    public function pictures()
     {
-        return $this->firstName;
+        return $this->hasMany(Picture::class);
     }
 
-    /**
-     * @param mixed $firstName
-     */
-    public function setFirstName($firstName): void
+    public function login()
     {
-        $this->firstName = $firstName;
+        return DB::table($this->table)->where(
+        [
+            ["email",$this->email],
+            ["password",sha1($this->password)],
+            ["active",1],
+            ["is_deleted",0]
+
+        ])->first();
+
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param mixed $lastName
-     */
-    public function setLastName($lastName): void
-    {
-        $this->lastName = $lastName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email): void
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param mixed $password
-     */
-    public function setPassword($password): void
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedAt()
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * @param mixed $created_at
-     */
-    public function setCreatedAt($created_at): void
-    {
-        $this->created_at = $created_at;
-    }
 
 }
