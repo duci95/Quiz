@@ -7,18 +7,26 @@ $("#recoveryBtn").on("click", function(){
     if(errors.length)
         return;
 
+    sendCSRFToken();
     animation();
 
     $.ajax({
-      url : "/recovery",
+      url : "recovery",
       method : "POST",
       dataType : "JSON",
       data : {"email" : email.val()},
-      success : function(){
-
+      success : function(response) {
+          $("#rec-success").html("Poslat je mejl sa pristupnim parametrom!");
       },
-      errors : function(){
-
-      }
+      errors : function(xhr, status, error) {
+          // switch(xhr.status) {
+          //     case 404:
+                  $('.errors').html("Ne postoji korisnik sa mejlom " + email.val());
+              //     break;
+              // default:
+              //     $('.errors').html("Trenutno nije moguće, pokušaj kasnije");
+              //     break;
+          }
+      // }
     });
 });

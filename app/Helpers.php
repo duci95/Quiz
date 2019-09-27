@@ -1,22 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Dušan
- * Date: 21.9.2019.
- * Time: 00.21
- */
 
-namespace App\Helpers;
 
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+namespace App;
+
+
+use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
-use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
-class Helpers extends SendEmailVerificationNotification
+class Helpers
 {
-    public function SendMail($email, $body, $subject = "Aktivirajte nalog")
+    public static function sendMail($email, $body, $subject) :void
     {
         $mail = new PHPMailer(true);
         try {
@@ -29,8 +24,8 @@ class Helpers extends SendEmailVerificationNotification
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = true;
             // Enable SMTP authentication
-            $mail->Username = 'phpmailer1995@gmail.com';    // SMTP username
-            $mail->Password = 'dusan1995';       // SMTP password
+            $mail->Username = 'ictexpertquiz@gmail.com';    // SMTP username
+            $mail->Password = '$dusan1995$';       // SMTP password
             $mail->SMTPSecure = 'tls';           // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                   // TCP port to connect to
 
@@ -42,7 +37,7 @@ class Helpers extends SendEmailVerificationNotification
                 )
             );
             //Recipients
-            $mail->setFrom('phpmailer1995@gmail.com', "ICT Expert Quiz");
+            $mail->setFrom('ictexpertquiz@gmail.com', "ICT Expert Quiz");
             $mail->addAddress($email);     // Add a recipient
 
             //Content
@@ -53,15 +48,12 @@ class Helpers extends SendEmailVerificationNotification
 
             $mail->send();
 
-            return response(null,201);
         }
         catch (QueryException $exception) {
             Log::error($exception->getMessage());
-            return response(null, 409);
         }
         catch (Exception $e) {
             Log::critical('Error while sending email');
-            return response(null, 500);
         }
     }
 }

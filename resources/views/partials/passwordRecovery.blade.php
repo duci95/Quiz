@@ -2,9 +2,10 @@
     <div>
         <span class="animate-div progress-bar progress-bar-striped progress-bar-animated"></span>
     </div>
-    <div  class="errors bg-danger text-white text-center">
+    <div class="bg-danger errors text-white text-center">
 
     </div>
+    <div class="bg-success text-center text-white" id="rec-success"></div>
     <div class="card-header bg-dark text-center">
         <span class="text-white h5 text-uppercase ">Oporavak lozinke</span>
         <noscript class="bg-danger p-3 text-white h6 text-center">Moraš uključiti JavaScript kako bi mogao da se prijaviš!</noscript>

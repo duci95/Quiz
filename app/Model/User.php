@@ -13,6 +13,7 @@ class User extends Model
     private $password;
     private $token;
 
+
     public $timestamps = true;
 
     public function pictures()
@@ -22,16 +23,20 @@ class User extends Model
 
     public function login()
     {
-        return DB::table($this->table)->where(
+        return DB::table('users')->where(
         [
             ["email",$this->email],
-            ["password",sha1($this->password)],
+            ["password",bcrypt($this->password)],
             ["active",1],
             ["is_deleted",0]
 
         ])->first();
-
     }
 
-
+    public static function activate($token)
+    {
+        DB::table('users')
+            ->where('token', $token)
+            ->update(['active' => 1]);
+    }
 }

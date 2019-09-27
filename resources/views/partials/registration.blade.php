@@ -4,7 +4,7 @@
     </div>
     <div class="bg-success text-center text-white" id="reg-success"></div>
 
-    <div class="bg-danger errors text-center text-white "></div>
+    <div class="bg-danger errors text-center text-white"></div>
 
     <div class="card-header bg-dark text-center">
         <span class="text-white text-uppercase h5">registracija</span>

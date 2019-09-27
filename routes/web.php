@@ -14,3 +14,5 @@
 Route::get('/','FrontendController@index');
 Route::post('/login','LoginController@login')->name('login');
 Route::post("/register", "RegisterController@register")->name("register");
+Route::get("/activation/{token}", "RegisterController@activation");
+Route::post('/recovery', "PasswordRecoveryController@recover")->name('recovery');

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Helpers;
 use App\Model\Picture;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -9,11 +10,12 @@ use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
+use PHPMailer\PHPMailer\PHPMailer;
 
 
 class RegisterController extends Controller
 {
+
     public function register(RegistrationRequest $request)
     {
         $first_name = $request->input("firstname");
@@ -23,9 +25,8 @@ class RegisterController extends Controller
         $passwordCheck = $request->input("passwordCheck");
         $image = $request->file("image");
         $image_name = time()."_".$image->getClientOriginalName();
-        $token = bcrypt($email.$password);
-        $password = sha1($password);
-
+        $token = sha1(time().$email.$password);
+        $password = bcrypt($password);
 
         try {
             if($image->isValid())
@@ -48,7 +49,9 @@ class RegisterController extends Controller
 
             $picture->user()->associate($user)->save();
 
+            $body = 'Klinkite na <a href="http://127.0.0.1:8000/activation/' . $token . '" >link</a> da aktivirate profil';
 
+            Helpers::sendMail($email, $body, "Registracija");
 
             return response(null, 201);
         }
@@ -62,5 +65,17 @@ class RegisterController extends Controller
             Log::critical($e->getMessage());
             return response(null, 500);
         }
+    }
+
+    public function activation($token)
+    {
+       try {
+            User::activate($token);
+            return redirect("/")->with("activated","activated");
+       }
+       catch(QueryException $e) {
+           Log::critical("Error while activating user with token: $token");
+           return redirect()->back();
+       }
     }
 }
