@@ -9,7 +9,7 @@ $("#logBtn").on("click", function(){
     printErrors(errors);
     if(errors.length)
         return;
-
+    $(".errors").empty();
     var objectToSend = {};
     objectToSend.email = email.val();
     objectToSend.password = password.val();
@@ -18,13 +18,22 @@ $("#logBtn").on("click", function(){
     $.ajax({
        url : "/login",
        method : "POST",
-       dataType : "JSON",
        data : objectToSend,
-       success : function () {
-
+       success : function(response){
+            window.location.href = '/home';
        },
-       error: function(){
-
+       error: function(xhr, status, error){
+            switch(xhr.status){
+                case 404:
+                    $(".errors").html('Pogrešan email/lozinka!');
+                    break;
+                case 403:
+                    $(".errors").html('Profil nije aktiviran! <br/> Poslat je ponovo email sa aktvacionim linkom!');
+                    break;
+                default:
+                    $(".errors").html("Trenutno nije moguće prijavljivanje, pokušaj kasnije!");
+                    break;
+            }
        }
     });
 });

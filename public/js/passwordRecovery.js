@@ -11,22 +11,21 @@ $("#recoveryBtn").on("click", function(){
     animation();
 
     $.ajax({
-      url : "recovery",
+      url : "/recovery",
       method : "POST",
-      dataType : "JSON",
       data : {"email" : email.val()},
       success : function(response) {
-          $("#rec-success").html("Poslat je mejl sa pristupnim parametrom!");
+          $("#rec-success").html("Poslat je mejl sa novom lozinkom");
       },
-      errors : function(xhr, status, error) {
-          // switch(xhr.status) {
-          //     case 404:
+      error : function(xhr, status, error) {
+          switch(xhr.status) {
+              case 404,422:
                   $('.errors').html("Ne postoji korisnik sa mejlom " + email.val());
-              //     break;
-              // default:
-              //     $('.errors').html("Trenutno nije moguće, pokušaj kasnije");
-              //     break;
+                  break;
+              default:
+                  $('.errors').html("Trenutno nije moguće, pokušaj kasnije");
+                  break;
           }
-      // }
+      }
     });
 });

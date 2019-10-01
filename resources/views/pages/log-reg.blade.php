@@ -3,9 +3,8 @@
 <div class="container-fluid background"></div>
 <div class="container">
     <div class="d-flex flex-row align-items-center justify-content-lg-center">
-        <div class="card-header h4 text-center fixed-top">
-            <a href="#" class="text-white">ICT Expert QUIZ</a>
-        </div>
+
+
 
         @include('partials.login')
         @include('partials.registration')
@@ -20,6 +19,13 @@
             <script src="{{asset("/")}}js/registration.js"></script>
             <script src="{{asset("/")}}js/passwordRecovery.js"></script>
         @endsection
+        @if(request()->getQueryString() !== null)
+            <script>
+                document.getElementById("fade1").style.display = 'none';
+                document.getElementById("fade2").setAttribute('class',"d-block");
+                document.getElementById("fade2").setAttribute('class',"card");
+            </script>
+        @endif
     </div>
 </div>
 @endsection

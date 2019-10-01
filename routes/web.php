@@ -11,8 +11,18 @@
 |
 */
 
-Route::get('/','FrontendController@index');
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/','FrontendController@index')->name('log-reg');
+Route::get('/home/{reg?}', "FrontendController@home")->name('home');
+Route::get('/logout', "LoginController@logout")->name('logout');
+
+
+Route::get('/quiz/{category}', "CategoryController@index")->name('quiz');
+
+Route::get("/activation/{token}", "RegisterController@activation");
+
 Route::post('/login','LoginController@login')->name('login');
 Route::post("/register", "RegisterController@register")->name("register");
-Route::get("/activation/{token}", "RegisterController@activation");
 Route::post('/recovery', "PasswordRecoveryController@recover")->name('recovery');

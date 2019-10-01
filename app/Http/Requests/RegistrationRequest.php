@@ -27,7 +27,7 @@ class RegistrationRequest extends FormRequest
             "firstname" => "regex:/^([A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})(\s[A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})*$/",
             "lastname" => "regex:/^([A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})(\s[A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})*$/",
             "email" => "email",
-            "password" => "regex:/^[A-ZŠĐČĆŽa-zšđčćž?!&^#$%@*\/0-9]{8,15}$/",
+            "password" => "regex:/^[A-ZŠĐČĆŽa-zšđčćž?!&^#$%@*0-9]{8,15}$/",
             "passwordCheck" => "same:password",
             "image" => "mimes:jpeg,jpg,bmp,png,gif,tiff|max:3000"
         ];

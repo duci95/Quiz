@@ -26,7 +26,7 @@ class RegisterController extends Controller
         $image = $request->file("image");
         $image_name = time()."_".$image->getClientOriginalName();
         $token = sha1(time().$email.$password);
-        $password = bcrypt($password);
+        $password = sha1($password);
 
         try {
             if($image->isValid())

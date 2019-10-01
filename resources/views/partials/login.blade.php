@@ -1,3 +1,4 @@
+
 <div id="fade1" class="card">
     @if(session()->has('activated'))
         <div class="alert alert-success alert-dismissible mb-sm-auto fade show text-center" role="alert" >
@@ -33,3 +34,4 @@
         </div>
     </div>
 </div>
+

@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use function Sodium\randombytes_random16;
 
 class PasswordRecoveryController extends Controller
 {
@@ -16,29 +17,32 @@ class PasswordRecoveryController extends Controller
     {
         $email = $request->input('email');
 
-        $password = bcrypt(time());
-        $password = substr($password, 0,15);
+        $password = sha1(time().$email);
+        $password = substr($password, 0, 14);
 
-    try{
-        $user = new User;
-        $a = User::all()->find($user->id);
+        try {
 
-        dd($a);
+            $user = User::all()->where("email", $email)->first();
 
-        $body = `<h5>Nova lozinka : <strong> $password </strong>`;
+            if (empty($user))
+                return response(null, 404);
 
-        Helpers::sendMail($email, $body, "Oporavak lozinke");
+            $user = new User;
 
-        return response(null, 201);
-    }
-    catch(QueryException $e){
-        Log::critical($e->getMessage());
-        return response(null, 409);
-    }
-    catch(Exception $e){
-        Log::critical($e->getMessage());
-        return response(null, 500);
-    }
+            $user->where("email", $email)->update(['password' => sha1($password)]);
 
+            $body = "<h5>Nova lozinka : <strong> $password </strong>";
+            Helpers::sendMail($email, $body, "Oporavak lozinke");
+
+            return response(null, 204);
+        }
+        catch (QueryException $e) {
+            Log::critical($e->getMessage());
+            return response(null, 409);
+        }
+        catch (Exception $e) {
+            Log::critical($e->getMessage());
+            return response(null, 500);
+        }
     }
 }

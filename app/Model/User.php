@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+
 class User extends Model
 {
     private $first_name;
@@ -21,16 +22,34 @@ class User extends Model
         return $this->hasMany(Picture::class);
     }
 
-    public function login()
+    public static function login($email, $password)
     {
-        return DB::table('users')->where(
+        return DB::table('users as u')
+            ->join('pictures as p' ,"u.id","=","p.id")
+            ->where(
         [
-            ["email",$this->email],
-            ["password",bcrypt($this->password)],
+            ["email",$email],
+            ["password",sha1($password)],
             ["active",1],
             ["is_deleted",0]
+        ]
+            )
+          ->get(["first_name" ,"last_name" ,"email", "token" ,"u.created_at", "deleted_at", "active", "is_deleted", "role_id", "image_name"])
+          ->first();
+    }
 
-        ])->first();
+    public static function inactive($email, $password)
+    {
+        {
+            return DB::table('users')->where(
+                [
+                    ["email",$email],
+                    ["password",sha1($password)],
+                    ["active",0],
+                    ["is_deleted",0]
+
+                ])->first();
+        }
     }
 
     public static function activate($token)
@@ -39,4 +58,7 @@ class User extends Model
             ->where('token', $token)
             ->update(['active' => 1]);
     }
+
+
+
 }

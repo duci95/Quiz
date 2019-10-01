@@ -51,14 +51,13 @@ function checkForInputErrors(regex, element, array, message){
     }
 }
 function checkForPasswordsMatching(password, passwordAgain, array){
+    passwordAgain.removeClass('border-danger');
     if(password.val() !== passwordAgain.val()) {
-        array.push("Lozinke se ne podudaraju");
-        password.addClass("border-danger");
-        passwordAgain.addClass("border-danger");
+        array.push(matchingPasswordsWarning);
+        passwordAgain.addClass('border-danger');
     }
     else{
-        password.removeClass("border-danger");
-        passwordAgain.removeClass("border-danger");
+        passwordAgain.removeClass('border-danger');
         $(".errors").empty();
     }
 }
@@ -71,7 +70,6 @@ function validatePicture(image, array){
         file = image.files[0];
         const fileName = file.name;
         const fileExtension = fileName.split(".").pop().toLowerCase();
-
         var validExtension = true;
         if(!permittedExtensions.includes(fileExtension))
         {
@@ -113,3 +111,5 @@ function sendCSRFToken(){
         accept: "application/json"
     });
 }
+
+

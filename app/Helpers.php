@@ -13,11 +13,12 @@ class Helpers
 {
     public static function sendMail($email, $body, $subject) :void
     {
+
         $mail = new PHPMailer(true);
         try {
 
             //Server settings
-            //$mail->SMTPDebug = 2;          // Enable verbose debug output
+            $mail->SMTPDebug = 2;          // Enable verbose debug output
             $mail->isSMTP();                 // Set mailer to use SMTP
             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 
@@ -56,4 +57,6 @@ class Helpers
             Log::critical('Error while sending email');
         }
     }
+
+
 }

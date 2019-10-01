@@ -8,7 +8,8 @@ $("#regBtn").on("click",function() {
     let image = document.getElementById("img");
     let file = image.files[0];
     let email = $("#email");
-
+    console.log(image.offsetHeight);
+    console.log(image.offsetWidth);
     checkForInputErrors(reFirstLast, firstname, errors, firstnameWarning);
     checkForInputErrors(reFirstLast, lastname, errors, lastnameWarninig);
     checkForInputErrors(reEmail, email, errors, emailWarning);
@@ -22,6 +23,7 @@ $("#regBtn").on("click",function() {
 
     if(errors.length)
         return;
+
     $(".errors").empty();
     var form = new FormData();
     form.append("image", file);
