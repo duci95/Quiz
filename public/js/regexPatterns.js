@@ -9,4 +9,4 @@ const lastnameWarninig  = "Prezime ne može imati manje od 2 i više od 20 karak
 const emailWarning = "Email nije u dobrom formatu";
 const passwordWarning = "Lozinka ne može imati manje od 8 i više od 15 karaktera";
 const matchingPasswordsWarning = "Lozinke se ne podudaraju";
-const permittedExtensions = ["gif", "png", "bmp", "jpg", "jpeg", "tiff"];
+const permittedExtensions = ["gif", "png", "jpg"];

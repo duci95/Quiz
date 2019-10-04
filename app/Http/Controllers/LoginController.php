@@ -42,6 +42,6 @@ class LoginController extends Controller
     {
         $request->session()->forget('user');
         $request->session()->flush();
-        return redirect(route("log-reg"));
+        return redirect()->route('log-reg');
     }
 }

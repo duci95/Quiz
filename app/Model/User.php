@@ -34,7 +34,7 @@ class User extends Model
             ["is_deleted",0]
         ]
             )
-          ->get(["first_name" ,"last_name" ,"email", "token" ,"u.created_at", "deleted_at", "active", "is_deleted", "role_id", "image_name"])
+          ->get(["u.id","first_name" ,"last_name" ,"email", "token" ,"u.created_at", "deleted_at", "active", "is_deleted", "role_id", "image_name"])
           ->first();
     }
 
@@ -58,7 +58,4 @@ class User extends Model
             ->where('token', $token)
             ->update(['active' => 1]);
     }
-
-
-
 }

@@ -29,7 +29,7 @@ class RegistrationRequest extends FormRequest
             "email" => "email",
             "password" => "regex:/^[A-ZŠĐČĆŽa-zšđčćž?!&^#$%@*0-9]{8,15}$/",
             "passwordCheck" => "same:password",
-            "image" => "mimes:jpeg,jpg,bmp,png,gif,tiff|max:3000"
+            "image" => "mimes:jpeg,jpg,png,gif|max:3000"
         ];
     }
 }

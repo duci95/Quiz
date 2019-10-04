@@ -14,8 +14,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/','FrontendController@index')->name('log-reg');
-Route::get('/home/{reg?}', "FrontendController@home")->name('home');
+Route::get('/entry','FrontendController@index')->name('log-reg');
+Route::get('/{reg?}/', "FrontendController@home")->name('index')->fallback();
 Route::get('/logout', "LoginController@logout")->name('logout');
 
 
@@ -26,3 +26,5 @@ Route::get("/activation/{token}", "RegisterController@activation");
 Route::post('/login','LoginController@login')->name('login');
 Route::post("/register", "RegisterController@register")->name("register");
 Route::post('/recovery', "PasswordRecoveryController@recover")->name('recovery');
+
+Route::get('/profile/{id}',"UserController@show")->name('profile-show');

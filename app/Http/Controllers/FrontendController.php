@@ -10,7 +10,7 @@ class FrontendController extends Controller
     {
         return view('pages.log-reg', compact($reg));
     }
-    public function home()
+    public static function home()
     {
         $categories = Category::all();
         return  view('pages.home')->with('categories', $categories);

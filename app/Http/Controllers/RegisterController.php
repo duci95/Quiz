@@ -10,6 +10,7 @@ use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Intervention\Image\Facades\Image;
 use PHPMailer\PHPMailer\PHPMailer;
 
 
@@ -28,9 +29,17 @@ class RegisterController extends Controller
         $token = sha1(time().$email.$password);
         $password = sha1($password);
 
+
         try {
             if($image->isValid())
-                $image->move(public_path("images/"),  $image_name);
+               $path = public_path('images/' . $image_name);
+
+
+
+            Image::make($image->getRealPath())->resize(75,75,function ($aspectRatio) {
+                 $aspectRatio->aspectRatio();
+            })->save($path,100);
+
 
             $user = new User;
 

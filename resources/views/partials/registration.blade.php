@@ -1,4 +1,3 @@
-
 <div id="fade2" class="card d-none">
     <div>
         <span class="animate-div progress-bar progress-bar-striped progress-bar-animated"></span>
@@ -31,7 +30,7 @@
                 </div>
                 <div class="col-6">
                     <label for="img" class="col-form-label text-muted">Slika</label>
-                    <input type="file" accept="image/*" class="form-control-file" id="img" >
+                    <input type="file" accept="image/gif,image/jpeg,image/png"  class="form-control-file" id="img" >
                 </div>
             </div>
             <div class="row">

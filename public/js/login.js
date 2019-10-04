@@ -20,7 +20,7 @@ $("#logBtn").on("click", function(){
        method : "POST",
        data : objectToSend,
        success : function(response){
-            window.location.href = '/home';
+            window.location.href = '/';
        },
        error: function(xhr, status, error){
             switch(xhr.status){
