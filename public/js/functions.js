@@ -111,5 +111,7 @@ function sendCSRFToken(){
         accept: "application/json"
     });
 }
-
+function goToLogin(){
+    window.location.href = "/entry";
+}
 

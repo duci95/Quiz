@@ -18,6 +18,8 @@ Route::get('/entry','FrontendController@index')->name('log-reg');
 Route::get('/{reg?}/', "FrontendController@home")->name('index')->fallback();
 Route::get('/logout', "LoginController@logout")->name('logout');
 
+Route::get('/quiz/{id}/{category}',"QuizController@approve");
+Route::get('/test/{category}','QuizController@test')->name('test');
 
 Route::get('/quiz/{category}', "CategoryController@index")->name('quiz');
 

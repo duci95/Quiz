@@ -15,5 +15,4 @@ class FrontendController extends Controller
         $categories = Category::all();
         return  view('pages.home')->with('categories', $categories);
     }
-
 }
