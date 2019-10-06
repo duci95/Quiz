@@ -3,25 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Model\Category;
+use App\Model\Question;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
     public function approve($user, $category)
     {
-        $quiz = new Category();
-        $result = $quiz->approve($user, $category);
-        return response(['data' => $result],200);
-    }
-    public static function test(Request $request)
-    {
-        $user = session()->get('user')->id;
-        $category = $request->post('category');
+        $result = Category::approve($user, $category);
 
-        return redirect()->route('');
-    }
-    public static function show()
-    {
+        if(count($result) !== 0)
+            return response(null, 409);
 
+        return response(null,200);
+    }
+
+    public function test($category)
+    {
+        $quiz = Question::with('category')
+            ->with('answers')
+            ->where('category_id' , $category)
+            ->get();
+
+//        dd($quiz);
+
+        $check = Category::approve(session()->get('user')->id, $category);
+
+        if(count($check))
+            return redirect()->back();
+
+//        if(!count($quiz))
+//            return response(null, 404);
+
+        return view('pages.quiz')->with('quiz', $quiz);
     }
 }

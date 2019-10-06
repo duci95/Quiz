@@ -75,3 +75,7 @@ a:visited{
 .margin-header{
     margin-top:4%;
 }
+.quiz{
+    cursor: pointer;
+
+}

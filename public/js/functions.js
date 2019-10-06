@@ -114,4 +114,3 @@ function sendCSRFToken(){
 function goToLogin(){
     window.location.href = "/entry";
 }
-

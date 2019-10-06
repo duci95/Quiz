@@ -8,57 +8,53 @@ $(document).on('click','.quiz',function(e) {
    var user = $(this).data("user");
    var category = $(this).data('category');
    var category_name = $(this).data('category-name');
+   var token = $(this).data('category-token');
+   console.log(token);
 
    $.ajax({
       url : `/quiz/${user}/${category}`,
       method : "GET",
-      success : function(response){
-          if(!response.data[0]) {
-              bootbox.dialog({
-                  title: category_name,
-                  message: `<p>Klikom na <i>Počni test</i></p>`,
-                  buttons: {
-                      cancel: {
-                          label: "Odustani",
-                          className: 'btn-secondary'
-                      },
-                      ok: {
-                          label: 'Počni test',
-                          className: 'btn-info',
-                          callback: function () {
-                              sendCSRFToken();
-                              $.ajax({
-                                  url : `/test/${category}`,
-                                  method:'GET',
-                                  data:{
-                                      'user' : user,
-                                      'category' : category
-                                  },
-                                  complete:function(response){
-                                        // window.location.href= `/test/one`
-                                  }
-                              });
-                          }
+      success : function(response) {
+          bootbox.dialog({
+              title: category_name,
+              message: `<p>Klikom na <i>Počni test</i></p>`,
+              buttons: {
+                  cancel: {
+                      label: "Odustani",
+                      className: 'btn-secondary'
+                  },
+                  ok: {
+                      label: `<a>Pocni test</a>`,
+                      className: 'btn-info',
+                      callback: function () {
+                          window.location.href = `/test/${category}`;
                       }
                   }
-              });
-          }
-          else{
-              bootbox.dialog({
-                  title: `${category_name}`,
-                  message: "<p class='text-center text-danger p-1'>Ovaj test je radjen</p>",
-                  size:"small",
-                  buttons: {
-                      cancel: {
-                          label: "Zatvori",
-                          className: 'btn-info text-center',
-                          callback: function() {
-                              console.log('Custom cancel clicked');
-                          }
-                      },
-                  }
-              });
-          }
-      }
+              }
+          });
+      },
+      error:function(request,status, error) {
+           switch (request.status) {
+               case 409 :
+                   bootbox.dialog({
+                       title: `${category_name}`,
+                       message: "<p class='text-center text-danger p-1'>Ovaj test je radjen</p>",
+                       size: "small",
+                       buttons: {
+                           cancel: {
+                               label: "Zatvori",
+                               className: 'btn-info text-center',
+                               callback: function () {
+                                   console.log('Custom cancel clicked');
+                               }
+                           },
+                       }
+                   });
+                   break;
+               case 500 :
+                   bootbox.alert('Trenutno nije moguće raditi test, pokušaj kasnije');
+                   break;
+           }
+       }
    });
 });

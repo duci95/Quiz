@@ -7,12 +7,19 @@ use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
-    public function approve($user, $category)
+    public function questions()
     {
-        return DB::table('quiz')
+        return $this->hasMany(Question::class);
+    }
+
+
+    public static function approve($user, $category)
+    {
+        return DB::table('quiz as q')
+            ->join("categories as c",'q.category_id','=','c.id')
             ->where([
                 'user_id' => $user,
-                'category_id' => $category
+                'c.id' => $category
             ])
             ->get();
     }

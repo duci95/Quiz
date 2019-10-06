@@ -29,9 +29,9 @@
         <div class="row justify-content-around radius border p-1 mb-3">
                 <div class="col-sm-3 categories ">
                     @if(session()->has('user'))
-                    <button class="btn  mt-2 p-4 btn-info quiz h1 text-white" data-category-name="{{$cat->category_name}}" data-category="{{$cat->id}}" data-user="{{session()->get('user')->id}}" >{{$cat->category_name}}</button>
+                    <h1 class="mt-2 p-2 radius btn-info quiz text-white" data-category-token="{{$cat->category_token}}" data-category-name="{{$cat->category_name}}" data-category="{{$cat->id}}" data-user="{{session()->get('user')->id}}" >{{$cat->category_name}}</h1>
                     @else
-                    <button class="btn  mt-2 p-4 btn-info quiz h1 text-white" onclick="goToLogin();"> {{$cat->category_name}}</button>
+                    <span class="mt-2 p-2 radius btn-info quiz text-white" onclick="goToLogin();"> {{$cat->category_name}}</span>
                     @endif
                 </div>
             <div class="col-sm-5 desc text-center radius bg-info  text-white">
@@ -48,4 +48,3 @@
 @section('scripts')
     <script src="{{asset("/")}}js/quizRouting.js"></script>
 @endsection
-
