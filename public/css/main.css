@@ -12,7 +12,6 @@
     background:   -moz-linear-gradient(45deg, #0c2461, #3498db, #0a3d62);
     background:   -ms-linear-gradient(45deg, #0c2461, #3498db, #0a3d62);
 }
-
 .center{
     height:95vh;
 }
@@ -47,8 +46,7 @@ a:visited{
     text-align: center;
 }
 .desc{
-   font-size:17px;
-   word-break: break-word;
+   padding-top:8px;
 }
 .radius{
     border-radius: 20px;
@@ -58,7 +56,6 @@ a:visited{
     background: #00aabb;
     border-radius: .4em;
 }
-
 .speech-bubble:after {
     content: '';
     position: absolute;
@@ -77,5 +74,4 @@ a:visited{
 }
 .quiz{
     cursor: pointer;
-
 }

@@ -28,3 +28,4 @@ Route::post("/register", "RegisterController@register")->name("register");
 Route::post('/recovery', "PasswordRecoveryController@recover")->name('recovery');
 
 Route::get('/profile/{id}',"UserController@show")->name('profile-show');
+

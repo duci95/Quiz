@@ -32,8 +32,8 @@ class QuizController extends Controller
         if(count($check))
             return redirect()->back();
 
-//        if(!count($quiz))
-//            return response(null, 404);
+        if(!count($quiz))
+            return redirect()->back()->with('error','error');
 
         return view('pages.quiz')->with('quiz', $quiz);
     }

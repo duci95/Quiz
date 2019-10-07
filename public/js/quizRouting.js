@@ -23,8 +23,8 @@ $(document).on('click','.quiz',function(e) {
                       label: "Odustani",
                       className: 'btn-secondary'
                   },
-                  ok: {
-                      label: `<a>Pocni test</a>`,
+                  confirm: {
+                      label: `<a>Počni test</a>`,
                       className: 'btn-info',
                       callback: function () {
                           window.location.href = `/test/${category}`;

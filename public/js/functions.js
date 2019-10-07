@@ -114,3 +114,22 @@ function sendCSRFToken(){
 function goToLogin(){
     window.location.href = "/entry";
 }
+
+function stopWatch(){
+    var stop = '0:0';
+    var minutesLeft = 0;
+    var secondsLeft = 5;
+    var downloadTimer = setInterval(function(){
+        secondsLeft -= 1;
+        if(secondsLeft === 0) {
+            minutesLeft -= 1;
+            secondsLeft = 59;
+        }
+        document.getElementById("demo").innerHTML = minutesLeft + ':' + secondsLeft;
+        console.log(document.getElementById("demo").innerHTML);
+        if(document.getElementById("demo").innerHTML == '-1:59'){
+            clearInterval(downloadTimer);
+            document.getElementById("demo").innerHTML = "Finished"
+        }
+    }, 1000);
+}

@@ -1,4 +1,3 @@
-
 <div id="fade1" class="card">
     @if(session()->has('activated'))
         <div class="alert alert-success alert-dismissible mb-sm-auto fade show text-center" role="alert" >
@@ -12,6 +11,7 @@
     <div class="errors bg-danger text-white text-center">
 
     </div>
+
     <div class="card-header bg-dark text-center">
         <span class="text-white h5 text-uppercase ">prijava</span>
         <noscript class="bg-danger p-3 text-white h6 text-center">Moraš uključiti JavaScript kako bi mogao da se prijaviš!</noscript>
@@ -34,4 +34,3 @@
         </div>
     </div>
 </div>
-
