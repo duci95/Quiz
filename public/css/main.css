@@ -75,3 +75,10 @@ a:visited{
 .quiz{
     cursor: pointer;
 }
+.move-left{
+    padding-right:120px;
+}
+.cards-margin{
+    margin-top:6%;
+}
+

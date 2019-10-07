@@ -116,20 +116,27 @@ function goToLogin(){
 }
 
 function stopWatch(){
-    var stop = '0:0';
-    var minutesLeft = 0;
-    var secondsLeft = 5;
-    var downloadTimer = setInterval(function(){
+    var watch = document.getElementById('demo');
+    watch.classList.add('bg-success');
+    var minutesLeft = 19 ;
+    var secondsLeft = 60;
+    var time = setInterval(function() {
         secondsLeft -= 1;
-        if(secondsLeft === 0) {
+        if(secondsLeft === -1 && minutesLeft !== 0 ) {
             minutesLeft -= 1;
             secondsLeft = 59;
         }
-        document.getElementById("demo").innerHTML = minutesLeft + ':' + secondsLeft;
-        console.log(document.getElementById("demo").innerHTML);
-        if(document.getElementById("demo").innerHTML == '-1:59'){
-            clearInterval(downloadTimer);
-            document.getElementById("demo").innerHTML = "Finished"
+        watch.innerHTML = minutesLeft + ':' + secondsLeft;
+        if(minutesLeft <= 2)
+            watch.classList.add('bg-danger');
+        if(secondsLeft < 10)
+            watch.innerHTML =  minutesLeft + ':' + 0 + secondsLeft;
+        else if(minutesLeft < 10)
+            watch.innerHTML = '0' + minutesLeft + ':' + secondsLeft;
+        if(minutesLeft < 10 && secondsLeft < 10)
+            watch.innerHTML = '0' + minutesLeft + ':' + '0' + secondsLeft;
+        if(minutesLeft === 0 && secondsLeft === 0) {
+            clearInterval(time);
         }
     }, 1000);
 }
