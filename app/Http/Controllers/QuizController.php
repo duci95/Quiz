@@ -25,8 +25,6 @@ class QuizController extends Controller
             ->where('category_id' , $category)
             ->get();
 
-//        dd($quiz);
-
         $check = Category::approve(session()->get('user')->id, $category);
 
         if(count($check))
@@ -34,6 +32,8 @@ class QuizController extends Controller
 
         if(!count($quiz))
             return redirect()->back()->with('error','error');
+
+        
 
         return view('pages.quiz')->with('quiz', $quiz);
     }

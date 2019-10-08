@@ -10,14 +10,12 @@
             <span class="h2 text-white mt-1 move-left">{{$data->category->category_name}}</span>
             <a href="{{route('logout')}}" class="ml-5 btn btn-outline-dark h5 mt-1 text-center text-white">Odjavi se</a>
         </div>
-        <p id="demo" class="text-white text-center h5 time bg-success m-0 p-1">20:00</p>
+        <p id="demo" class="text-white text-center h5 time bg-success m-0 p-1 margin-header-bottom">20:00</p>
     </div>
-
-
 @endsection
 @endforeach
 @section('content')
-    <div class="container w-75 p-1 cards-margin">
+    <div class="container w-50 p-1 cards-margin">
         @foreach($quiz as $questionNo => $questions)
         <div class="card m-3">
             <div class="card-header h5 p-1 text-center bg-info text-white">
@@ -26,9 +24,9 @@
             </div>
             <div class="card-body p-0">
                    @foreach($questions->answers as $answersNo => $answers)
-                               <div class="justify-content-around pl-3 first-letter p-0">
-                                   <input type="radio" name="{{$questions->question}}" class="mt-2" id="{{substr($answers->answer_text,0,10)}}" value="{{$answers->true}}" />
-                                   <label class="" for="{{substr($answers->answer_text,0,10)}}">{{--{{$answersNo + 1}}. --}}{{$answers->answer_text}} </label>
+                               <div class="justify-content-around pl-3 first-letter p-0 radio">
+                                   <input type="radio" name="{{$questions->question}}" class="mt-2 " id="{{substr($answers->answer_text,0,10)}}"  value="{{$answers->true }} " />
+                                   <label class="" for="{{substr($answers->answer_text,0,10)}}">{{$answers->answer_text}} </label>
                                </div>
                     @endforeach
             </div>
@@ -42,3 +40,4 @@
 @section('scripts')
     <script src="{{asset("/")}}js/quizValidate.js"></script>
 @endsection
+
