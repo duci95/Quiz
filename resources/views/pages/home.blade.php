@@ -18,10 +18,11 @@
             <a href="{{route('index')}}" class="mr-5 navbar-brand text-left text-white">ICT Expert QUIZ</a>
             <a href="{{route('logout')}}" class="ml-5 btn btn-outline-info h5 mt-1 text-center text-white">Odjavi se</a>
         </div>
+
+    @endif
         <div class="border-top">
             <p class="text-center h5 text-white bg-info p-1">Odaberite željenu kategoriju </p>
         </div>
-    @endif
 @endsection
 @section('content')
     <div class="container mb-5 mt-3">

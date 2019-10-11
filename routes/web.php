@@ -19,7 +19,7 @@ Route::get('/quiz/{id}/{category}',"QuizController@approve");
 
 Route::get('/test/{category}/',"QuizController@test");
 
-
+Route::post('/quiz',"QuizController@validation");
 
 Route::get("/activation/{token}", "RegisterController@activation");
 
