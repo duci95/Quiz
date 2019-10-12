@@ -15,6 +15,10 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('question_id')->index();
+            $table->foreign('question_id')->references('id')->on('questions');
+            $table->string('answer');
+            $table->boolean('true');
             $table->timestamps();
         });
     }

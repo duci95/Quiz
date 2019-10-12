@@ -15,6 +15,14 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('category_id')->index();
+            $table->unsignedBigInteger('question_id')->index();
+            $table->unsignedBigInteger('answer_id')->index();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('answer_id')->references('id')->on('answers');
             $table->timestamps();
         });
     }

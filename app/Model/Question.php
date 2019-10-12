@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class Question extends Model
 {
+    public $timestamps = true;
+
     public function category()
     {
       return $this->belongsTo(Category::class);

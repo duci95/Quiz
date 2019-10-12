@@ -26,8 +26,8 @@
             <div class="card-body p-0">
                    @foreach($questions->answers as $answersNo => $answers)
                                <div class="justify-content-around pl-3 p-0 radio">
-                                   <input type="radio"  name="{{$questions->question}}[]" class="mt-2" id="{{substr($answers->answer_text,0,10)}}" value="{{$answers->id}}"/>
-                                   <label for="{{substr($answers->answer_text,0,10)}}">{{$answers->answer_text}} </label>
+                                   <input type="radio"  name="{{$questions->question}}[]" class="mt-2" id="{{substr($answers->answer,0,10)}}" value="{{$answers->id}}"/>
+                                   <label for="{{substr($answers->answer,0,10)}}">{{$answers->answer}} </label>
                                </div>
                     @endforeach
             </div>

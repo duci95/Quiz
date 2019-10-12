@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
+    public $timestamps = true;
+
     public function questions()
     {
         return $this->hasMany(Question::class);
@@ -15,7 +17,7 @@ class Category extends Model
 
     public static function approve($user, $category)
     {
-        return DB::table('quiz as q')
+        return DB::table('quizzes as q')
             ->join("categories as c",'q.category_id','=','c.id')
             ->where([
                 'user_id' => $user,

@@ -8,13 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class User extends Model
 {
-    private $first_name;
-    private $last_name;
-    private $email;
-    private $password;
-    private $token;
-
-
     public $timestamps = true;
 
     public function pictures()

@@ -1,15 +1,12 @@
-// var dialog1 = bootbox.dialog({
-//     message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> Please wait while we do something...</p>',
-//     closeButton: false
-// });
+// var dialog1 =
 
 $(document).on('click','.quiz',function(e) {
 
    var user = $(this).data("user");
    var category = $(this).data('category');
    var category_name = $(this).data('category-name');
-   var token = $(this).data('category-token');
-   console.log(token);
+
+
 
    $.ajax({
       url : `/quiz/${user}/${category}`,
@@ -37,18 +34,9 @@ $(document).on('click','.quiz',function(e) {
            switch (request.status) {
                case 409 :
                    bootbox.dialog({
-                       title: `${category_name}`,
+                       title: `<span class="text-center">${category_name}</span>`,
                        message: "<p class='text-center text-danger p-1'>Ovaj test je radjen</p>",
-                       size: "small",
-                       buttons: {
-                           cancel: {
-                               label: "Zatvori",
-                               className: 'btn-info text-center',
-                               callback: function () {
-                                   console.log('Custom cancel clicked');
-                               }
-                           },
-                       }
+                       size: "small"
                    });
                    break;
                case 500 :

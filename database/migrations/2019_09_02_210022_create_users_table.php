@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string("token", 120);
             $table->boolean("active")->default(0);
             $table->boolean("is_deleted")->default(0);
-            $table->bigInteger('role_id')->unsigned()->default(3);
+            $table->unsignedbigInteger('role_id')->default(3);
             $table->foreign('role_id')->references('id')->on("roles");
             $table->timestamps();
             $table->softDeletes();
