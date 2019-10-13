@@ -63,7 +63,7 @@ class Kernel extends HttpKernel
         'administrator' => \App\Http\Middleware\AdminMiddleware::class,
         'moderator' => \App\Http\Middleware\ModeratorMiddleware::class,
         'tester' => \App\Http\Middleware\TesterMiddleware::class,
-
+        'session' => \App\Http\Middleware\AuthMiddleware::class,
     ];
 
     /**

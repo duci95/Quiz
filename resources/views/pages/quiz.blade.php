@@ -40,5 +40,7 @@
     <script src="{{asset("/")}}js/functions.js"></script>
 @endsection
 @section('scripts')
-    <script src="{{asset("/")}}js/quizValidate.js"></script>
+    <script >
+        stopWatch();
+    </script>
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
+    protected $fillable = ['category_name', 'description'];
     public $timestamps = true;
 
     public function questions()

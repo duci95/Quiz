@@ -21,7 +21,7 @@ class AdminMiddleware
 
         $user = $request->session()->get('user');
 
-        if($user->role_name !== 'administrator') {
+        if($user->role_id !== 1) {
             return redirect()->route("log-reg");
         }
         return $next($request);

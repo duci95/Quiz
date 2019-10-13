@@ -2,20 +2,13 @@
 
 namespace App\Http\Controllers\Moderator;
 
+use App\Model\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CategoriesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,7 +39,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -57,7 +50,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $result = Category::find($id);
+        return response(['results' => $result],200);
     }
 
     /**
@@ -69,7 +63,16 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = $request->post('category');
+        $desc = $request->post('desc');
+
+        Category::find($id)->update([
+            'category_name' => $category,
+            'description' => $desc
+            ]);
+
+        $results = Category::all();
+        return response(['results' => $results],200);
     }
 
     /**

@@ -15,6 +15,14 @@ class ModeratorMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if(!$request->session()->has('user')){
+            return redirect()->route("log-reg");
+        }
+        $user = $request->session()->get('user');
+
+        if($user->role_id !== 2) {
+            return redirect()->route("log-reg");
+        }
         return $next($request);
     }
 }

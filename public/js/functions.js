@@ -7,7 +7,7 @@ function showModalAfterTestCompleted(message , numberOfCorrects , numberOfQuesti
                 label: 'U redu',
                 className: 'btn-info',
                 callback: function () {
-                    window.location.href = `/`;
+                    window.location.href = `/home`;
                 }
             }
         }

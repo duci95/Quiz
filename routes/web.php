@@ -11,8 +11,11 @@
 */
 use Illuminate\Support\Facades\Route;
 
-Route::get('/entry','FrontendController@index')->name('log-reg');
-Route::get('/{reg?}/', "FrontendController@home")->name('index')->fallback();
+Route::get('/entry','FrontendController@index')
+    ->name('log-reg')
+    ->middleware('session');
+
+Route::get('/home/{reg?}/', "FrontendController@home")->name('index');
 
 Route::get('/logout', "LoginController@logout")->name('logout');
 
@@ -32,17 +35,15 @@ Route::group(['middleware' => 'tester'] , function() {
     Route::post('/quiz',"QuizController@validation");
 });
 Route::group(['middleware' => 'moderator'], function(){
-//   Route::get('/categories',"CategoriesController@index");
-//   Route::get('/categories/{id}',"CategoriesController@show");
-//   Route::post('/categories',"CategoriesController@store");
-//   Route::get('/categories',"CategoriesController@");
-
+    Route::resources([
+        'categories' => 'Moderator\CategoriesController',
+    ]);
 });
 
 Route::group(['middleware' => 'administrator'],function(){
-    Route::resources([
-        'users' => 'UsersController'
-    ]);
+//    Route::resources([
+//        'users' => 'UsersController'
+//    ]);
 });
 
 
