@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/entry','FrontendController@index')
     ->name('log-reg')
-    ->middleware('session');
-
+    ->middleware('session')
+    ->fallback();
+Route::get('/',function(){
+    return redirect()->route('log-reg');
+});
 Route::get('/home/{reg?}', "FrontendController@home")->name('index');
 
 Route::get('/logout', "LoginController@logout")->name('logout');

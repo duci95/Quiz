@@ -13,10 +13,9 @@ class QuestionsController extends Controller
         $questions = Question::withoutTrashed()->find($id)->with(['answers' => function($a){
             $a->withoutTrashed();
         }])->get();
-        dd($questions);
-        if(!is_null($questions))
-            return 0;
+//        dd($questions);
         return view('pages.moderator-questions')->with('questions', $questions);
+
     }
     /**
      * Display a listing of the resource.
