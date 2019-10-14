@@ -3,13 +3,14 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 
 class User extends Model
 {
     public $timestamps = true;
-
+    use SoftDeletes;
     public function pictures()
     {
         return $this->hasMany(Picture::class);

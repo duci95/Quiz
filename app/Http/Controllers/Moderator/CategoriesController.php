@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\Moderator;
 
+use App\Http\Requests\CategoryRequest;
 use App\Model\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
-
-
+    public function index()
+    {
+        $categories = Category::withoutTrashed()->get();
+        return  view('pages.home')->with('categories', $categories);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -26,9 +31,24 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $category_name = $request->post('category');
+        $desc = $request->post('desc');
+
+        $unique = Category::withoutTrashed()->where('category_name','=',$category_name)->first();
+
+        if(!is_null($unique))
+            return response(null, 422);
+
+        $category = new Category;
+        $category->category_name = $category_name;
+        $category->description = $desc;
+        $category->save();
+
+        $results = Category::withoutTrashed()->get();
+
+        return response(['results' => $results],200);
     }
 
     /**
@@ -66,6 +86,7 @@ class CategoriesController extends Controller
         $category = $request->post('category');
         $desc = $request->post('desc');
 
+
         Category::find($id)->update([
             'category_name' => $category,
             'description' => $desc
@@ -83,6 +104,8 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::find($id)->delete();
+        $results = Category::withoutTrashed()->get();
+        return response(['results' => $results],200);
     }
 }

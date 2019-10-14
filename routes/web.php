@@ -15,7 +15,7 @@ Route::get('/entry','FrontendController@index')
     ->name('log-reg')
     ->middleware('session');
 
-Route::get('/home/{reg?}/', "FrontendController@home")->name('index');
+Route::get('/home/{reg?}', "FrontendController@home")->name('index');
 
 Route::get('/logout', "LoginController@logout")->name('logout');
 
@@ -35,8 +35,11 @@ Route::group(['middleware' => 'tester'] , function() {
     Route::post('/quiz',"QuizController@validation");
 });
 Route::group(['middleware' => 'moderator'], function(){
+    Route::get('/categories/one/{category}',"Moderator\QuestionsController@showOne")->name('one');
     Route::resources([
         'categories' => 'Moderator\CategoriesController',
+        'questions' => 'Moderator\QuestionsController',
+        'answers' => 'Moderator\AnswersController'
     ]);
 });
 

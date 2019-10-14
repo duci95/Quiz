@@ -13,7 +13,6 @@ function showModalAfterTestCompleted(message , numberOfCorrects , numberOfQuesti
         }
     });
 }
-
 function showModalOnAjaxRequestAnimation(){
     $(document).ajaxStart(function(){
         bootbox.dialog({
@@ -138,7 +137,6 @@ function sendCSRFToken(){
 function goToLogin(){
     window.location.href = "/entry";
 }
-
 function sendAjaxRequestForTest() {
     const category = $('#category').data('category');
     const question_ids = $('input[name="questions[]"');
@@ -216,4 +214,31 @@ function stopWatch() {
             sendAjaxRequestForTest();
         }
     }, 100);
+}
+function printCategoriesAfterAjax(data){
+    var element = `<div class="row m-2 d-flex justify-content-between"> 
+                        <span class="btn btn-success  insert text-center">Dodaj kategoriju</span>
+                   </div>`;
+    $.each(data, function(index, item){
+        element+=`<div class="row justify-content-around border-bottom border-top p-2  m-2">
+                    <span class="col-2">
+                        <a href='http://127.0.0.1:8000/questions?id=${item.id}' class="text-white btn btn-info">${item.category_name}</a>
+                    </span>
+                    <span class="col-6">
+                        <span class="text-info">${item.description}</span>
+                    </span>
+                    <span data-category="${item.id}" class="edit btn btn-primary">Izmeni</span>
+                    <span data-category="${item.id}" class="delete btn btn-danger d-flex justify-content-end ">Obriši</span>
+                   </div> `;
+    });
+    $('.content').html(element);
+
+}
+function checkIfFieldsAreEmpty(field, errors){
+    if (field.val() === '') {
+        field.addClass('border-danger');
+        errors.push(field);
+    }
+    else
+        field.removeClass('border-danger');
 }

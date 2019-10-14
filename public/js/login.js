@@ -19,8 +19,13 @@ $("#logBtn").on("click", function(){
        url : "/login",
        method : "POST",
        data : objectToSend,
-       success : function(response){
-            window.location.href = '/home';
+       success : function(data, textStatus, xhr){
+            if(xhr.status === 203)
+                window.location.href = '/home';
+           if(xhr.status === 202)
+               window.location.href = '/categories';
+           if(xhr.status === 201)
+               window.location.href = '/users'
        },
        error: function(xhr, status, error){
             switch(xhr.status){

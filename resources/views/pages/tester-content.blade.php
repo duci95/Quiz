@@ -1,7 +1,8 @@
+@foreach($categories as $cat)
 <div class="row justify-content-around radius p-2 border mb-3">
     <div class="col-sm-3 text-center">
         @if(session()->has('user'))
-            <p class="h3 mt-2 p-2 radius btn-info quiz text-white" data-category-token="{{$cat->category_token}}" data-category-name="{{$cat->category_name}}" data-category="{{$cat->id}}" data-user="{{session()->get('user')->id}}" >{{$cat->category_name}}</p>
+            <p class="h3 mt-2 p-2 radius btn-info quiz text-white"  data-category-name="{{$cat->category_name}}" data-category="{{$cat->id}}" data-user="{{session()->get('user')->id}}" >{{$cat->category_name}}</p>
         @else
             <p class="h3 mt-2 p-2 radius btn-info quiz text-white" onclick="goToLogin();"> {{$cat->category_name}}</p>
         @endif
@@ -10,6 +11,7 @@
         <span >{{$cat->description}}</span>
     </div>
 </div>
+@endforeach
 @section('scripts')
     <script src="{{asset("/")}}js/quizRouting.js"></script>
     @if(session()->has('error'))

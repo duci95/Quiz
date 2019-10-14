@@ -21,7 +21,16 @@ class LoginController extends Controller
 
             if($user){
                 $request->session()->put('user', $user);
-                return response(null, 200);
+
+                if(session()->get('user')->role_id === 1)
+                    return response(null, 201);
+
+                if(session()->get('user')->role_id === 2)
+                    return response(null, 202);
+
+                if(session()->get('user')->role_id === 3)
+                    return response(null, 203);
+
             }
             else if(!$user){
                  $inactive = User::inactive($email, $password);
