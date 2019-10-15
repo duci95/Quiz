@@ -3,10 +3,12 @@
         @include('partials.header')
 @endsection
 @section('content')
-<div class="container content">
-    <div class="row m-2 d-flex justify-content-between">
-        <span class="btn btn-success insert-q align-content-center text-center">Dodaj pitanje</span>
+    <div class="container">
+        <div class="row m-2 d-flex justify-content-between">
+            <span data-category="{{$category}}" class="btn btn-success insert-q align-content-center text-center">Dodaj pitanje</span>
+        </div>
     </div>
+<div class="container content">
     <div class="row ">
     @foreach($questions as $questionNo => $question)
                 <div class="card m-2 ">

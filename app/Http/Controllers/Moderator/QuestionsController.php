@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Moderator;
 
+use App\Model\Answer;
 use App\Model\Category;
 use App\Model\Question;
 use Illuminate\Http\Request;
@@ -16,7 +17,9 @@ class QuestionsController extends Controller
             $r->withoutTrashed();
     }])->where('category_id','=',$id)->get();
 
-        return view('pages.moderator-questions')->with('questions', $questions);
+        return view('pages.moderator-questions')
+            ->with('questions', $questions)
+            ->with('category',$id);
 
     }
     /**
@@ -47,7 +50,35 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $question = $request->post('question');
+        $right = $request->post('right');
+        $wrong = $request->post('wrong');
+        $category = $request->post('category');
+
+        $q = new Question;
+        $q->question = $question;
+        $q->category_id = $category;
+        $q->save();
+
+        $r = new Answer;
+
+        $r->answer = $right;
+        $r->true = 1;
+        $r->question_id = $q->id;
+        $r->save();
+
+        $w = new Answer;
+
+        $w->answer = $wrong;
+        $w->question_id = $q->id;
+        $w->save();
+
+        $questions = Question::withoutTrashed()->with(['answers' => function($a){
+            $a->withoutTrashed();
+        }])->where('category_id','=',$category)->get();
+
+        return response(['results' => $questions], 200);
+
     }
 
     /**

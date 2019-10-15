@@ -243,16 +243,14 @@ function checkIfFieldsAreEmpty(field, errors){
         field.removeClass('border-danger');
 }
 function printQuestionsAndAnswersAfterAjax(data) {
-    var element =`<div class="row m-2 d-flex justify-content-between">
-            <span class="btn btn-success insert align-content-center text-center">Dodaj pitanje</span>
-        </div>
+    var element = `
     <div class="row ">`;
     for(var item of data) {
         element += `<div class="card m-2 ">
                         <div class="card-header  p-1">
                             <span data-category='${item.category_id}' data-question="${item.id}" class="question p-1 badge">${item.question}</span>
                             <span class="btn badge ml-5 edit-q btn-primary" ><i  class="text-white fa fa-pencil-square-o" aria-hidden="true"></i></span>
-                            <span class="btn btn-danger delete-q badge"><i class="fa fa-times" aria-hidden="true"></i></span>
+                            <span data-category='${item.category_id}' data-question="${item.id}" class="btn btn-danger delete-q badge"><i class="fa fa-times" aria-hidden="true"></i></span>
                         </div>
                     <div class="card-body p-1">`;
         for (var answer of item.answers) {

@@ -14,7 +14,8 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::withoutTrashed()->get();
-        return  view('pages.home')->with('categories', $categories);
+        return  view('pages.home')
+            ->with('categories', $categories);
     }
     /**
      * Show the form for creating a new resource.

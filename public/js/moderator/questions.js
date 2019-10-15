@@ -243,7 +243,6 @@ $(document).ready(function (){
        bootbox.dialog({
           title:`<span class="h5">Brisanje pitanja</span>`,
           message: 'Da li ste sigurni da želite da obrišete pitanje i odgovore?',
-          // size:'large',
           buttons:{
               cancel:{
                   className:'btn-secondary',
@@ -281,5 +280,66 @@ $(document).ready(function (){
           }
        });
 
+   });
+   $(document).on('click','.insert-q',function(){
+      const category = $(this).data('category');
+      console.log(category);
+      bootbox.dialog({
+          title: 'Dodaj pitanje',
+          message:`<label for="question">Pitanje</label>
+                   <input type="text" id="question" class="form-control mb-2"/>
+                   
+                   <label for="right" class="text-success">Tačan odgovor</label>
+                   <input type="text" id="right" class="form-control"/>
+                   
+                   <label for="wrong" class="text-danger">Pogrešan odgovor</label>
+                   <input type="text" id="wrong" class="form-control"/>                      
+                  `,
+          buttons: {
+              cancel: {
+                  label: "Odustani",
+                  className : 'btn-secondary',
+              },
+              ok:{
+                  label:"Sačuvaj",
+                  className:'btn-success',
+                  callback: function(){
+                      const errors = [];
+                      const question = $("#question");
+                      const right = $('#right');
+                      const wrong = $('#wrong');
+                      checkIfFieldsAreEmpty(question,errors);
+                      checkIfFieldsAreEmpty(right,errors);
+                      checkIfFieldsAreEmpty(wrong,errors);
+                      if(errors.length > 0)
+                          return false;
+                      sendCSRFToken();
+                      $.ajax({
+                          url : '/questions',
+                          method : "POST",
+                          data:{
+                              'question' : question.val(),
+                              'right' : right.val(),
+                              'wrong' : wrong.val(),
+                              'category' : category
+                          },
+                          success:function(response){
+                              printQuestionsAndAnswersAfterAjax(response.results);
+                              $.notify('Pitanje i odgovori uspešno dodati!', {
+                                  position: 'bottom right',
+                                  className: 'success'
+                              })
+                          },
+                          error:function(r,s,e){
+                              $.notify('Pitanje i odgovori nisu dodati!', {
+                                  position: 'bottom right',
+                                  className: 'error'
+                              })
+                          }
+                      })
+                  }
+              }
+          }
+      })
    });
 });
