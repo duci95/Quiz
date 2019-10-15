@@ -222,7 +222,7 @@ function printCategoriesAfterAjax(data){
     $.each(data, function(index, item){
         element+=`<div class="row justify-content-around border-bottom border-top p-2  m-2">
                     <span class="col-2">
-                        <a href='http://127.0.0.1:8000/questions?id=${item.id}' class="text-white btn btn-info">${item.category_name}</a>
+                        <a href='http://127.0.0.1:8000/categories/one/${item.id}' class="text-white btn btn-info">${item.category_name}</a>
                     </span>
                     <span class="col-6">
                         <span class="text-info">${item.description}</span>
@@ -241,4 +241,40 @@ function checkIfFieldsAreEmpty(field, errors){
     }
     else
         field.removeClass('border-danger');
+}
+function printQuestionsAndAnswersAfterAjax(data) {
+    var element =`<div class="row m-2 d-flex justify-content-between">
+            <span class="btn btn-success insert align-content-center text-center">Dodaj pitanje</span>
+        </div>
+    <div class="row">`;
+    for(var item of data) {
+        element += `<div class="card m-2">
+                        <div class="card-header  p-1">
+                            <span data-category='${item.category_id}' data-question="${item.id}" class="question p-1 badge">${item.question}</span>
+                            <span class="btn badge ml-5 edit-q btn-primary" ><i  class="text-white fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                            <span class="btn btn-danger delete-q badge"><i class="fa fa-times" aria-hidden="true"></i></span>
+                        </div>
+                    <div class="card-body p-1">`;
+        for (var answer of item.answers) {
+            element += `<div class="justify-content-around">`;
+            if (answer.true === 1) {
+                element += `<label class="bg-success text-white badge" for="${answer.id}">${answer.answer}</label>
+                            <input id="${answer.id}" data-id="${answer.id}" name="${item.question}" type="radio" class="radio mr-1" checked="checked"/>`;
+            }
+            else {
+                element += `<label class="p-1 badge" for="${answer.id}">${answer.answer}</label>
+                            <input id="${answer.id}" data-id="${answer.id}" name="${item.question}" type="radio" class="radio m-1"/>`;
+            }
+            element+=`<span class='float-right'> `;
+            element += `<span class="btn badge  edit-a btn-primary" data-category='${item.category_id}' data-id="${answer.id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                        <span class="btn btn-danger delete-a badge" data-category='${item.category_id}' data-id="${answer.id}"><i class="fa fa-times" aria-hidden="true"></i></span>`;
+            element += `</div>`;
+        }
+        element+=`</div>
+                   <div class="card-footer p-1 d-flex justify-content-center">
+                     <span class="btn btn-success add-a badge">Dodaj odgovor</span>
+                   </div>
+            </div>`;
+        $('.content').html(element);
+    }
 }

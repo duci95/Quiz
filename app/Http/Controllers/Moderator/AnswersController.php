@@ -48,7 +48,8 @@ class AnswersController extends Controller
      */
     public function show($id)
     {
-        //
+        $answer = Answer::find($id);
+        return response(['results'=> $answer],200);
     }
 
     /**
@@ -59,7 +60,7 @@ class AnswersController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -71,16 +72,16 @@ class AnswersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $question_id = $request->input('question_id');
-        $category_id = $request->input('category_id');
-        Answer::where('question_id','=', $question_id)->update(['true' => 0]);
-        Answer::find($id)->update(['true' => 1]);
+        $answer = $request->input('answer');
+        $category_id = $request->input('category');
+
+        Answer::find($id)->update(['answer'=> $answer]);
 
         $results = Question::with(['answers' => function($a){
             $a->withoutTrashed();
         }])->where('category_id','=',$category_id)->get();
 
-        return response(['results'=> $results], 200);
+        return response(['results'=> $results],200);
     }
 
     /**
@@ -92,5 +93,18 @@ class AnswersController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updateTrues(Request $request, $id)
+    {
+        $question_id = $request->input('question_id');
+        $category_id = $request->input('category_id');
+        Answer::where('question_id','=', $question_id)->update(['true' => 0]);
+        Answer::find($id)->update(['true' => 1]);
+
+        $results = Question::with(['answers' => function($a){
+            $a->withoutTrashed();
+        }])->where('category_id','=',$category_id)->get();
+
+        return response(['results'=> $results], 200);
     }
 }

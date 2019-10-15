@@ -5,42 +5,39 @@
 @section('content')
 <div class="container content">
     <div class="row m-2 d-flex justify-content-between">
-        <span class="btn btn-success insert align-content-center text-center">Dodaj pitanje</span>
+        <span class="btn btn-success insert-q align-content-center text-center">Dodaj pitanje</span>
     </div>
+    <div class="row">
     @foreach($questions as $questionNo => $question)
-        <div class="d-flex flex-row justify-content-between">
-{{--        <span class="col-4">--}}
-{{--            <a href="{{route('answers.index',['id' => $question->id])}}" class="text-white btn btn-info">{{$question->question}} ?</a>--}}
-{{--        </span>--}}
-{{--            <span data-category="{{$question->id}}" class="edit btn btn-primary">Izmeni</span>--}}
-{{--            <span data-category="{{$question->id}}" class="delete btn btn-danger d-flex justify-content-end ">Obriši</span>--}}
-            <div class="card d-flex">
-                <div class="card-header justify-content-around d-flex p-1 flex-row">
-                    <span data-category='{{$question->category_id}}' data-question="{{$question->id}}" class="question p-1 badge">{{$question->question}} ?</span>
-                    <span class="btn p-1 btn-primary badge">Izmeni</span>
-                </div>
-                <div class="card-body d-flex p-1  flex-column">
-                    @foreach($question->answers as $answer)
-                        <div class=" justify-content-between">
-                            @if($answer->true === 1)
-                            <label class="bg-success text-white p-1 badge" for="{{$answer->id}}">{{$answer->answer}}</label>
-                            <input id="{{$answer->id}}" data-id="{{$answer->id}}" name="{{substr($question->question,0,10)}}" type="radio" class="radio" checked="checked"/>
-                            @else
-                            <label class="p-1 badge" for="{{$answer->id}}">{{$answer->answer}}</label>
-                            <input id="{{$answer->id}}" data-id="{{$answer->id}}" name="{{substr($question->question, 0,10)}}" class='radio' type="radio"/>
-                            @endif
-                            <span class="btn btn-primary badge">Izmeni</span>
-                            <span class="btn btn-danger badge">Obriši</span>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="card-footer p-1 d-flex justify-content-around">
-                    <span class="btn btn-success badge">Dodaj odgovor</span>
-                    <span class="btn btn-danger badge">Obriši pitanje</span>
-                </div>
+                <div class="card m-2">
+                    <div class="card-header p-1">
+                        <span data-category='{{$question->category_id}}' data-question="{{$question->id}}" class="question p-1 badge">{{$question->question}}</span>
+                        <span class="btn badge btn-primary ml-5 edit-q"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                        <span class="btn btn-danger delete-q badge"><i class="fa fa-times" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="card-body p-1">
+                        @foreach($question->answers as $answer)
+                            <div class="justify-content-around">
+                                @if($answer->true === 1)
+                                    <label class="bg-success text-white badge" for="{{$answer->id}}">{{$answer->answer}}</label>
+                                    <input id="{{$answer->id}}" data-id="{{$answer->id}}" name="{{substr($question->question,0,10)}}" type="radio" class="radio  mr-1" checked="checked"/>
+                                @else
+                                    <label class="p-1 badge" for="{{$answer->id}}">{{$answer->answer}}</label>
+                                    <input id="{{$answer->id}}" data-id="{{$answer->id}}" name="{{substr($question->question, 0,10)}}" class='radio mr-1' type="radio"/>
+                                @endif
+                                    <span class='float-right'>
+                                    <span class="btn badge edit-a btn-primary " data-category='{{$question->category_id}}' data-id="{{$answer->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                    <span class="btn btn-danger delete-a badge" data-category='{{$question->category_id}}' data-id="{{$answer->id}}"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                </span>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="card-footer p-1 d-flex justify-content-around">
+                        <span class="btn btn-success badge">Dodaj odgovor</span>
+                    </div>
             </div>
-        </div>
     @endforeach
+</div>
 </div>
 @endsection
 @section('functions')

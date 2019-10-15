@@ -38,6 +38,7 @@ Route::group(['middleware' => 'tester'] , function() {
     Route::post('/quiz',"QuizController@validation");
 });
 Route::group(['middleware' => 'moderator'], function(){
+    Route::put('/answers/trues/{answer}',"Moderator\AnswersController@updateTrues");
     Route::get('/categories/one/{category}',"Moderator\QuestionsController@showOne")->name('one');
     Route::resources([
         'categories' => 'Moderator\CategoriesController',

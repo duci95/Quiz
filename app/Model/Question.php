@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Question extends Model
 {
     public $timestamps = true;
+    protected $fillable = ['question'];
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     public function category()

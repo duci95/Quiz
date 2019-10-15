@@ -67,7 +67,7 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -79,7 +79,14 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $question = $request->input('question');
+
+        Question::find($id)->update(['question' => $question]);
+        $questions = Question::withoutTrashed()->find($id)->with(['answers' => function($a){
+            $a->withoutTrashed();
+        }])->get();
+        return response(['results' => $questions], 200);
+
     }
 
     /**
@@ -91,5 +98,9 @@ class QuestionsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updateTrues()
+    {
+
     }
 }
