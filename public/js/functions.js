@@ -246,9 +246,9 @@ function printQuestionsAndAnswersAfterAjax(data) {
     var element =`<div class="row m-2 d-flex justify-content-between">
             <span class="btn btn-success insert align-content-center text-center">Dodaj pitanje</span>
         </div>
-    <div class="row">`;
+    <div class="row ">`;
     for(var item of data) {
-        element += `<div class="card m-2">
+        element += `<div class="card m-2 ">
                         <div class="card-header  p-1">
                             <span data-category='${item.category_id}' data-question="${item.id}" class="question p-1 badge">${item.question}</span>
                             <span class="btn badge ml-5 edit-q btn-primary" ><i  class="text-white fa fa-pencil-square-o" aria-hidden="true"></i></span>
@@ -265,16 +265,25 @@ function printQuestionsAndAnswersAfterAjax(data) {
                 element += `<label class="p-1 badge" for="${answer.id}">${answer.answer}</label>
                             <input id="${answer.id}" data-id="${answer.id}" name="${item.question}" type="radio" class="radio m-1"/>`;
             }
-            element+=`<span class='float-right'> `;
-            element += `<span class="btn badge  edit-a btn-primary" data-category='${item.category_id}' data-id="${answer.id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
-                        <span class="btn btn-danger delete-a badge" data-category='${item.category_id}' data-id="${answer.id}"><i class="fa fa-times" aria-hidden="true"></i></span>`;
+            element+=`<span class="float-right">`;
+            element += `<span class="btn badge mr-1 edit-a btn-primary" data-category='${item.category_id}' data-id="${answer.id}"><i class="fa fa-pencil-square-o" aria-hidden="true"> </i></span>`;
+            if(answer.true === 1)
+                element+= `<span class="btn btn-danger restrict-a-true badge" ><i class="fa fa-times" aria-hidden="true"> </i></span>`;
+            else if(item.answers.length < 3)
+                element+= `<span class="btn btn-danger restrict-a badge" ><i class="fa fa-times" aria-hidden="true"> </i></span>`;
+            else
+                element+=`<span class="btn btn-danger delete-a badge" data-category='${item.category_id}' data-id="${answer.id}"> <i class="fa fa-times" aria-hidden="true"> </i></span>`;
+                element+=`</span>`;
             element += `</div>`;
+
         }
         element+=`</div>
-                   <div class="card-footer p-1 d-flex justify-content-center">
-                     <span class="btn btn-success add-a badge">Dodaj odgovor</span>
-                   </div>
-            </div>`;
+                   <div class="card-footer p-1 d-flex justify-content-center">`;
+        if(item.answers.length > 5)
+            element+=`<span class="bg-warning badge">Maksimalan broj odgovora je 6</span>`;
+        else
+            element+=`<span data-category='${item.category_id}' data-question="${item.id}" class="btn btn-success add-a badge">Dodaj odgovor</span>`;
+        element+=`</div> </div>`;
         $('.content').html(element);
     }
 }

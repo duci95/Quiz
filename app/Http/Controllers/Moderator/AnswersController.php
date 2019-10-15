@@ -37,7 +37,20 @@ class AnswersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $answer = $request->post('answer');
+        $category = $request->post('category');
+        $question = $request->post('question');
+
+        $a = new Answer();
+        $a->question_id = $question;
+        $a->answer = $answer;
+        $a->save();
+
+        $results = Question::with(['answers' => function($a){
+            $a->withoutTrashed();
+        }])->where('category_id','=',$category)->get();
+
+        return response(['results'=>$results], 200);
     }
 
     /**
@@ -92,7 +105,8 @@ class AnswersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Answer::find($id)->delete();
+        return response(null,204);
     }
     public function updateTrues(Request $request, $id)
     {

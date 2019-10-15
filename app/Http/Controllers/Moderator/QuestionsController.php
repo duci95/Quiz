@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Moderator;
 
+use App\Model\Category;
 use App\Model\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,10 +11,11 @@ class QuestionsController extends Controller
 {
     public function showOne($id)
     {
-        $questions = Question::withoutTrashed()->find($id)->with(['answers' => function($a){
-            $a->withoutTrashed();
-        }])->get();
-//        dd($questions);
+
+        $questions = Question::withoutTrashed()->with(['answers' => function($r){
+            $r->withoutTrashed();
+    }])->where('category_id','=',$id)->get();
+
         return view('pages.moderator-questions')->with('questions', $questions);
 
     }
@@ -80,11 +82,14 @@ class QuestionsController extends Controller
     public function update(Request $request, $id)
     {
         $question = $request->input('question');
+        $category = $request->input('category');
 
         Question::find($id)->update(['question' => $question]);
+
         $questions = Question::withoutTrashed()->find($id)->with(['answers' => function($a){
             $a->withoutTrashed();
-        }])->get();
+        }])->where('category_id','=',$category)->get();
+
         return response(['results' => $questions], 200);
 
     }
@@ -97,10 +102,8 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Question::find($id)->delete();
+        return response(null, 204);
     }
-    public function updateTrues()
-    {
 
-    }
 }

@@ -51,7 +51,6 @@ $(document).ready(function(){
             }
         });
     });
-
     $(document).on('click','.delete',function(){
         const category = $(this).data('category');
         const categoryObject = $(this);
@@ -84,7 +83,6 @@ $(document).ready(function(){
         })
 
     });
-
     $(document).on('click','.insert',function(){
        bootbox.dialog({
            title: 'Dodaj kategoriju',

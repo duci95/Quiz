@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Moderator;
 
 use App\Http\Requests\CategoryRequest;
 use App\Model\Category;
+use App\Model\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -59,7 +60,11 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
+        $questions = Question::withoutTrashed()->with(['answers' => function($r){
+            $r->withoutTrashed();
+        }])->where('category_id','=',$id)->get();
 
+        return response(['results'=> $questions],200);
     }
 
     /**
