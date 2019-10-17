@@ -43,7 +43,8 @@ Route::group(['middleware' => 'moderator'], function(){
     Route::resources([
         'categories' => 'Moderator\CategoriesController',
         'questions' => 'Moderator\QuestionsController',
-        'answers' => 'Moderator\AnswersController'
+        'answers' => 'Moderator\AnswersController',
+        'statistics' => 'Moderator\StatisticsController'
     ]);
 });
 

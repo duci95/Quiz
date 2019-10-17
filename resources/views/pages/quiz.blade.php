@@ -19,15 +19,15 @@
         @foreach($quiz as $questionNo => $questions)
         <div class="card m-3">
             <div class="card-header h5 p-1 text-center bg-info text-white">
-                <span class="float-left pl-4">{{$questionNo+1}}.</span>
+                <span class="float-left  pl-4">{{$questionNo+1}}.</span>
                 <input type="hidden" name="questions[]" value="{{$questions->id}}"/>
-                <span  class="text-center">{{$questions->question}} ?</span>
+                <span  class="text-center">{{$questions->question}}</span>
             </div>
             <div class="card-body p-0">
                    @foreach($questions->answers as $answersNo => $answers)
-                               <div class="justify-content-around pl-3 p-0 radio">
-                                   <input type="radio"  name="{{$questions->question}}[]" class="mt-2" id="{{substr($answers->answer,0,10)}}" value="{{$answers->id}}"/>
-                                   <label for="{{substr($answers->answer,0,10)}}">{{$answers->answer}} </label>
+                               <div class="pl-3 radio">
+                                   <input type="radio"  name="{{$questions->question}}[]" class="mt-2 " id="{{$answers->id}}" value="{{$answers->id}}"/>
+                                   <label for="{{$answers->id}}">{{$answers->answer}} </label>
                                </div>
                     @endforeach
             </div>

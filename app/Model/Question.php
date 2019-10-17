@@ -12,6 +12,7 @@ class Question extends Model
     protected $fillable = ['question'];
     use SoftDeletes;
     protected $dates = ['deleted_at'];
+
     public function category()
     {
       return $this->belongsTo(Category::class);
@@ -21,4 +22,10 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
+    public function results()
+    {
+        return $this->hasMany(Result::class);
+    }
+
 }

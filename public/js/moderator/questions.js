@@ -201,6 +201,7 @@ $(document).ready(function (){
                    className: 'btn-danger',
                    label: 'Obriši',
                    callback: function(){
+                       sendCSRFToken();
                     $.ajax({
                         url : '/answers/'+answer,
                         method : "DELETE",
@@ -252,6 +253,7 @@ $(document).ready(function (){
                   className:'btn-danger',
                   label:'Obriši',
                   callback:function(){
+                      sendCSRFToken();
                       $.ajax({
                           url: '/questions/' + question,
                           method: "DELETE",

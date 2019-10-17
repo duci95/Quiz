@@ -11,9 +11,14 @@ class Answer extends Model
     protected $fillable = ['answer','true'];
     use SoftDeletes;
     protected $dates = ['deleted_at'];
+
     public function question()
     {
         return $this->belongsToMany(Question::class);
     }
 
+    public function results()
+    {
+        return $this->hasMany(Result::class);
+    }
 }

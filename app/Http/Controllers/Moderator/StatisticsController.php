@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Moderator;
 
-use App\Model\Category;
-use App\Model\Question;
+use App\Model\Result;
+use App\Model\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class TestController extends Controller
+class StatisticsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -47,30 +48,10 @@ class TestController extends Controller
      */
     public function show($id)
     {
-        $check = Category::approve(session()->get('user')->id, $id);
+        $users = Result::getResultsByCategory($id);
 
-                if(count($check))
-                    return redirect()->back();
-
-
-                $quiz = Question::with('category')
-                    ->with(['answers' => function ($a) {
-                      $a->inRandomOrder();
-                    }])
-                    ->where('category_id' , $id)
-                    ->limit(10)
-                    ->inRandomOrder()
-                    ->get();
-
-                if(!count($quiz))
-                    return redirect()->back()->with('error','error');
-
-        //        $quzzies = new Quiz;
-        //        $quzzies->user_id = session()->get('user')->id;
-        //        $quzzies->category_id = $category;
-        //        $quzzies->save();
-
-                return view('pages.quiz')->with('quiz', $quiz);
+        return view('pages.moderator-statistics-category')
+            ->with('users', $users);
     }
 
     /**

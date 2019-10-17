@@ -11,9 +11,15 @@ class User extends Model
 {
     public $timestamps = true;
     use SoftDeletes;
+
     public function pictures()
     {
         return $this->hasMany(Picture::class);
+    }
+
+    public function results()
+    {
+        return $this->hasMany(Result::class);
     }
 
     public static function login($email, $password)

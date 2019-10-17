@@ -3,11 +3,10 @@
         @include('partials.header')
 @endsection
 @section('content')
-    <div class="container">
-        <div class="row m-2 d-flex justify-content-between">
-            <span data-category="{{$category}}" class="btn btn-success insert-q align-content-center text-center">Dodaj pitanje</span>
-        </div>
-    </div>
+<div class="container-fluid mt-2">
+    <a href="{{route('categories.index')}}" class="btn text-white btn-success badge p-2 text-center"><i class="fa fa-arrow-left"> Nazad na kategorije </i></a>
+    <span data-category="{{$category}}" class="btn btn-info badge badge-info p-2 insert-q align-content-center text-center">Dodaj pitanje</span>
+</div>
 <div class="container content">
     <div class="row ">
     @foreach($questions as $questionNo => $question)
