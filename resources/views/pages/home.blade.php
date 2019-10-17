@@ -19,18 +19,23 @@
                 @endif
             @else
                @foreach($categories as $cat)
-                    <div class="row justify-content-around radius p-2 border mb-3">
-                        <div class="col-sm-3 text-center">
-                            <p class="h3 mt-2 p-2 radius btn-info quiz text-white" onclick="goToLogin();"> {{$cat->category_name}}</p>
+                    <div class="row justify-content-sm-around p-1 border-top border-bottom mb-3">
+                        <div class="row col-3 justify-content-center">
+                            <span class="p-2 btn-info quiz badge text-white" onclick="goToLogin();"> {{$cat->category_name}}</span>
                         </div>
-                        <div class="col-5 text-center radius bg-info text-white desc">
-                            <span >{{$cat->description}}</span>
+                        <div class="col-5 row justify-content-center align-content-center">
+                            <span class="p-2 btn btn-info quiz badge text-white" >{{$cat->description}}</span>
                         </div>
                     </div>
+
                @endforeach
             @endif
     </div>
 </div>
+
+
+
+
 @endsection
 @section('functions')
     <script src="{{asset("/")}}js/functions.js"></script>

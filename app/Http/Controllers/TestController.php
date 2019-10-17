@@ -47,30 +47,30 @@ class TestController extends Controller
      */
     public function show($id)
     {
-        $check = Category::approve(session()->get('user')->id, $id);
-
-                if(count($check))
-                    return redirect()->back();
-
-
-                $quiz = Question::with('category')
-                    ->with(['answers' => function ($a) {
-                      $a->inRandomOrder();
-                    }])
-                    ->where('category_id' , $id)
-                    ->limit(10)
-                    ->inRandomOrder()
-                    ->get();
-
-                if(!count($quiz))
-                    return redirect()->back()->with('error','error');
-
-        //        $quzzies = new Quiz;
-        //        $quzzies->user_id = session()->get('user')->id;
-        //        $quzzies->category_id = $category;
-        //        $quzzies->save();
-
-                return view('pages.quiz')->with('quiz', $quiz);
+//        $check = Category::approve(session()->get('user')->id, $id);
+//
+//                if(count($check))
+//                    return redirect()->back();
+//
+//
+//                $quiz = Question::with('category')
+//                    ->with(['answers' => function ($a) {
+//                      $a->inRandomOrder();
+//                    }])
+//                    ->where('category_id' , $id)
+//                    ->limit(10)
+//                    ->inRandomOrder()
+//                    ->get();
+//
+//                if(!count($quiz))
+//                    return redirect()->back()->with('error','error');
+//
+//                $quzzies = new Quiz;
+//                $quzzies->user_id = session()->get('user')->id;
+//                $quzzies->category_id = $id;
+//                $quzzies->save();
+//
+//                return view('pages.quiz')->with('quiz', $quiz);
     }
 
     /**

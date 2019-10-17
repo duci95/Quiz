@@ -28,7 +28,6 @@ class QuizController extends Controller
         if(count($check))
             return redirect()->back();
 
-
         $quiz = Question::with('category')
             ->with(['answers' => function ($a) {
               $a->inRandomOrder();
@@ -41,10 +40,10 @@ class QuizController extends Controller
         if(!count($quiz))
             return redirect()->back()->with('error','error');
 
-//        $quzzies = new Quiz;
-//        $quzzies->user_id = session()->get('user')->id;
-//        $quzzies->category_id = $category;
-//        $quzzies->save();
+        $quzzies = new Quiz;
+        $quzzies->user_id = session()->get('user')->id;
+        $quzzies->category_id = $category;
+        $quzzies->save();
 
         return view('pages.quiz')->with('quiz', $quiz);
     }

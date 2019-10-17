@@ -11,9 +11,8 @@
 */
 use Illuminate\Support\Facades\Route;
 
-Route::get('/entry','FrontendController@index')
+Route::get('/entry','FrontendController@index')->middleware('session')
     ->name('log-reg')
-    ->middleware('session')
     ->fallback();
 Route::get('/',function(){
     return redirect()->route('log-reg');
@@ -28,6 +27,10 @@ Route::post('/login','LoginController@login')->name('login');
 Route::post("/register", "RegisterController@register")->name("register");
 Route::post('/recovery', "PasswordRecoveryController@recover")->name('recovery');
 
+Route::group(['middleware' => 'auth'], function(){
+
+});
+
 Route::group(['middleware' => 'tester'] , function() {
     Route::get('/profile/{id}',"UserController@show")->name('profile-show');
     Route::get('/quiz/{id}/{category}',"QuizController@approve");
@@ -40,6 +43,8 @@ Route::group(['middleware' => 'tester'] , function() {
 Route::group(['middleware' => 'moderator'], function(){
     Route::put('/answers/trues/{answer}',"Moderator\AnswersController@updateTrues");
     Route::get('/categories/one/{category}',"Moderator\QuestionsController@showOne")->name('one');
+    Route::get('/statistics/all','Moderator\StatisticsController@showAll')->name('statistics-all-users');
+    Route::get('/statistics/user/{user}','Moderator\StatisticsController@showOne')->name('statistics-user');
     Route::resources([
         'categories' => 'Moderator\CategoriesController',
         'questions' => 'Moderator\QuestionsController',

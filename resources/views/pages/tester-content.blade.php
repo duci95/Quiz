@@ -1,10 +1,10 @@
 @foreach($categories as $cat)
-<div class="row justify-content-around  p-1 border-top border-bottom mb-3">
-    <div class="col-auto text-center">
+<div class="row justify-content-sm-around p-1 border-top border-bottom mb-3">
+    <div class="row col-3 justify-content-center">
             <span class="p-2  btn-info quiz badge text-white"  data-category-name="{{$cat->category_name}}" data-category="{{$cat->id}}" data-user="{{session()->get('user')->id}}" >{{$cat->category_name}}</span>
     </div>
-    <div class="col-5 text-center radius bg-info badge text-white desc">
-        <span >{{$cat->description}}</span>
+    <div class="col-5 row justify-content-center align-content-center ">
+        <span class="p-2 btn btn-info quiz badge text-white" >{{$cat->description}}</span>
     </div>
 </div>
 @endforeach

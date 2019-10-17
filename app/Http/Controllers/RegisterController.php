@@ -83,7 +83,7 @@ class RegisterController extends Controller
             return redirect("/")->with("activated","activated");
        }
        catch(QueryException $e) {
-           Log::critical("Error while activating user with token: $token");
+           Log::critical("Error while activating user with token: $token , caused by ". $e->getMessage());
            return redirect()->back();
        }
     }

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Moderator;
 
 use App\Model\Answer;
 use App\Model\Question;
+use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class AnswersController extends Controller
 {
@@ -85,16 +87,21 @@ class AnswersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $answer = $request->input('answer');
-        $category_id = $request->input('category');
+        try {
+            $answer = $request->input('answer');
+            $category_id = $request->input('category');
 
-        Answer::find($id)->update(['answer'=> $answer]);
+            Answer::find($id)->update(['answer' => $answer]);
 
-        $results = Question::with(['answers' => function($a){
-            $a->withoutTrashed();
-        }])->where('category_id','=',$category_id)->get();
+            $results = Question::with(['answers' => function ($a) {
+                $a->withoutTrashed();
+            }])->where('category_id', '=', $category_id)->get();
 
-        return response(['results'=> $results],200);
+            return response(['results' => $results], 200);
+        }
+        catch(QueryException $exception){
+            Log::critical($exception->getMessage());
+        }
     }
 
     /**

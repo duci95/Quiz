@@ -191,7 +191,7 @@ function stopWatch() {
        clicked = true;
     });
     watch.classList.add('bg-success');
-    var minutesLeft = 0;
+    var minutesLeft = 19;
     var secondsLeft = 60;
     var time = setInterval(function () {
         secondsLeft -= 1;
@@ -213,22 +213,23 @@ function stopWatch() {
             clearInterval(time);
             sendAjaxRequestForTest();
         }
-    }, 100);
+    }, 1000);
 }
 function printCategoriesAfterAjax(data){
-    var element = `<div class="row m-2 d-flex justify-content-between"> 
-                        <span class="btn btn-success  insert text-center">Dodaj kategoriju</span>
-                   </div>`;
+    var element ='';
     $.each(data, function(index, item){
-        element+=`<div class="row justify-content-around border-bottom border-top p-2  m-2">
-                    <span class="col-2">
-                        <a href='http://127.0.0.1:8000/categories/one/${item.id}' class="text-white btn btn-info">${item.category_name}</a>
+        element+=`<div class="row justify-content-center border-bottom border-top p-2 m-2">
+                    <span class="col-2 row justify-content-start">
+                        <a href='http://127.0.0.1:8000/categories/one/${item.id}' class="text-white btn badge p-2 mr-3 btn-info">${item.category_name}</a>
+                        <a href='http://127.0.0.1:8000/statistics/${item.id}' class="text-white badge btn p-2 btn-info">Rezultati</a>
                     </span>
-                    <span class="col-6">
-                        <span class="text-info">${item.description}</span>
+                    <span class="col-6 row justify-content-center align-content-center">
+                        <span class="text-info badge">${item.description}</span>
                     </span>
-                    <span data-category="${item.id}" class="edit btn btn-primary">Izmeni</span>
-                    <span data-category="${item.id}" class="delete btn btn-danger d-flex justify-content-end ">Obriši</span>
+                    <span class="col-3 row justify-content-end">
+                        <span data-category="${item.id}" class="mr-2 edit btn btn-primary badge p-2 ">Izmeni</span>
+                    <span data-category="${item.id}" class="delete btn btn-danger  badge p-2  ">Obriši</span>
+                    </span>
                    </div> `;
     });
     $('.content').html(element);
@@ -246,15 +247,15 @@ function printQuestionsAndAnswersAfterAjax(data) {
     var element = `
     <div class="row ">`;
     for(var item of data) {
-        element += `<div class="card m-2 ">
-                        <div class="card-header  p-1">
+        element += `<div class="card m-2 p-0">
+                        <div class="card-header p-1">
                             <span data-category='${item.category_id}' data-question="${item.id}" class="question p-1 badge">${item.question}</span>
                             <span class="btn badge ml-5 edit-q btn-primary" ><i  class="text-white fa fa-pencil-square-o" aria-hidden="true"></i></span>
                             <span data-category='${item.category_id}' data-question="${item.id}" class="btn btn-danger delete-q badge"><i class="fa fa-times" aria-hidden="true"></i></span>
                         </div>
-                    <div class="card-body p-1">`;
+                    <div class="card-body p-0">`;
         for (var answer of item.answers) {
-            element += `<div class="justify-content-around">`;
+            element += `<div class="justify-content-around p-0">`;
             if (answer.true === 1) {
                 element += `<label class="bg-success text-white badge" for="${answer.id}">${answer.answer}</label>
                             <input id="${answer.id}" data-id="${answer.id}" name="${item.question}" type="radio" class="radio mr-1" checked="checked"/>`;

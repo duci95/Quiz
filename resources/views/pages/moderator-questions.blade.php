@@ -4,11 +4,11 @@
 @endsection
 @section('content')
 <div class="container-fluid mt-2">
-    <a href="{{route('categories.index')}}" class="btn text-white btn-success badge p-2 text-center"><i class="fa fa-arrow-left"> Nazad na kategorije </i></a>
-    <span data-category="{{$category}}" class="btn btn-info badge badge-info p-2 insert-q align-content-center text-center">Dodaj pitanje</span>
+    <a href="{{route('categories.index')}}" class="text-white row mr-5 ml-3 p-1 btn-warning badge text-dark text-center"> <i class="fa fa-arrow-left"> Kategorije </i> </a>
+    <span data-category="{{$category}}" class="btn btn-info badge row   p-1 insert-q text-center">Dodaj pitanje</span>
 </div>
 <div class="container content">
-    <div class="row ">
+    <div class="row">
     @foreach($questions as $questionNo => $question)
                 <div class="card m-2 ">
                     <div class="card-header p-1">
@@ -16,7 +16,7 @@
                         <span class="btn badge btn-primary ml-5 edit-q"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
                         <span data-category='{{$question->category_id}}' data-question="{{$question->id}}" class="btn btn-danger delete-q badge"><i class="fa fa-times" aria-hidden="true"></i></span>
                     </div>
-                    <div class="card-body p-1">
+                    <div class="card-body p-0">
                         @foreach($question->answers as $answer)
                             <div class="justify-content-around">
                                 @if($answer->true === 1)

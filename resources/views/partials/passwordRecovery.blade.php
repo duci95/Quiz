@@ -2,9 +2,7 @@
     <div>
         <span class="animate-div progress-bar progress-bar-striped progress-bar-animated"></span>
     </div>
-    <div class="bg-danger errors text-white text-center">
-
-    </div>
+    <div class="bg-danger errors text-white text-center"></div>
     <div class="bg-success text-center text-white" id="rec-success"></div>
     <div class="card-header bg-dark text-center">
         <span class="text-white h5 text-uppercase ">Oporavak lozinke</span>
@@ -17,15 +15,8 @@
             <input type="button" class="form-control btn btn-info text-uppercase mt-lg-3" value="Pošalji" id="recoveryBtn">
         </form>
     </div>
-    <div class="card-footer">
-        <div class="d-inline-flex align-items-center justify-content-around">
-            <span class="text-muted">Nisi registrovan?</span>
-            <span class="p-sm-2 btn btn-outline-info text-center" onclick="registrationFormFromPasswordRecoveryForm()">Registruj se!</span>
-        </div>
-        <div class="p-sm-1 bord"></div>
-        <div class="d-inline-flex align-items-center justify-content-around">
-            <span class="text-muted">Setio si se lozinke?</span>
-            <span class="p-sm-2 btn btn-outline-info text-center" onclick="loginFormFromPasswordRecoveryForm()">Prijavi se!</span>
-        </div>
+    <div class="card-footer m-auto d-flex justify-content-around">
+            <span class=" btn btn-outline-info text-center" onclick="registrationFormFromPasswordRecoveryForm()">Registruj se!</span>
+            <span class="btn btn-outline-info text-center" onclick="loginFormFromPasswordRecoveryForm()">Prijavi se!</span>
     </div>
 </div>
