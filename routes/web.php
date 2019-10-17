@@ -11,12 +11,15 @@
 */
 use Illuminate\Support\Facades\Route;
 
-Route::get('/entry','FrontendController@index')->middleware('session')
+Route::get('/entry','FrontendController@index')
+    ->middleware('session')
     ->name('log-reg')
     ->fallback();
+
 Route::get('/',function(){
     return redirect()->route('log-reg');
 });
+
 Route::get('/home/{reg?}', "FrontendController@home")->name('index');
 
 Route::get('/logout', "LoginController@logout")->name('logout');
@@ -27,9 +30,7 @@ Route::post('/login','LoginController@login')->name('login');
 Route::post("/register", "RegisterController@register")->name("register");
 Route::post('/recovery', "PasswordRecoveryController@recover")->name('recovery');
 
-Route::group(['middleware' => 'auth'], function(){
 
-});
 
 Route::group(['middleware' => 'tester'] , function() {
     Route::get('/profile/{id}',"UserController@show")->name('profile-show');
