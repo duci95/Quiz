@@ -33,12 +33,17 @@ class LoginController extends Controller
 
             }
             else if(!$user){
+                $blocked = User::blocked($email, $password);
+                if($blocked){
+                    return response(null, 401);
+                }
                  $inactive = User::inactive($email, $password);
                  if($inactive) {
                      $body = 'Kliknite na <a href="http://127.0.0.1:8000/activation/' . $inactive->token . '" >link</a> da aktivirate profil';
                      Helpers::sendMail($email, $body, "Registracija");
                      return response(null, 403);
                  }
+
             }
             return response(null, 404);
         }
@@ -50,6 +55,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $request->session()->forget('user');
+        $request->session()->forget('blocked');
         $request->session()->flush();
         return redirect()->route('log-reg');
     }

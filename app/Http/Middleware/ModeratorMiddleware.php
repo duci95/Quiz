@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Model\User;
 use Closure;
 
 class ModeratorMiddleware
@@ -15,11 +16,16 @@ class ModeratorMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $user = $request->session()->get('user');
-
-        if($user->role_id !== 2) {
-            return redirect()->back();
+        if(session()->has('user')){
+            if(session()->get('user')->role_id !== 2){
+                if(session()->get('user')->role_id === 3)
+                    User::find(session()->get('user')->id)->update(['is_blocked' => 1]);
+                    session()->put('blocked',1);
+                    return redirect()->back();
+            }
+                redirect()->back();
+            return $next($request);
         }
-        return $next($request);
+        return redirect()->route('log-reg');
     }
 }

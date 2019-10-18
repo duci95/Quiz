@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AuthMiddleware
+class LoginMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,6 +15,8 @@ class AuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(session()->has('user'))
+            return $next($request);
+        return abort(404,'Stranica nije pronađena',['Location:/entry']);
     }
 }

@@ -23,29 +23,34 @@ class QuizController extends Controller
 
     public function test($category)
     {
+
         $check = Category::approve(session()->get('user')->id, $category);
 
-        if(count($check))
+        if (count($check))
             return redirect()->back();
 
         $quiz = Question::with('category')
             ->with(['answers' => function ($a) {
-              $a->inRandomOrder();
+                $a->inRandomOrder();
             }])
-            ->where('category_id' , $category)
+            ->where('category_id', $category)
             ->limit(10)
             ->inRandomOrder()
             ->get();
 
-        if(!count($quiz))
-            return redirect()->back()->with('error','error');
+        if (!count($quiz)) {
+            return redirect()->back()->with('error', 'error');
+        }
+        else {
 
-        $quzzies = new Quiz;
-        $quzzies->user_id = session()->get('user')->id;
-        $quzzies->category_id = $category;
-        $quzzies->save();
+            $quzzies = new Quiz;
+            $quzzies->user_id = session()->get('user')->id;
+            $quzzies->category_id = $category;
+            $quzzies->save();
 
-        return view('pages.quiz')->with('quiz', $quiz);
+            return view('pages.quiz')->with('quiz', $quiz);
+
+        }
     }
 
     public function validation(Request $request){

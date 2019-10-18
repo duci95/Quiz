@@ -25,10 +25,13 @@ $("#logBtn").on("click", function(){
            if(xhr.status === 202)
                window.location.href = '/categories';
            if(xhr.status === 201)
-               window.location.href = '/users'
+               window.location.href = '/admins'
        },
        error: function(xhr, status, error){
             switch(xhr.status){
+                case 401:
+                    $(".errors").html('Nalog blokiran, obrati se administratoru!');
+                    break;
                 case 404:
                     $(".errors").html('Pogrešan email/lozinka!');
                     break;

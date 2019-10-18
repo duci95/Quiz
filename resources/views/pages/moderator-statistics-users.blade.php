@@ -7,7 +7,7 @@
     <div class="content container">
         @foreach($results as $r)
             <div class="row justify-content-center border-bottom border-top p-1 m-2">
-                <span class="row justify-content-start col-2 ">
+                <span class="row justify-content-start col-2">
             <img src="{{asset('/images/')}}/{{$r->image_name}}" alt="{{substr($r->image_name,0,10)}}" title="{{substr($r->image_name,0,10)}}">
         </span>
         <span class="row justify-content-start col-5  align-content-center">

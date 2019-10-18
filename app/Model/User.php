@@ -11,7 +11,7 @@ class User extends Model
 {
     public $timestamps = true;
     use SoftDeletes;
-
+    protected $fillable = ['is_blocked'];
     public function pictures()
     {
         return $this->hasMany(Picture::class);
@@ -31,25 +31,35 @@ class User extends Model
             ["email",$email],
             ["password",sha1($password)],
             ["active",1],
-            ["is_deleted",0]
+            ["is_blocked",0],
+            ['deleted_at',null]
         ]
             )
-          ->get(["u.id","first_name" ,"last_name" ,"email", "token" ,"u.created_at", "deleted_at", "active", "is_deleted", "role_id", "image_name"])
+          ->get(["u.id","first_name" ,"last_name" ,"email", "token" ,"u.created_at", "deleted_at", "active", "is_blocked", "role_id", "image_name"])
           ->first();
     }
 
     public static function inactive($email, $password)
     {
-        {
             return DB::table('users')->where(
                 [
                     ["email",$email],
                     ["password",sha1($password)],
                     ["active",0],
-                    ["is_deleted",0]
+                    ["is_blocked",0],
+                    ["deleted_at",null]
 
                 ])->first();
-        }
+    }
+
+    public static function blocked($email, $password)
+    {
+        return DB::table('users')->where([
+            ["email",$email],
+            ["password",sha1($password)],
+            ["is_blocked",1],
+            ["deleted_at",null]
+        ])->first();
     }
 
     public static function activate($token)

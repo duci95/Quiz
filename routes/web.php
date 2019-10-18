@@ -12,7 +12,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/entry','FrontendController@index')
-    ->middleware('session')
     ->name('log-reg')
     ->fallback();
 
@@ -22,43 +21,42 @@ Route::get('/',function(){
 
 Route::get('/home/{reg?}', "FrontendController@home")->name('index');
 
-Route::get('/logout', "LoginController@logout")->name('logout');
-
 Route::get("/activation/{token}", "RegisterController@activation");
 
 Route::post('/login','LoginController@login')->name('login');
 Route::post("/register", "RegisterController@register")->name("register");
 Route::post('/recovery', "PasswordRecoveryController@recover")->name('recovery');
 
-
-
-Route::group(['middleware' => 'tester'] , function() {
-    Route::get('/profile/{id}',"UserController@show")->name('profile-show');
-    Route::get('/quiz/{id}/{category}',"QuizController@approve");
-    Route::get('/test/{category}/',"QuizController@test");
-    Route::post('/quiz',"QuizController@validation");
-    Route::get('/quiz/{id}/{category}',"QuizController@approve");
-    Route::get('/test/{category}/',"QuizController@test");
-    Route::post('/quiz',"QuizController@validation");
-});
-Route::group(['middleware' => 'moderator'], function(){
-    Route::put('/answers/trues/{answer}',"Moderator\AnswersController@updateTrues");
-    Route::get('/categories/one/{category}',"Moderator\QuestionsController@showOne")->name('one');
-    Route::get('/statistics/all','Moderator\StatisticsController@showAll')->name('statistics-all-users');
-    Route::get('/statistics/user/{user}','Moderator\StatisticsController@showOne')->name('statistics-user');
+Route::group(['middleware' => 'login'], function(){
     Route::resources([
-        'categories' => 'Moderator\CategoriesController',
-        'questions' => 'Moderator\QuestionsController',
-        'answers' => 'Moderator\AnswersController',
-        'statistics' => 'Moderator\StatisticsController'
+       'users'  =>  'UsersController'
     ]);
+    Route::get('/logout', "LoginController@logout")->name('logout');
+    Route::group(['middleware' => 'tester'] , function() {
+        Route::get('/quiz/{id}/{category}',"QuizController@approve");
+        Route::get('/test/{category}/',"QuizController@test");
+        Route::post('/quiz',"QuizController@validation");
+        Route::get('/quiz/{id}/{category}',"QuizController@approve");
+        Route::get('/test/{category}/',"QuizController@test");
+        Route::post('/quiz',"QuizController@validation");
+    });
+    Route::group(['middleware' => 'moderator'], function(){
+        Route::put('/answers/trues/{answer}',"Moderator\AnswersController@updateTrues");
+        Route::get('/categories/one/{category}',"Moderator\QuestionsController@showOne")->name('one');
+        Route::get('/statistics/all','Moderator\StatisticsController@showAll')->name('statistics-all-users');
+        Route::get('/statistics/user/{user}','Moderator\StatisticsController@showOne')->name('statistics-user');
+        Route::resources([
+            'categories' => 'Moderator\CategoriesController',
+            'questions' => 'Moderator\QuestionsController',
+            'answers' => 'Moderator\AnswersController',
+            'statistics' => 'Moderator\StatisticsController'
+        ]);
+    });
+
+    Route::group(['middleware' => 'administrator'],function(){
+        Route::resources([
+        'admins' => 'Admin\AdminsController'
+        ]);
+    });
 });
-
-Route::group(['middleware' => 'administrator'],function(){
-//    Route::resources([
-//        'users' => 'UsersController'
-//    ]);
-});
-
-
 
