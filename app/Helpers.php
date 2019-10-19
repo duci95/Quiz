@@ -11,12 +11,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Helpers
 {
+    public static $email = 'ictexpertquiz@gmail.com';
     public static function sendMail($email, $body, $subject) :void
     {
-
         $mail = new PHPMailer(true);
         try {
-
             //Server settings
             $mail->SMTPDebug = 2;          // Enable verbose debug output
             $mail->isSMTP();                 // Set mailer to use SMTP
@@ -25,7 +24,7 @@ class Helpers
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = true;
             // Enable SMTP authentication
-            $mail->Username = 'ictexpertquiz@gmail.com';    // SMTP username
+            $mail->Username = self::$email ;    // SMTP username
             $mail->Password = '$dusan1995$';       // SMTP password
             $mail->SMTPSecure = 'tls';           // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                   // TCP port to connect to

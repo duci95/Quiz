@@ -19,6 +19,8 @@ Route::get('/',function(){
     return redirect()->route('log-reg');
 });
 
+Route::post('/contact',"ContactController@send");
+
 Route::get('/home/{reg?}', "FrontendController@home")->name('index');
 
 Route::get("/activation/{token}", "RegisterController@activation");

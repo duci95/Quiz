@@ -21,6 +21,8 @@ class StatisticsController extends Controller
     {
         try{
             $users = Result::getResultsByCategory($id);
+            if($users->items() === [])
+                return redirect()->back()->with('empty','empty');
             return view('pages.moderator-statistics-category')->with('users', $users);
         }
         catch(QueryException $e){

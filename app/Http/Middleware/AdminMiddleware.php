@@ -22,6 +22,7 @@ class AdminMiddleware
             if(session()->get('user')->role_id !== 1){
                 if(session()->get('user')->role_id === 3)
                     User::find(session()->get('user')->id)->update(['is_blocked' => 1]);
+                    session()->put('blocked',1);
                 return redirect()->back();
             }
             redirect()->back();

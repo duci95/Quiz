@@ -173,7 +173,7 @@ function sendAjaxRequestForTest() {
                 }
             });
             const numberOfCorrects = corrects.length;
-            if(numberOfCorrects >= questionIdsArray.length / 2)
+            if(numberOfCorrects > questionIdsArray.length / 2)
                 showModalAfterTestCompleted('Uspešno ste položili test!  ', numberOfCorrects, numberOfQuestions);
             else
                 showModalAfterTestCompleted('Niste položili test! ' , numberOfCorrects, numberOfQuestions);
@@ -286,3 +286,4 @@ function printQuestionsAndAnswersAfterAjax(data) {
         $('.content').html(element);
     }
 }
+

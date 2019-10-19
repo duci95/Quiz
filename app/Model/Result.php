@@ -77,4 +77,19 @@ class Result extends Model
             ->orderBy('category_name')
             ->paginate(10);
     }
+    public static function getResultForOneTest($user, $category)
+    {
+       return DB::table('results as r')
+            ->select('category_name', 'first_name', 'last_name',DB::raw('
+            COUNT(answer_id) as questions,
+            COUNT(CASE WHEN a.true = 1 THEN 1 ELSE NULL END) as trues'
+            ))
+            ->join('answers as a','r.answer_id','=','a.id')
+            ->join('categories as c','r.category_id','=','c.id')
+            ->join('users as u','r.user_id','=','u.id')
+            ->where('user_id',$user)
+            ->where('category_id',$category)
+            ->groupBy('category_name', 'first_name', 'last_name')
+            ->get();
+    }
 }

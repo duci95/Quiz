@@ -16,9 +16,9 @@
         </span>
         <span class="row justify-content-end col-5 align-content-center">
             @if($u->trues > $u->questions/2)
-            <span class=" badge p-2 btn-success text-uppercase">položio</span>
+            <span class=" badge p-2 btn-success text-uppercase">položen</span>
             @else
-            <span class=" badge p-2 btn-danger text-uppercase">Nije položio</span>
+            <span class=" badge p-2 btn-danger text-uppercase">Nije položen</span>
             @endif
         </span>
     </div>
@@ -36,3 +36,4 @@
 @section('scripts')
     <script src="{{asset("/")}}js/moderator/categories.js"></script>
 @endsection
+

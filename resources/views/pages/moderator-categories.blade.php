@@ -25,4 +25,9 @@
 @endsection
 @section('scripts')
     <script src="{{asset("/")}}js/moderator/categories.js"></script>
+    @if(session()->has('empty'))
+        <script>
+            bootbox.alert('Nema rezultata za ovu kategoriju!')
+        </script>
+    @endif
 @endsection

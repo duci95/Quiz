@@ -15,19 +15,20 @@ class QuizController extends Controller
     {
         $result = Category::approve($user, $category);
 
-        if(count($result) !== 0)
-            return response(null, 409);
+        if(count($result) !== 0) {
+            $results = Result::getResultForOneTest((session()->get('user')->id),$category);
+            return response(['results' => $results], 409);
+        }
 
         return response(null,200);
     }
 
     public function test($category)
     {
-
         $check = Category::approve(session()->get('user')->id, $category);
 
         if (count($check))
-            return redirect()->back();
+            return response(null,403);
 
         $quiz = Question::with('category')
             ->with(['answers' => function ($a) {
@@ -49,7 +50,6 @@ class QuizController extends Controller
             $quzzies->save();
 
             return view('pages.quiz')->with('quiz', $quiz);
-
         }
     }
 
@@ -60,6 +60,7 @@ class QuizController extends Controller
         $answers_ids = $request->post('answers_ids');
 
         $answers = Answer::all()->whereIn('id',$answers_ids);
+
 
         $results = new Result;
         $resultsArray = [];
@@ -77,6 +78,6 @@ class QuizController extends Controller
 
         $results->insert($resultsArray);
 
-        return response(['results' => $answers,],200 );
+        return response(['results' => $answers],200 );
     }
 }
