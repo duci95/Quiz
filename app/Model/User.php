@@ -12,9 +12,10 @@ class User extends Model
     public $timestamps = true;
     use SoftDeletes;
     protected $fillable = ['is_blocked'];
-    public function pictures()
+
+    public function picture()
     {
-        return $this->hasMany(Picture::class);
+        return $this->hasOne(Picture::class);
     }
 
     public function results()

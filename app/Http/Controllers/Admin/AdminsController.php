@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Model\Role;
 use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AdminsController extends Controller
 {
@@ -14,9 +16,12 @@ class AdminsController extends Controller
      */
     public function index()
     {
-        $users = User::withoutTrashed()->with('pictures')->paginate(1);
+        $users = User::withoutTrashed()->with('picture')->get();
+        $roles = Role::all();
+//        dd($users);
                 return  view('pages.home')
-                    ->with('categories', $users);
+                    ->with('categories', $users)
+                    ->with('roles', $roles);
     }
 
     /**
@@ -48,7 +53,8 @@ class AdminsController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::with('picture')->find($id);
+        return response(['results' => $user],200);
     }
 
     /**

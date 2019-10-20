@@ -19,7 +19,7 @@ $("#recoveryBtn").on("click", function(){
       },
       error : function(xhr, status, error) {
           switch(xhr.status) {
-              case 404,422:
+              case 404:
                   $('.errors').html("Ne postoji korisnik sa mejlom " + email.val());
                   break;
               default:

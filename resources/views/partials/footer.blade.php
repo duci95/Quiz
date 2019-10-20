@@ -9,9 +9,6 @@
         <a href="http://www.youtube.com"><span class="pl-3 text-info"><i class="fa fa-youtube"></i></span></a>
         <a href="http://www.linkedin.com"><span class="pl-3 text-info"><i class="fa fa-linkedin"></i></span></a>
     </span>
-    @section('functions')
-
-    @endsection
     <script src="{{asset("/")}}js/regexPatterns.js"></script>
     <script src="{{asset("/")}}js/functions.js"></script>
     <script>
@@ -66,7 +63,6 @@
             })
         });
     </script>
-
 </div>
 </body>
 </html>

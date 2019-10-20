@@ -3,19 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5a745732-cb20-4cf0-b5b8-8fa43306573e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Moderator/StatisticsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Moderator/StatisticsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AdminMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AdminMiddleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Result.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Result.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/functions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/quizRouting.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/quizRouting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/moderator-categories.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/moderator-categories.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/moderator-statistics-category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/moderator-statistics-category.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/moderator-statistics-user-one.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/moderator-statistics-user-one.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/passwordRecovery.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/passwordRecovery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/administrator-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/administrator-content.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/partials/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -278,7 +270,8 @@
       <workItem from="1571216645066" duration="4694000" />
       <workItem from="1571228877458" duration="32846000" />
       <workItem from="1571304638534" duration="26183000" />
-      <workItem from="1571390270744" duration="37070000" />
+      <workItem from="1571390270744" duration="38097000" />
+      <workItem from="1571473013617" duration="23079000" />
     </task>
     <servers />
   </component>
