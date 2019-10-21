@@ -57,7 +57,7 @@ Route::group(['middleware' => 'login'], function(){
 
     Route::group(['middleware' => 'administrator'],function(){
         Route::resources([
-        'admins' => 'Admin\AdminsController'
+            'admins' => 'Admin\AdminsController'
         ]);
     });
 });

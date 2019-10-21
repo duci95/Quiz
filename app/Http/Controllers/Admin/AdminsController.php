@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Http\Requests\AdminUserRequest;
+use App\Http\Requests\RegistrationRequest;
 use App\Model\Role;
 use App\Model\User;
+use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AdminsController extends Controller
 {
@@ -42,7 +46,7 @@ class AdminsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -75,9 +79,49 @@ class AdminsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminUserRequest $request, $id)
     {
-        //
+        $first_name = $request->get('firstname');
+        $last_name = $request->get('lastname');
+        $email = $request->get('email');
+        $role = $request->get('role');
+        $status = $request->get('status');
+        $blocked = $request->get('blocked');
+        $password = $request->get('password');
+        try {
+            $check = User::all()->where('email' , $email)
+                ->where('deleted_at','!==',null)
+                ->first();
+
+            if(!is_null($check))
+                return response(null, 409);
+
+            if (is_null($password)) {
+                User::find($id)->update([
+                    "first_name" => $first_name,
+                    "last_name" => $last_name,
+                    "email" => $email,
+                    "role" => $role,
+                    "status" => $status,
+                    "blocked" => $blocked,
+                ]);
+            } else {
+                User::find($id)->update([
+                    "first_name" => $first_name,
+                    "last_name" => $last_name,
+                    "email" => $email,
+                    "password" => sha1($password),
+                    "role" => $role,
+                    "status" => $status,
+                    "blocked" => $blocked,
+                ]);
+            }
+        }
+        catch(QueryException $e){
+            Log::critical($e->getMessage());
+            return response(null, 500);
+        }
+        return response(null,204);
     }
 
     /**
@@ -90,4 +134,5 @@ class AdminsController extends Controller
     {
         //
     }
+
 }

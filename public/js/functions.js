@@ -65,7 +65,7 @@ function registrationFormFromPasswordRecoveryForm(){
     });
 }
 function checkForInputErrors(regex, element, array, message){
-    if(!regex.test(element.val())) {
+    if(!regex.test(element.val().trim())) {
         array.push(message);
         element.addClass("border-danger");
     }
@@ -76,7 +76,7 @@ function checkForInputErrors(regex, element, array, message){
 }
 function checkForPasswordsMatching(password, passwordAgain, array){
     passwordAgain.removeClass('border-danger');
-    if(password.val() !== passwordAgain.val()) {
+    if(password.val().trim() !== passwordAgain.val().trim()) {
         array.push(matchingPasswordsWarning);
         passwordAgain.addClass('border-danger');
     }
@@ -286,4 +286,3 @@ function printQuestionsAndAnswersAfterAjax(data) {
         $('.content').html(element);
     }
 }
-

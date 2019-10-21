@@ -8,9 +8,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form  class="form-group" enctype="multipart/form-data">
+                <form  class="form-group" method="POST">
+                    @method('PUT')
                     <div class="row justify-content-center">
-                        <div class="col-6">
+                        <div class="col-6" id="firstname-div">
                             <label for="firstname" class="col-form-label text-muted">Ime</label>
                             <input type="text" class="form-control" id="firstname" value="{{$r->first_name}}">
                         </div>
@@ -26,7 +27,7 @@
                         </div>
                         <div class="col-6">
                             <label for="img" class="col-form-label text-muted">Slika</label>
-                            <input type="file" accept="image/gif,image/jpeg,image/png"  class="form-control-file" id="img" value="${response.results.picture.image_name}">
+                            <input type="file" accept="image/gif,image/jpeg,image/png"  class="form-control-file" id="img" data-prev-img="{{$r->picture->image_name}}" value="">
                         </div>
                     </div>
                     <div class="row justify-content-between align-content-center">
@@ -57,38 +58,27 @@
                             <select id="active" class="form-control">
                                 @if($r->active === 1)
                                 <option selected="selected" value="1">Aktivan</option>
-                                <option  value="0">Neaktivan</option>
+                                <option value="0">Neaktivan</option>
                                 @else
-                                <option  value="1">Aktivan</option>
+                                <option value="1">Aktivan</option>
                                 <option selected="selected" value="0">Neaktivan</option>
                                 @endif
                             </select>
                         </div>
                         <div class="col-4">
-                            <label for="active" class="col-form-label text-muted">Uloga</label>
-                            <select id="active" class="form-control">
-                                @foreach($roles as $rl)
-                                    @switch($r->role_id)
-                                        @case(1)
-                                        <option class="text-capitalize" selected="selected" value="{{$rl->id}}">Administrator</option>
-                                        @break
-                                        @case(2)
-                                        <option class="text-capitalize" selected="selected" value="{{$rl->id}}">Moderator</option>
-                                        @break
-                                        @case(3)
-                                        <option class="text-capitalize" selected="selected" value="{{$rl->id}}">Regularni</option>
-
-                                        @break
-                                    @endswitch
-                                    @endforeach
+                            <label for="role" class="col-form-label text-muted">Uloga</label>
+                            <select id="role" class="form-control">
+                                <option class="text-capitalize" @if($r->role_id === 1) selected="selected" @endif value="1">Administrator</option>
+                                <option class="text-capitalize" @if($r->role_id === 2) selected="selected" @endif value="2">Moderator</option>
+                                <option class="text-capitalize" @if($r->role_id === 3) selected="selected" @endif value="3">Regularni</option>
                             </select>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+                <button type="button" data-id="{{$r->id}}" id="modal" class="btn btn-primary save">Sačuvaj</button>
             </div>
         </div>
     </div>

@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Picture extends Model
 {
+    protected $fillable = ['image_name'];
     public $timestamps = true;
 
-    private $image_name;
-    private $user_id;
 
     public function user()
     {

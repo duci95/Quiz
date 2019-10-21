@@ -11,7 +11,7 @@ class User extends Model
 {
     public $timestamps = true;
     use SoftDeletes;
-    protected $fillable = ['is_blocked'];
+    protected $fillable = ['is_blocked','active','first_name','last_name','email','password','role_id'];
 
     public function picture()
     {

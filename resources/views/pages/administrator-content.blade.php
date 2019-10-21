@@ -30,7 +30,6 @@
                 @include('modals.admin-edit-user-modal')
             </div>
                 </div>
-
     @endforeach
     </div>
 @endsection
