@@ -1,4 +1,4 @@
-<div class="modal fade" id="{{$r->id}}" tabindex="-1" role="dialog" aria-labelledby="{{$r->id}}" aria-hidden="true">
+<div class="modal fade" id="{{$r->id}}" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="{{$r->id}}" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form  class="form-group" method="POST">
+                <form class="form-group" method="POST">
                     @method('PUT')
                     <div class="row justify-content-center">
                         <div class="col-6" id="firstname-div">
@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-6">
                             <label for="img" class="col-form-label text-muted">Slika</label>
-                            <input type="file" accept="image/gif,image/jpeg,image/png"  class="form-control-file" id="img" data-prev-img="{{$r->picture->image_name}}" value="">
+                            <input type="file" accept="image/gif,image/jpeg,image/png"   class="form-control-file" id="img" data-prev-img="{{$r->picture->id}}" >
                         </div>
                     </div>
                     <div class="row justify-content-between align-content-center">

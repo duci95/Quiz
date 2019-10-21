@@ -5,8 +5,8 @@ $("#regBtn").on("click",function() {
     let password = $("#pass");
     let passwordCheck = $("#passwordc");
     let errors = [];
-    let image = document.getElementById("img");
-    let file = image.files[0];
+    let image = $('#img');
+    let file = image.prop('files')[0];
     let email = $("#email");
 
     checkForInputErrors(reFirstLast, firstname, errors, firstnameWarning);

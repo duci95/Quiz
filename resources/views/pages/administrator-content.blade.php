@@ -19,20 +19,19 @@
             </div>
             <div class="row justify-content-end col-4  align-content-center">
                 @if($r->is_blocked === 1)
-                <span class="badge p-2 btn-warning text-white text-uppercase mr-3"> Blokiran</span>
-                @else
+                <span class="badge p-2 btn-warning text-white text-uppercase mr-3">Blokiran</span>
                 @endif
-                @if($r->active === 1)
-                <span class="badge p-2 btn-success text-uppercase mr-3">Aktivan</span>
+                @if($r->active === 0)
+                <span class="badge p-2 btn-secondary text-uppercase mr-3">Neaktivan</span>
                 @endif
                 <span data-id="{{$r->id}}" class="badge p-2 btn-primary btn edit text-uppercase mr-3 btn btn-primary" data-toggle="modal" data-target="#{{$r->id}}">Izmeni</span>
-                <span href="{{route('statistics-user',['id' => $r->user_id])}}" class=" text-uppercase text-white badge btn p-2 btn-danger">Obriši</span>
-                @include('modals.admin-edit-user-modal')
+                <span data-id="{{$r->id}}" class="text-uppercase text-white badge btn p-2 btn-danger delete">Obriši</span>
             </div>
                 </div>
+            @include('modals.admin-edit-user-modal')
     @endforeach
     </div>
 @endsection
 @section('scripts')
-    <script src="{{asset("/")}}js/admin/admin-edit-user.js"></script>
+    <script src="{{asset("/")}}js/admin/users.js"></script>
 @endsection

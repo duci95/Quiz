@@ -1,6 +1,5 @@
 $(document).ready(function(){
-
-   $(document).on('click','.save',function(){
+   $(document).on('click','.save', function(){
       const errors = [];
       const first_name = $(this).parent().parent().find('#firstname');
       const last_name = $(this).parent().parent().find('#lastname');
@@ -8,13 +7,15 @@ $(document).ready(function(){
       const password = $(this).parent().parent().find('#new-password');
       const password_again = $(this).parent().parent().find('#new-password-again');
       const img = $(this).parent().parent().find('#img');
+      const file = img.prop('files')[0];
       const role = $(this).parent().parent().find('#role').val();
       const blocked = $(this).parent().parent().find('#blocked').val();
       const active = $(this).parent().parent().find('#active').val();
+      //admin is user_id but named admin because of laravel convention resources controller
       const admin =  $(this).data('id');
-      console.log(role);
-      console.log(blocked);
-      console.log(active);
+       console.log(blocked);
+       console.log(active);
+
       const old = $(this).parent().parent().find('#img').data('prev-img');
       checkForInputErrors(reFirstLast,first_name,errors,firstnameWarning);
       checkForInputErrors(reFirstLast,last_name,errors,lastnameWarninig);
@@ -32,15 +33,15 @@ $(document).ready(function(){
           }
       }
       else{
-
           var data = new FormData();
 
           if(img.val() !== '') {
-              data.append("image_new", img.val());
+              data.append("image_new", file);
+              data.append("image_old", old);
           }
-          if(password.val !== '') {
-              data.append("password", password.val());
-              data.append("passwordCheck", password_again.val());
+          if(password.val().trim() !== '') {
+              data.append("password", password.val().trim());
+              data.append("password_again", password_again.val().trim());
           }
 
           data.append('firstname',first_name.val().trim());
@@ -61,14 +62,15 @@ $(document).ready(function(){
                 cache : false,
                 processData : false,
                 contentType : false,
-                success:function(){
-
+                success:function(response){
+                    $('.modal').modal('hide');
+                    printUsers(response.results);
                 },
                 error:function(){
 
                 }
             })
       }
-      // $('.modal').modal('hide');
+
    });
 });

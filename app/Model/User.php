@@ -26,14 +26,13 @@ class User extends Model
     public static function login($email, $password)
     {
         return DB::table('users as u')
-            ->join('pictures as p' ,"u.id","=","p.id")
+            ->join('pictures as p' ,"u.id","=","p.user_id")
             ->where(
         [
             ["email",$email],
             ["password",sha1($password)],
             ["active",1],
-            ["is_blocked",0],
-            ['deleted_at',null]
+            ["is_blocked",0]
         ]
             )
           ->get(["u.id","first_name" ,"last_name" ,"email", "token" ,"u.created_at", "deleted_at", "active", "is_blocked", "role_id", "image_name"])

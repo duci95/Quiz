@@ -87,15 +87,19 @@ function checkForPasswordsMatching(password, passwordAgain, array){
 }
 function validatePicture(image, array){
     var file = null;
-    if(image.value === ""){
+    if(image.val() === ""){
         array.push("Slika nije odabrana");
     }
     else{
-        file = image.files[0];
+        file = image.prop('files')[0];
+        console.log(file);
         const fileName = file.name;
+        console.log(fileName);
         const fileExtension = fileName.split(".").pop().toLowerCase();
+        console.log(fileExtension);
         var validExtension = true;
-        if(!permittedExtensions.includes(fileExtension))
+        console.log(file.size);
+        if(!jQuery.inArray(fileExtension))
         {
             let permittedExtensionsString = "";
             validExtension = false;
@@ -213,7 +217,7 @@ function stopWatch() {
             clearInterval(time);
             sendAjaxRequestForTest();
         }
-    }, 1000);
+    }, 100);
 }
 function printCategoriesAfterAjax(data){
     var element ='';
@@ -285,4 +289,129 @@ function printQuestionsAndAnswersAfterAjax(data) {
         element+=`</div> </div>`;
         $('.content').html(element);
     }
+}
+function printUsers(data){
+    var element = '';
+    for(var item of data){
+        element += `<div class="row justify-content-between border-bottom border-top p-1 m-2">
+                <div class="row col-xl-1">
+                        <img src="images/${item.picture.image_name}" alt="${item.picture.image_name.substring(0,10)}" title="{{substr($r->picture->image_name,0,10)}}">
+                </div>
+            <div class="row col-6 justify-content-start  align-content-center">
+               <span class="badge p-2 btn-primary mr-3">${item.first_name} ${item.last_name}</span>
+               <span class="badge p-2 btn-primary">${item.email}</span>
+            </div>
+            <div class="row justify-content-end col-4 align-content-center">`;
+        if(item.is_blocked === 1)
+            element+=`<span class="badge p-2 btn-warning text-white text-uppercase mr-3">Blokiran</span>`;
+        if(item.active === 0)
+           element+=`<span class="badge p-2 btn-secondary text-uppercase mr-3">Neaktivan</span>`;
+        element+=`
+            <span data-id="${item.id}" class="badge p-2 btn-primary btn edit text-uppercase mr-3 btn btn-primary" data-toggle="modal" data-target="#${item.id}">Izmeni</span>
+            <span data-id="${item.id}" class=" text-uppercase text-white badge delete btn p-2 btn-danger">Obriši</span>
+           </div>
+        </div>
+        
+        <div class="modal fade" id="${item.id}" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="${item.id}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="admin-edit-user">Izmena korisnika</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-group" method="POST">
+                    <div class="row justify-content-center">
+                        <div class="col-6" id="firstname-div">
+                            <label for="firstname" class="col-form-label text-muted">Ime</label>
+                            <input type="text" class="form-control" id="firstname" value="${item.first_name}">
+                        </div>
+                        <div class="col-6">
+                            <label for="lastname" class="col-form-label text-muted">Prezime</label>
+                            <input type="text" class="form-control" id="lastname" value="${item.last_name}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="email" class="col-form-label text-muted text-muted">Email</label>
+                            <input type="text" class="form-control" id="email" value="${item.email}">
+                        </div>
+                        <div class="col-6">
+                            <label for="img" class="col-form-label text-muted">Slika</label>
+                            <input type="file" accept="image/gif,image/jpeg,image/png"  class="form-control-file" id="img" data-prev-img="${item.picture.id}" >
+                        </div>
+                    </div>
+                    <div class="row justify-content-between align-content-center">
+                        <div class="col-6">
+                            <label for="new-password" class="col-form-label text-muted">Nova lozinka</label>
+                            <input type="password" class="form-control" id="new-password">
+                        </div>
+                        <div class="col-6">
+                            <label for="new-password-again" class="col-form-label text-muted">Ponovi lozinku</label>
+                            <input type="password" class="form-control" id="new-password-again" >
+                        </div>
+                    </div>
+                    <div class="row justify-content-between align-content-center">
+                        <div class="col-4">
+                            <label for="blocked" class="col-form-label text-muted">Blokiranost</label>
+                            <select id="blocked" class="form-control">`;
+                                if(item.is_blocked === 1) {
+                                    element += ` <option selected="selected" value="1">Blokiran</option>
+                                <option value="0">Neblokiran</option>`;
+                                }
+                                else {
+                                    element += `<option value="1">Blokiran</option>
+                                <option selected="selected" value="0">Neblokiran</option>`;
+                                }
+                            element+=`</select>
+                        </div>
+                        <div class="col-4">
+                            <label for="active" class="col-form-label text-muted">Status</label>
+                            <select id="active" class="form-control">`;
+                                 if(item.active === 1) {
+                                     element += ` <option selected="selected" value="1">Aktivan</option>
+                                    <option value="0">Neaktivan</option>`;
+                                 }
+                                else{
+                                element+=` <option value="1">Aktivan</option>
+                                <option selected="selected" value="0">Neaktivan</option>`;
+                                }
+                            element+=` </select>
+                        </div>
+                        <div class="col-4">
+                            <label for="role" class="col-form-label text-muted">Uloga</label>
+                            <select id="role" class="form-control">
+                                
+                                <option class="text-capitalize"`;
+                                if(item.role_id === 1) {
+                                    element += `selected="selected"`;
+                                }
+                                element+=`value="1">Administrator</option>`;
+                                element+=`<option class="text-capitalize"`;
+                                if(item.role_id === 2) {
+                                    element += `selected="selected"`;
+                                }
+                                element+=`value="2">Moderator</option>`;
+                                element+= `<option class="text-capitalize"`;
+                                if(item.role_id === 3) {
+                                    element+=`selected = "selected"`;
+                                }
+                                element+=`value="3">Regularni</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-id="${item.id}" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+                <button type="button" data-id="${item.id}" id="modal" class="btn btn-primary save">Sačuvaj</button>
+            </div>
+        </div>
+    </div>
+</div>
+`;
+    }
+    $('.content').html(element);
 }

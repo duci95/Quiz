@@ -24,15 +24,15 @@ class AdminUserRequest extends FormRequest
     public function rules()
     {
         return [
-//            "firstname" => "regex:/^([A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})(\s[A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})*$/",
-//            "lastname" => "regex:/^([A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})(\s[A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})*$/",
-//            "email" => "email",
-//            "password" => "sometimes|regex:/^[A-ZŠĐČĆŽa-zšđčćž?!&^#$%@*0-9]{8,15}$/",
-//            "passwordCheck" => "same:password",
-//            "image" => "sometimes|mimes:jpeg,jpg,png,gif|max:3000",
-//            "role" => "required",
-//            "status" => "required",
-//            "blocked" => "required"
+            "firstname" => "regex:/^([A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})(\s[A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})*$/",
+            "lastname" => "regex:/^([A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})(\s[A-ZŠĐČĆŽ][a-zšđčćž\-']{2,20})*$/",
+            "email" => "email",
+            "password" => "sometimes|regex:/^[A-ZŠĐČĆŽa-zšđčćž?!&^#$%@*0-9]{8,15}$/",
+            "password_again" => "sometimes|same:password",
+            "image_new" => "sometimes|mimes:jpeg,jpg,png,gif|max:3000",
+            "role" => "required",
+            "active" => "required",
+            "blocked" => "required"
         ];
     }
 }

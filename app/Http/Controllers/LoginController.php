@@ -15,7 +15,8 @@ class LoginController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-
+//        dd($password);
+//        dd($email);
         try {
             $user = User::login($email, $password);
 
