@@ -65,12 +65,123 @@ $(document).ready(function(){
                 success:function(response){
                     $('.modal').modal('hide');
                     printUsers(response.results);
+                    $.notify('Uspešno izmenjen korisnik!',{
+                        className : 'success',
+                        position:'bottom right'
+                    })
                 },
                 error:function(){
-
+                    $.notify('Trenutno nije moguće izmeniti korisnika!',{
+                        className : 'error',
+                        position:'bottom right'
+                    })
                 }
             })
       }
 
+   });
+   $(document).on('click','.delete',function(){
+      const admin = $(this).data('id');
+      sendCSRFToken();
+      bootbox.dialog({
+          title:"Brisanje korisnika",
+          message:'Da li ste sigurni?',
+          buttons:{
+              cancel:{
+                  label:"Odustani",
+                  className : "btn-secondary"
+              },
+              ok:{
+                  label:"Obriši",
+                  className:'btn-danger',
+                  callback:function(){
+                      $.ajax({
+                          url : '/admins/' + admin,
+                          method:"DELETE",
+                          success:function(response){
+                              printUsers(response.results);
+                              $.notify('Uspešno obrisan korisnik!',{
+                                  className : 'success',
+                                  position:'bottom right'
+                              });
+                          },
+                          error:function(){
+                              $.notify('Trenutno nije moguće brisanje korisnika!',{
+                                  className : 'error',
+                                  position:'bottom right'
+                              })
+                          }
+                      })
+                  }
+              }
+          }
+      });
+   });
+   $(document).on('click','.add',function(){
+      const errors = [];
+      const first_name = $('#firstname');
+      const last_name = $('#lastname');
+      const email = $('#email');
+      const password = $('#new-password');
+      const password_again = $('#new-password-again');
+      const image = $('#img');
+      const files = image.prop('files')[0];
+      const role = $('#role');
+      const blocked = $('#blocked');
+      const active = $('#active');
+
+      checkForInputErrors(reFirstLast,first_name,errors,firstnameWarning);
+      checkForInputErrors(reFirstLast,last_name,errors,lastnameWarninig);
+      checkForInputErrors(reEmail,email,errors,emailWarning);
+      checkForInputErrors(rePassword,password,errors,passwordWarning);
+      checkForPasswordsMatching(password,password_again,errors);
+      validatePicture(image,errors);
+      checkIfDropDownListIsNotSelected(role,errors,roleWarning);
+      checkIfDropDownListIsNotSelected(blocked,errors,blockedWarning);
+      checkIfDropDownListIsNotSelected(active,errors,activeWarning);
+
+      if(errors.length > 0){
+          for(let i=0;i<errors.length;i++){
+              $.notify(errors[i]);
+          }
+      }
+      else{
+        const data = new FormData;
+        data.append('firstname',first_name.val());
+        data.append('lastname',last_name.val());
+        data.append('email',email.val());
+        data.append('password',password.val());
+        data.append('password_again',password_again.val());
+        data.append('image',image);
+        data.append('role',role.val());
+        data.append('blocked',blocked.val());
+        data.append('active',active.val());
+
+        sendCSRFToken();
+
+        $.ajax({
+            url : '/admins',
+            method : 'POST',
+            data : data,
+            cache : false,
+            processData : false,
+            contentType : false,
+            success : function(response){
+                printUsers(response.results);
+                $('.modal').modal('hide');
+                $.notify('Uspešno dodat korisnik!',{
+                    className : 'success',
+                    position:'bottom right'
+                });
+            },
+            error : function(){
+                $('.modal').modal('hide');
+                $.notify('Trenutno nije moguće dodati korisnika!',{
+                    className : 'error',
+                    position:'bottom right'
+                });
+            }
+        });
+      }
    });
 });

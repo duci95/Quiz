@@ -21,9 +21,13 @@ class StatisticsController extends Controller
     {
         try{
             $users = Result::getResultsByCategory($id);
+            $questions = Result::getQuestionsByCategory($id);
             if($users->items() === [])
                 return redirect()->back()->with('empty','empty');
-            return view('pages.moderator-statistics-category')->with('users', $users);
+            return view('pages.moderator-statistics-category')
+                ->with('users', $users)
+                ->with('questions', $questions);
+
         }
         catch(QueryException $e){
             Log::critical($e->getMessage());
@@ -35,6 +39,7 @@ class StatisticsController extends Controller
     {
         try{
             $results = Result::getAllResults();
+
             return view('pages.moderator-statistics-users')->with('results', $results);
         }
         catch(QueryException $e){
@@ -47,7 +52,8 @@ class StatisticsController extends Controller
     {
         try{
             $results = Result::getResultsByUser($id);
-            return view('pages.moderator-statistics-user-one')->with('results',$results);
+            return view('pages.moderator-statistics-user-one')
+                ->with('results',$results);
         }
         catch(QueryException $e)
         {

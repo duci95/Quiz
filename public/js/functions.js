@@ -177,13 +177,13 @@ function sendAjaxRequestForTest() {
                 }
             });
             const numberOfCorrects = corrects.length;
-            if(numberOfCorrects > questionIdsArray.length / 2)
+            if(numberOfCorrects >= questionIdsArray.length / 2)
                 showModalAfterTestCompleted('Uspešno ste položili test!  ', numberOfCorrects, numberOfQuestions);
             else
                 showModalAfterTestCompleted('Niste položili test! ' , numberOfCorrects, numberOfQuestions);
         },
         error: function(r, s, e) {
-            showModalAfterTestCompleted('Niste odgovorili ni na jedno pitanje', 0,numberOfQuestions );
+            bootbox.alert("Nije ");
         }
 });
 }
@@ -414,4 +414,13 @@ function printUsers(data){
 `;
     }
     $('.content').html(element);
+}
+function checkIfDropDownListIsNotSelected(list, array, message){
+    if(list.val() === 'null'){
+        array.push(message);
+        list.addClass('border-danger')
+    }
+    else{
+        list.removeClass('border-danger');
+    }
 }

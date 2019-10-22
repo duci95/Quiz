@@ -22,12 +22,21 @@ class AdminsController extends Controller
      */
     public function index()
     {
-        $users = User::withoutTrashed()->with('picture')->get();
-        $roles = Role::all();
-//        dd($users);
-                return  view('pages.home')
-                    ->with('categories', $users)
-                    ->with('roles', $roles);
+        try {
+            $users = User::withoutTrashed()->with('picture')->get();
+            $roles = Role::all();
+            return view('pages.home')
+                ->with('categories', $users)
+                ->with('roles', $roles);
+        }
+        catch(QueryException $q){
+            Log::critical($q->getMessage());
+            return response(null, 400);
+        }
+        catch (\Exception $e){
+            Log::alert($e->getMessage());
+            return response(null, 500);
+        }
     }
 
     /**
@@ -48,7 +57,54 @@ class AdminsController extends Controller
      */
     public function store(Request $request)
     {
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $password_again = $request->input('password_again');
+        $role = $request->input('role');
+        $active = $request->input('active');
+        $blocked = $request->input('blocked');
+        $image = $request->file('image');
+        dd($image);
+        $image_name = time()."_".$image->getClientOriginalName();
+        $token = sha1(time().$email.$password);
+        $password = sha1($password);
+        try {
+            if ($image->isValid())
+                $path = public_path('images/' . $image_name);
 
+            Image::make($image->getRealPath())->resize(75, 75, function ($aspectRatio) {
+                $aspectRatio->aspectRatio();
+            })->save($path, 100);
+
+            $u = new User;
+            $u->first_name = $firstname;
+            $u->last_name = $lastname;
+            $u->email = $email;
+            $u->password = $password;
+            $u->role_id = $role;
+            $u->active = $active;
+            $u->is_blocked = $blocked;
+            $u->token = $token;
+            $u->save();
+
+            $p = new Picture;
+            $p->image_name = $image_name;
+            $p->user_id = $u->id;
+            $p->save();
+
+            $users = User::withoutTrashed()->with('picture')->get();
+            return response(['results' => $users],200);
+        }
+        catch(QueryException $e){
+            Log::critical($e->getMessage());
+            return response(null, 400);
+        }
+        catch(\Exception $e){
+            Log::alert($e->getMessage());
+            return response(null, 500);
+        }
     }
 
     /**
@@ -147,7 +203,11 @@ class AdminsController extends Controller
         }
         catch(QueryException $e) {
             Log::critical($e->getMessage());
-            return response(null, 500);
+            return response(null, 400);
+        }
+        catch (\Exception $e){
+            Log:alert($e->getMessage());
+            return response(null ,500);
         }
     }
 
@@ -159,7 +219,18 @@ class AdminsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            User::find($id)->delete();
+            $results = User::withoutTrashed()->with('picture')->get();
+            return response(['results' => $results],200);
+        }
+        catch(QueryException $q){
+            Log::critical($q->getMessage());
+            return response(null,400);
+        }
+        catch (\Exception $e) {
+            Log::alert($e->getMessage());
+            return response(null, 500);
+        }
     }
-
 }

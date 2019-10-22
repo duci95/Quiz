@@ -27,25 +27,29 @@ $(document).on('click','.quiz',function(e) {
           });
       },
       error:function(request,status, error) {
-           switch (request.status) {
-               case 401 :
-                   bootbox.dialog({
-                       title: `<span class="text-center">${category_name}</span>`,
-                       message: `<p class='m-auto btn badge btn-success w-50 text-uppercase d-flex justify-content-center'>Test je vec radjen</p>`,
-                       size: "small"
-                   });
+            switch (request.status) {
                case 409 :
-                   if(request.responseJSON.results[0].trues > request.responseJSON.results[0].questions / 2) {
-                       bootbox.dialog({
-                           title: `<span class="text-center">${category_name}</span>`,
-                           message: `<p class='m-auto btn badge btn-success w-50 text-uppercase d-flex justify-content-center'>Položen</p>`,
-                           size: "small"
-                       });
+                   try {
+                       if (request.responseJSON.results[0].trues >= request.responseJSON.results[0].questions / 2) {
+
+                           bootbox.dialog({
+                               title: `<span class="text-center">${category_name}</span>`,
+                               message: `<p class='m-auto btn badge btn-success w-50 text-uppercase d-flex justify-content-center'>Položen</p>`,
+                               size: "small"
+                           });
+                       } else {
+                           console.log(request.responseJSON.questions[0].questions);
+                           bootbox.dialog({
+                               title: `<span class="text-center">${category_name}</span>`,
+                               message: ` <p class='m-auto btn badge btn-danger w-50 text-uppercase d-flex justify-content-center' >Nije položen</p>`,
+                               size: "small"
+                           });
+                       }
                    }
-                   else{
+                   catch(Exception){
                        bootbox.dialog({
                            title: `<span class="text-center">${category_name}</span>`,
-                           message:` <p class='m-auto btn badge btn-danger w-50 text-uppercase d-flex justify-content-center' >Nije položen</p>`,
+                           message: `<p class='m-auto btn badge btn-danger w-50 text-uppercase d-flex justify-content-center'>Nije položen</p>`,
                            size: "small"
                        });
                    }

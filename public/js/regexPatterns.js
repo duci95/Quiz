@@ -10,3 +10,7 @@ const emailWarning = "Email nije u dobrom formatu";
 const passwordWarning = "Lozinka ne može imati manje od 8 i više od 15 karaktera";
 const matchingPasswordsWarning = "Lozinke se ne podudaraju";
 const permittedExtensions = ["gif", "png", "jpg"];
+
+const activeWarning = "Aktivnost nije odabrana";
+const blockedWarning = "Blokiranst nije odabrana";
+const roleWarning = "Uloga nije odabrana";

@@ -2,11 +2,11 @@
 @section('header')
     @include('partials.header')
 @endsection
-<div class="d-flex justify-content-center bg-info text-white p-1">Spisak korisnika</div>
 @section('content')
-    <div class="row justify-content-between border-bottom border-top p-1 m-2">
-        <div class="row justify-content-start col-1"></div>
+    <div class="container m-2">
+            <span class="btn btn-info insert badge" data-toggle="modal" data-target="#insert">Dodaj korisnika</span>
     </div>
+    @include('modals.admin-insert-user-modal')
     <div class="content container">
     @foreach($categories as $r)
            <div class="row justify-content-between border-bottom border-top p-1 m-2">
@@ -17,7 +17,7 @@
                <span class="badge p-2 btn-primary mr-3">{{$r->first_name}} {{$r->last_name}}</span>
                 <span class="badge p-2 btn-primary">{{$r->email}}</span>
             </div>
-            <div class="row justify-content-end col-4  align-content-center">
+            <div class="row justify-content-end col-4 align-content-center">
                 @if($r->is_blocked === 1)
                 <span class="badge p-2 btn-warning text-white text-uppercase mr-3">Blokiran</span>
                 @endif

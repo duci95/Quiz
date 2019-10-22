@@ -15,8 +15,8 @@
             <span class="badge p-2 btn-primary">{{$r->email}}</span>
         </span>
         <span class="row justify-content-end col-5  align-content-center">
-            <span class="badge p-2 btn-primary text-uppercase mr-3">Broj testova : {{$r->tests}}</span>
-            <a href="{{route('statistics-user',['id' => $r->user_id])}}"  class=" text-uppercase text-white badge btn p-2 btn-info">Vidi rezultate</a>
+
+            <a href="{{route('statistics-user',['id' => $r->user_id])}}"  class="text-uppercase text-white badge btn p-2 btn-info">Vidi rezultate</a>
         </span>
             </div>
         @endforeach
