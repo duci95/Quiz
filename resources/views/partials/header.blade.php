@@ -1,8 +1,18 @@
-<div class="d-flex p-1 justify-content-xl-around bg-dark ">
-    <div class="d-flex justify-content-lg-start">
-        <img src="{{asset('/')}}images/{{session()->get('user')->image_name}}"  alt="{{substr(session()->get('user')->image_name,15,30)}}" title="{{session()->get('user')->first_name }}">
-        <a title="Moj profil" href="{{route('users.show',['id' => session()->get('user')->id])}}" class="navbar-brand text-white ml-3">{{session()->get('user')->first_name }} {{session()->get('user')->last_name}}</a>
+<div class="container-fluid bg-info">
+    <div class="row justify-content-around align-items-center w-100 p-0">
+        <span class="row justify-content-start align-content-center">
+            <a title="Moj profil" href="{{route('users.show',['id' => session()->get('user')->id])}}" class="navbar-brand text-white ml-3"><img src="{{asset('/')}}images/{{session()->get('user')->image_name}}"  alt="{{substr(session()->get('user')->image_name,15,30)}}" title="{{session()->get('user')->first_name }}">
+         {{session()->get('user')->first_name }} {{session()->get('user')->last_name}}</a>
+        </span>
+        @if(session()->get('user')->role_id === 1)
+            <a href="{{route('admins.index')}}" class="row justify-content-center align-items-center navbar-brand text-white">ICT Expert QUIZ</a>
+        @elseif(session()->get('user')->role_id === 2)
+            <a href="{{route('categories.index')}}" class=" row justify-content-center align-items-center navbar-brand text-white">ICT Expert QUIZ</a>
+        @else
+            <a href="{{route('index')}}" class="row justify-content-center align-items-center navbar-brand text-white">ICT Expert QUIZ</a>
+        @endif
+        <span class="row justify-content-end align-content-center">
+            <a href="{{route('logout')}}" class="btn bg-light text-info">Odjavi se</a>
+        </span>
     </div>
-    <a href="{{route('index')}}" class="mr-5 navbar-brand text-left text-white">ICT Expert QUIZ</a>
-    <a href="{{route('logout')}}" class="ml-5 btn bg-info h5 mt-1 text-center text-white ">Odjavi se</a>
 </div>

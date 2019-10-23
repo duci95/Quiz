@@ -35,9 +35,9 @@ Route::group(['middleware' => 'login'], function(){
     ]);
     Route::get('/logout', "LoginController@logout")->name('logout');
     Route::group(['middleware' => 'tester'] , function() {
-        Route::get('/quiz/{id}/{category}',"QuizController@approve");
-        Route::get('/test/{category}/',"QuizController@test");
-        Route::post('/quiz',"QuizController@validation");
+//        Route::get('/quiz/{id}/{category}',"QuizController@approve");
+//        Route::get('/test/{category}/',"QuizController@test");
+//        Route::post('/quiz',"QuizController@validation");
         Route::get('/quiz/{id}/{category}',"QuizController@approve");
         Route::get('/test/{category}/',"QuizController@test");
         Route::post('/quiz',"QuizController@validation");

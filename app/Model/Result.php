@@ -77,18 +77,29 @@ class Result extends Model
 
     public static function getResultForOneTest($user, $category)
     {
-        return DB::table('results as r')
-            ->select('category_name', 'first_name', 'last_name', 'questions', DB::raw('
+        $query = DB::table('results as r')
+        ->select('questions')
+        ->join('answers as a', 'r.answer_id', '=', 'a.id')
+        ->join('quizzes as qu', 'r.user_id', '=', 'qu.user_id')
+        ->where('qu.user_id', $user)
+        ->where('qu.category_id', $category)
+        ->groupBy('qu.user_id','questions')
+        ->get();
+
+        $query1 = DB::table('results as r')
+        ->select( DB::raw('
             COUNT(CASE WHEN a.true = 1 THEN 1 ELSE NULL END) as trues
             '))
-            ->join('answers as a', 'r.answer_id', '=', 'a.id')
-            ->join('categories as c', 'r.category_id', '=', 'c.id')
-            ->join('users as u', 'r.user_id', '=', 'u.id')
-            ->join('quizzes as qu', 'r.user_id', '=', 'qu.user_id')
-            ->where('u.id', $user)
-            ->where('c.id', $category)
-            ->groupBy('category_name', 'first_name', 'last_name', 'qu.questions')
-            ->get();
+        ->join('answers as a', 'r.answer_id', '=', 'a.id')
+        ->join('categories as c', 'r.category_id', '=', 'c.id')
+        ->join('users as u', 'r.user_id', '=', 'u.id')
+        ->where('u.id', $user)
+        ->where('c.id', $category)
+        ->groupBy('c.id')
+        ->get();
+
+        return $query1->merge($query);
+
     }
 
     public static function getQuestionsByCategory($category)

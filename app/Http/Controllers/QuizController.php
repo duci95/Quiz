@@ -96,6 +96,7 @@ class QuizController extends Controller
         }
         catch(QueryException $exception){
             Log::critical($exception->getMessage());
+            return response (null, 500);
         }
     }
 }

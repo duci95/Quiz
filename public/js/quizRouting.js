@@ -27,10 +27,12 @@ $(document).on('click','.quiz',function(e) {
           });
       },
       error:function(request,status, error) {
+          console.log(request.responseJSON.results[0].trues);
+          console.log(request.responseJSON.results[1].questions);
             switch (request.status) {
                case 409 :
                    try {
-                       if (request.responseJSON.results[0].trues >= request.responseJSON.results[0].questions / 2) {
+                       if (request.responseJSON.results[0].trues >= request.responseJSON.results[1].questions / 2) {
 
                            bootbox.dialog({
                                title: `<span class="text-center">${category_name}</span>`,
@@ -38,7 +40,7 @@ $(document).on('click','.quiz',function(e) {
                                size: "small"
                            });
                        } else {
-                           console.log(request.responseJSON.questions[0].questions);
+                           console.log(request.responseJSON.results[1].questions);
                            bootbox.dialog({
                                title: `<span class="text-center">${category_name}</span>`,
                                message: ` <p class='m-auto btn badge btn-danger w-50 text-uppercase d-flex justify-content-center' >Nije položen</p>`,

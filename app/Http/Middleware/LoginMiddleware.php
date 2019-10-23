@@ -17,6 +17,6 @@ class LoginMiddleware
     {
         if(session()->has('user'))
             return $next($request);
-        return abort(404,'Stranica nije pronađena',['Location:/entry']);
+        return abort(404);
     }
 }

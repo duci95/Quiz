@@ -66,17 +66,18 @@ class AdminsController extends Controller
         $active = $request->input('active');
         $blocked = $request->input('blocked');
         $image = $request->file('image');
-        dd($image);
+
         $image_name = time()."_".$image->getClientOriginalName();
         $token = sha1(time().$email.$password);
         $password = sha1($password);
         try {
-            if ($image->isValid())
+            if ($image->isValid()) {
                 $path = public_path('images/' . $image_name);
 
-            Image::make($image->getRealPath())->resize(75, 75, function ($aspectRatio) {
-                $aspectRatio->aspectRatio();
-            })->save($path, 100);
+                Image::make($image->getRealPath())->resize(75, 75, function ($aspectRatio) {
+                    $aspectRatio->aspectRatio();
+                })->save($path, 100);
+            }
 
             $u = new User;
             $u->first_name = $firstname;
@@ -115,8 +116,19 @@ class AdminsController extends Controller
      */
     public function show($id)
     {
-        $user = User::with('picture')->find($id);
-        return response(['results' => $user],200);
+        try{
+            $user = User::with('picture')->find($id);
+            return response(['results' => $user],200);
+        }
+        catch(QueryException $e){
+            Log::critical($e->getMessage());
+            return response(null,400);
+        }
+        catch(\Exception $e){
+            Log::alert($e->getMessage());
+            return response(null ,500);
+        }
+
     }
 
     /**

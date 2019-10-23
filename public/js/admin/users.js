@@ -124,7 +124,7 @@ $(document).ready(function(){
       const email = $('#email');
       const password = $('#new-password');
       const password_again = $('#new-password-again');
-      const image = $('#img');
+      const image = $('#image');
       const files = image.prop('files')[0];
       const role = $('#role');
       const blocked = $('#blocked');
@@ -152,7 +152,7 @@ $(document).ready(function(){
         data.append('email',email.val());
         data.append('password',password.val());
         data.append('password_again',password_again.val());
-        data.append('image',image);
+        data.append('image',files);
         data.append('role',role.val());
         data.append('blocked',blocked.val());
         data.append('active',active.val());

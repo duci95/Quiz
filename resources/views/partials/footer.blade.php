@@ -1,6 +1,16 @@
 <div class="d-flex text-center fixed-bottom  bg-dark text-white justify-content-around">
     <span>Dušan Krsmanović Copyright &copy; {{date("Y")}} </span>
-    <span class="font-italic pr-5"><a href="{{route('index')}}" class="text-left text-info">ICT Expert QUIZ </a> </span>
+    @if(session()->has('user'))
+        @if(session()->get('user')->role_id === 1)
+            <a href="{{route('admins.index')}}" class="font-italic pr-5 text-left text-info">ICT Expert QUIZ</a>
+        @elseif(session()->get('user')->role_id === 2)
+            <a href="{{route('categories.index')}}" class="font-italic pr-5 text-left text-info">ICT Expert QUIZ</a>
+        @else
+        <a href="{{route('index')}}" class="font-italic pr-5 text-left text-info">ICT Expert QUIZ</a>
+        @endif
+    @else
+        <a href="{{route('index')}}" class="font-italic pr-5 text-left text-info">ICT Expert QUIZ</a>
+    @endif
     <span id="contact" class="badge btn text-info badge-dark pt-1">Kontakt</span>
     <span class="ml-5 justify-content-between">
         <a href="http://www.facebook.com"><span class="pl-3 text-info"><i class="fa fa-facebook"></i></span></a>

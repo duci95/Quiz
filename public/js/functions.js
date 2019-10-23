@@ -183,7 +183,7 @@ function sendAjaxRequestForTest() {
                 showModalAfterTestCompleted('Niste položili test! ' , numberOfCorrects, numberOfQuestions);
         },
         error: function(r, s, e) {
-            bootbox.alert("Nije ");
+
         }
 });
 }

@@ -32,12 +32,7 @@
             @endif
     </div>
 </div>
-
-
-
-
 @endsection
 @section('functions')
     <script src="{{asset("/")}}js/functions.js"></script>
 @endsection
-
