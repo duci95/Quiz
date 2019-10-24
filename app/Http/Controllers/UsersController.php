@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Picture;
+use App\Model\Result;
 use App\Model\User;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
@@ -50,7 +51,15 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+
+        try{
+            $results = Result::getResultsByUser($id);
+            return view('pages.tester-results')->with('results',$results);
+        }
+        catch(\Exception $e){
+            Log::critical($e->getMessage());
+            return redirect()->back();
+        }
     }
 
     /**
@@ -141,6 +150,13 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            User::find($id)->delete();
+            return response(null,200);
+        }
+        catch(\Exception $e){
+            Log::critical($e->getMessage());
+            return response (null, 500);
+        }
     }
 }

@@ -73,4 +73,40 @@ $(document).ready(function (){
            });
        }
    });
+   $(document).on('click','.d',function(){
+      const user = $(this).data('id');
+
+      bootbox.dialog({
+          title : "Deaktiviranje naloga",
+          message : "Da li ste sigurni da želite da deaktivirate nalog?",
+          buttons:{
+              cancel:{
+                  label : "Odustani",
+                  className : "btn-secondary"
+              },
+              ok:{
+                  label:"Deaktiviraj",
+                  className : 'btn-danger',
+                  callback : function(){
+                      sendCSRFToken();
+                      $.ajax({
+                          url : '/users/' + user,
+                          method : "DELETE",
+                          success : function (){
+                              $('.modal').modal('hide');
+                              window.location = '/entry';
+                          },
+                          error: function(){
+                              $('.modal').modal('hide');
+                              $.notify('Deaktiviranje naloga nije trenutno moguće',{
+                                  position:'bottom right',
+                                  className : "error"
+                              });
+                          }
+                      });
+                  }
+              }
+          }
+      });
+   });
 });

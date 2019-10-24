@@ -15,8 +15,7 @@ class LoginController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-//        dd($password);
-//        dd($email);
+
         try {
             $user = User::login($email, $password);
 
@@ -38,6 +37,7 @@ class LoginController extends Controller
                 if($blocked){
                     return response(null, 401);
                 }
+
                  $inactive = User::inactive($email, $password);
                  if($inactive) {
                      $body = 'Kliknite na <a href="http://127.0.0.1:8000/activation/' . $inactive->token . '" >link</a> da aktivirate profil';

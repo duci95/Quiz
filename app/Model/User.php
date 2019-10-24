@@ -32,7 +32,8 @@ class User extends Model
             ["email",$email],
             ["password",sha1($password)],
             ["active",1],
-            ["is_blocked",0]
+            ["is_blocked",0],
+            ['deleted_at','=', null]
         ]
             )
           ->get(["u.id","first_name" ,"last_name" ,"email", "token" ,"u.created_at", "deleted_at", "active", "is_blocked", "role_id", "image_name"])

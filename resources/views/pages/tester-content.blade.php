@@ -1,3 +1,4 @@
+<a class="btn row justify-content-start btn-info badge text-white mb-2" href="{{route('users.show',['user'=> session()->get('user')->id])}}">Moji rezultati</a>
 <div class="row justify-content-around mb-3 border-top border-bottom p-0">
 <div class="row col-3 justify-content-center p-0">
     <span class=" badge ">Kategorija</span>

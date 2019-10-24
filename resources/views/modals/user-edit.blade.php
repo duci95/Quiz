@@ -43,7 +43,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger delete" data-id="{{session()->get('user')->id}}"  >Deaktiviraj nalog</button>
+                <button type="button" class="btn btn-danger d" data-id="{{session()->get('user')->id}}"  >Deaktiviraj nalog</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
                 <button type="button"  data-id="{{session()->get('user')->id}}" class="btn btn-primary save">Sačuvaj</button>
             </div>
