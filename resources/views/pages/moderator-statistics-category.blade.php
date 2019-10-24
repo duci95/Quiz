@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('header')
     @include('partials.header')
-        <div class="d-flex justify-content-center bg-info text-white p-1">{{$users[0]->category_name}}</div>
+        <div class="d-flex justify-content-center border-top border-light  bg-info text-white p-1">{{$users[0]->category_name}}</div>
     @endsection
 @section('content')
 <div class="content container">
@@ -28,12 +28,12 @@
         </span>
 </div>
 @endsection
-@section('functions')
-    <script src="{{asset("/")}}js/regexPatterns.js"></script>
-    <script src="{{asset("/")}}js/functions.js"></script>
-@endsection
+{{--@section('functions')--}}
+{{--    <script src="{{asset("/")}}js/regexPatterns.js"></script>--}}
+{{--    <script src="{{asset("/")}}js/functions.js"></script>--}}
+{{--@endsection--}}
 
-@section('scripts')
-    <script src="{{asset("/")}}js/moderator/categories.js"></script>
-@endsection
+{{--@section('scripts')--}}
+{{--    <script src="{{asset("/")}}js/moderator/categories.js"></script>--}}
+{{--@endsection--}}
 

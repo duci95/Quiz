@@ -119,16 +119,16 @@ $(document).ready(function(){
    });
    $(document).on('click','.add',function(){
       const errors = [];
-      const first_name = $('#firstname');
-      const last_name = $('#lastname');
-      const email = $('#email');
-      const password = $('#new-password');
-      const password_again = $('#new-password-again');
-      const image = $('#image');
+      const first_name = $('#firstname-new');
+      const last_name = $('#lastname-new');
+      const email = $('#email-new');
+      const password = $('#password-new');
+      const password_again = $('#password-new-again');
+      const image = $('#image-new');
       const files = image.prop('files')[0];
-      const role = $('#role');
-      const blocked = $('#blocked');
-      const active = $('#active');
+      const role = $('#role-new');
+      const blocked = $('#blocked-new');
+      const active = $('#active-new');
 
       checkForInputErrors(reFirstLast,first_name,errors,firstnameWarning);
       checkForInputErrors(reFirstLast,last_name,errors,lastnameWarninig);
@@ -141,7 +141,7 @@ $(document).ready(function(){
       checkIfDropDownListIsNotSelected(active,errors,activeWarning);
 
       if(errors.length > 0){
-          for(let i=0;i<errors.length;i++){
+          for(let i=errors.length-1;i<errors.length;i--){
               $.notify(errors[i]);
           }
       }

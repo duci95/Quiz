@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('header')
     @include('partials.header')
-    <div class="d-flex justify-content-center bg-info text-white p-1">Spisak korisnika i rezultata za sve kategorije</div>
+    <div class="d-flex justify-content-center bg-info border-top border-light text-white p-1">Spisak korisnika i rezultata za sve kategorije</div>
 @endsection
 @section('content')
     <div class="content container">
@@ -25,10 +25,10 @@
         </span>
     </div>
 @endsection
-@section('functions')
-    <script src="{{asset("/")}}js/regexPatterns.js"></script>
-    <script src="{{asset("/")}}js/functions.js"></script>
-@endsection
-@section('scripts')
+{{--@section('functions')--}}
+{{--    <script src="{{asset("/")}}js/regexPatterns.js"></script>--}}
+{{--    <script src="{{asset("/")}}js/functions.js"></script>--}}
+{{--@endsection--}}
+{{--@section('scripts')--}}
 
-@endsection
+{{--@endsection--}}

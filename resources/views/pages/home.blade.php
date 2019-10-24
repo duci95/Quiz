@@ -27,7 +27,6 @@
                             <span class="p-2 btn btn-info quiz badge text-white" >{{$cat->description}}</span>
                         </div>
                     </div>
-
                @endforeach
             @endif
     </div>
