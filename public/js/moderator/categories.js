@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $(document).on('click','.edit',function(){
+    $(document).on('click','.edit-category',function(){
         const category = $(this).data('category');
         $.ajax({
             url : '/categories/'+ category + '/edit',
@@ -51,14 +51,11 @@ $(document).ready(function(){
             }
         });
     });
-    $(document).on('click','.delete',function(){
+    $(document).on('click','.delete-category',function(){
         const category = $(this).data('category');
-        const categoryObject = $(this);
-        const categoryText = categoryObject.prevAll()[2];
-        console.log();
         bootbox.dialog({
-            title : '<span class="h6">Da li ste sigurni da želite da obrišete kategoriju?</span>',
-            message : `<span class="h4 d-flex justify-content-around">${categoryText.innerText}</span>`,
+            title : '<span >Brisanje kategorije</span>',
+            message : `<span class="h6">Da li ste sigurni da želite da obrišete kategoriju?</span>`,
             buttons :{
                 cancel:{
                     label : "Odustani",

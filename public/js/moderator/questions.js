@@ -1,11 +1,13 @@
 $(document).ready(function (){
    $(document).on('click','.radio',function(){
-      const question_id = $(this).parent().parent().parent().find('.question').data('question');
-      const category_id = $(this).parent().parent().parent().find('.question').data('category');
+      const question_id = $(this).data('question');
+      const category_id = $(this).data('category');
+      console.log(question_id);
+      console.log(category_id);
       const answer = $(this).data('id');
       sendCSRFToken();
       $.ajax({
-         url : "/answers/trues/"+answer,
+         url : "/answers/trues/" + answer,
          method : 'PUT',
          data : {
             'question_id' : question_id,
@@ -28,10 +30,10 @@ $(document).ready(function (){
       });
    });
    $(document).on('click','.edit-q',function(){
-      const question_id = $(this).prev().data('question');
-      const category_id = $(this).prev().data('category');
+      const question_id = $(this).data('question');
+      const category_id = $(this).data('category');
       console.log(category_id);
-      var question_text = $(this).prev().prop('innerHTML');
+      var question_text = $(this).data('question-name');
       bootbox.dialog({
          title:'Izmena pitanja',
          message : `
@@ -239,7 +241,7 @@ $(document).ready(function (){
    });
    $(document).on('click','.delete-q',function(){
        const category = $(this).data('category');
-       const question = $(this).data('question');
+       const questions = $(this).data('question');
        sendCSRFToken();
        bootbox.dialog({
           title:`<span class="h5">Brisanje pitanja</span>`,
@@ -255,7 +257,7 @@ $(document).ready(function (){
                   callback:function(){
                       sendCSRFToken();
                       $.ajax({
-                          url: '/questions/' + question,
+                          url: '/questions/' + questions,
                           method: "DELETE",
                           success: function () {
                               $.ajax({

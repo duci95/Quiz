@@ -74,9 +74,7 @@ class AdminsController extends Controller
             if ($image->isValid()) {
                 $path = public_path('images/' . $image_name);
 
-                Image::make($image->getRealPath())->resize(75, 75, function ($aspectRatio) {
-                    $aspectRatio->aspectRatio();
-                })->save($path, 100);
+                Image::make($image->getRealPath())->resize(60, 60)->save($path, 100);
             }
 
             $u = new User;
@@ -168,9 +166,7 @@ class AdminsController extends Controller
                 if ($image->isValid()) {
                     $path = public_path('images/' . $image_name);
 
-                    Image::make($image->getRealPath())->resize(75, 75, function ($aspectRatio) {
-                        $aspectRatio->aspectRatio();
-                    })->save($path, 100);
+                    Image::make($image->getRealPath())->resize(60, 60)->save($path, 100);
 
                     $oldArray = Picture::find($old)->attributesToArray();
                     $name = $oldArray['image_name'];

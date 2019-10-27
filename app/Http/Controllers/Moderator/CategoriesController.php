@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Moderator;
 use App\Http\Requests\CategoryRequest;
 use App\Model\Category;
 use App\Model\Question;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CategoriesController extends Controller
 {
@@ -35,24 +37,29 @@ class CategoriesController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $category_name = $request->post('category');
-        $desc = $request->post('desc');
+        try{
+            $category_name = $request->post('category');
+            $desc = $request->post('desc');
 
-        $unique = Category::withoutTrashed()->where('category_name','=',$category_name)->first();
+            $unique = Category::withoutTrashed()->where('category_name', '=', $category_name)->first();
 
-        if(!is_null($unique))
-            return response(null, 422);
+            if (!is_null($unique))
+                return response(null, 422);
 
-        $category = new Category;
-        $category->category_name = $category_name;
-        $category->description = $desc;
-        $category->save();
+            $category = new Category;
+            $category->category_name = $category_name;
+            $category->description = $desc;
+            $category->save();
 
-        $results = Category::withoutTrashed()->get();
+            $results = Category::withoutTrashed()->get();
 
-        return response(['results' => $results],200);
+            return response(['results' => $results], 200);
+        }
+        catch(\Exception $e){
+            Log::critical($e->getMessage());
+            return response(null, 500);
+        }
     }
-
     /**
      * Display the specified resource.
      *

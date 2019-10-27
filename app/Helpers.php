@@ -56,6 +56,4 @@ class Helpers
             Log::critical('Error while sending email');
         }
     }
-
-
 }

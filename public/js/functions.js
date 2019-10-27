@@ -222,22 +222,26 @@ function stopWatch() {
 function printCategoriesAfterAjax(data){
     var element ='';
     $.each(data, function(index, item){
-        element+=`<div class="row justify-content-center border-bottom border-top p-2 m-2">
-                    <span class="col-2 row justify-content-start">
-                        <a href='http://127.0.0.1:8000/categories/one/${item.id}' class="text-white btn badge p-2 mr-3 btn-info">${item.category_name}</a>
-                        <a href='http://127.0.0.1:8000/statistics/${item.id}' class="text-white badge btn p-2 btn-info">Rezultati</a>
+        element+=`<div class="row justify-content-between m-auto border-bottom border-top p-2 m-2 w-75">
+                    <span class="col-2 w-100 row">
+                        <a href='http://127.0.0.1:8000/categories/one/${item.id}' class="w-100 text-white btn badge p-2 mr-3 btn-info">${item.category_name}</a>
                     </span>
-                    <span class="col-6 row justify-content-center align-content-center">
+                    
+                    <span class="col-2 row">
+                        <a href='http://127.0.0.1:8000/statistics/${item.id}' class=" text-white badge btn p-2 btn-info ">Rezultati</a>
+                    </span>    
+                                        
+                    <span class="col-5 row justify-content-start align-content-center">
                         <span class="text-info badge">${item.description}</span>
                     </span>
+                    
                     <span class="col-3 row justify-content-end">
-                        <span data-category="${item.id}" class="mr-2 edit btn btn-primary badge p-2 ">Izmeni</span>
-                    <span data-category="${item.id}" class="delete btn btn-danger  badge p-2  ">Obriši</span>
-                    </span>
+                        <span data-category="${item.id}" class="mr-2 edit-category btn btn-primary badge p-2">Izmeni</span>
+                        <span data-category="${item.id}" class="delete-category btn btn-danger  badge p-2">Obriši</span>
+                    </span>                   
                    </div> `;
     });
     $('.content').html(element);
-
 }
 function checkIfFieldsAreEmpty(field, errors){
     if (field.val() === '') {
@@ -247,35 +251,43 @@ function checkIfFieldsAreEmpty(field, errors){
     else
         field.removeClass('border-danger');
 }
-function printQuestionsAndAnswersAfterAjax(data) {
-    var element = `
-    <div class="row ">`;
+function printQuestionsAndAnswersAfterAjax(data){
+    var element = `<div class="row justify-content-start  ">`;
     for(var item of data) {
-        element += `<div class="card m-2 p-0">
+        element += `<div class="card m-2 row mb-auto ">
                         <div class="card-header p-1">
+                        <div class="float-left">
                             <span data-category='${item.category_id}' data-question="${item.id}" class="question p-1 badge">${item.question}</span>
-                            <span class="btn badge ml-5 edit-q btn-primary" ><i  class="text-white fa fa-pencil-square-o" aria-hidden="true"></i></span>
-                            <span data-category='${item.category_id}' data-question="${item.id}" class="btn btn-danger delete-q badge"><i class="fa fa-times" aria-hidden="true"></i></span>
                         </div>
-                    <div class="card-body p-0">`;
+                        <div class="float-right">
+                            <span class=" badge edit-q btn-primary" ><i class="text-white fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                            <span data-category='${item.category_id}' data-question="${item.id}" class="btn-danger delete-q badge"><i class="fa fa-times" aria-hidden="true"></i></span>
+                        </div>            
+                    </div>
+                    <div class="card-body p-1">`;
         for (var answer of item.answers) {
-            element += `<div class="justify-content-around p-0">`;
+            element += `<div class="clearfix"></div>
+                        <div class="justify-content-around p-0">`;
             if (answer.true === 1) {
-                element += `<label class="bg-success text-white badge" for="${answer.id}">${answer.answer}</label>
-                            <input id="${answer.id}" data-id="${answer.id}" name="${item.question}" type="radio" class="radio mr-1" checked="checked"/>`;
+                element += `<div class="float-left">
+                                <input id="${answer.id}" data-category='${item.category_id}' data-question='${item.id}' data-id="${answer.id}" name="${item.id}" type="radio" class="radio " checked="checked"/>
+                                <label class="bg-success text-white badge" for="${answer.id}">${answer.answer}</label>
+                            </div>`;
             }
             else {
-                element += `<label class="p-1 badge" for="${answer.id}">${answer.answer}</label>
-                            <input id="${answer.id}" data-id="${answer.id}" name="${item.question}" type="radio" class="radio m-1"/>`;
+                element += `<div class="float-left">
+                                <input id="${answer.id}" data-category='${item.category_id}' data-question='${item.id}' data-id="${answer.id}" name="${item.id}" type="radio" class="radio"/>
+                                <label class="p-1 badge" for="${answer.id}">${answer.answer}</label>
+                            </div>`;
             }
             element+=`<span class="float-right">`;
-            element += `<span class="btn badge mr-1 edit-a btn-primary" data-category='${item.category_id}' data-id="${answer.id}"><i class="fa fa-pencil-square-o" aria-hidden="true"> </i></span>`;
+            element += `<span class=" badge mr-1 edit-a btn-primary" data-category='${item.category_id}' data-id="${answer.id}"><i class="fa fa-pencil-square-o" aria-hidden="true"> </i></span>`;
             if(answer.true === 1)
-                element+= `<span class="btn btn-danger restrict-a-true badge" ><i class="fa fa-times" aria-hidden="true"> </i></span>`;
+                element+= `<span class=" btn-danger restrict-a-true badge" ><i class="fa fa-times" aria-hidden="true"> </i></span>`;
             else if(item.answers.length < 3)
-                element+= `<span class="btn btn-danger restrict-a badge" ><i class="fa fa-times" aria-hidden="true"> </i></span>`;
+                element+= `<span class=" btn-danger restrict-a badge" ><i class="fa fa-times" aria-hidden="true"> </i></span>`;
             else
-                element+=`<span class="btn btn-danger delete-a badge" data-category='${item.category_id}' data-id="${answer.id}"> <i class="fa fa-times" aria-hidden="true"> </i></span>`;
+                element+=`<span class="btn-danger delete-a badge" data-category='${item.category_id}' data-id="${answer.id}"> <i class="fa fa-times" aria-hidden="true"> </i></span>`;
                 element+=`</span>`;
             element += `</div>`;
 

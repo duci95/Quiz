@@ -3,21 +3,28 @@
     @include('partials.header')
 @endsection
 @section('content')
-    <div class="content container">
+
+    <div class="content container mt-3">
         @foreach($results as $r)
-            <div class="row  border-bottom border-top p-2 m-2">
-        <span class="row justify-content-between col-10 m-auto">
-            <span class="badge p-2 btn-primary mr-3">{{$r->category_name}}</span>
-            @if($r->trues >= $r->questions/2)
-                <span class=" badge p-2 btn-success text-uppercase">položen</span>
-            @else
-                <span class=" badge p-2 btn-danger text-uppercase">Nije položen</span>
-            @endif
-            <span class=" badge p-2 btn-info mr-4 text-uppercase">Broj pitanja : {{$r->questions}} </span>
-            <span class=" badge p-2 btn-info text-uppercase">Broj tačnih odgovora : {{$r->trues}}</span>
-        </span>
+            <div class="row justify-content-around align-content-center m-auto border-bottom border-top w-75 p-2">
+                <span class="row col-2">
+                    <span class="badge p-2 btn-primary w-100">{{$r->category_name}}</span>
+                </span>
+                <span class="row col-3 ">
+                @if($r->trues >= $r->questions/2)
+                    <span class="badge p-2 btn-success text-uppercase w-100">položen</span>
+                @else
+                    <span class="badge p-2 btn-danger text-uppercase w-100">Nije položen</span>
+                @endif
+                </span>
+                <span class="row col-4 justify-content-center">
+                    <span class="badge p-2 btn-info text-uppercase w-100">Broj pitanja : {{$r->questions}} </span>
+                </span>
+                <span class="row col-4">
+                    <span class="badge p-2 btn-info text-uppercase w-100">Broj tačnih odgovora : {{$r->trues}}</span>
+                </span>
             </div>
-        @endforeach
+    @endforeach
         <span class="d-flex justify-content-center">
             {{$results->links()}}
         </span>

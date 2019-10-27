@@ -4,17 +4,19 @@
 </div>
 <div class="content">
     @foreach($categories as $cat)
-        <div class="row justify-content-center border-bottom border-top p-2 m-2">
-        <span class="col-2 row justify-content-start">
-            <a href="{{route('one',['id' => $cat->id])}}" class="text-white btn badge p-2 mr-3 btn-info">{{$cat->category_name}}</a>
-            <a href="{{route('statistics.show',['statistic' => $cat->id])}}" class="text-white badge btn p-2 btn-info">Rezultati</a>
+        <div class="row justify-content-between m-auto border-bottom border-top p-2 m-2 w-75">
+        <span class="col-2 w-100 row">
+            <a href="{{route('one',['id' => $cat->id])}}" class=" w-100 text-white btn badge p-2 mr-3 btn-info">{{$cat->category_name}}</a>
         </span>
-        <span class="col-6 row justify-content-center align-content-center">
+            <span class="col-2 row">
+                <a href="{{route('statistics.show',['statistic' => $cat->id])}}" class="  text-white badge btn p-2 btn-info ">Rezultati</a>
+            </span>
+        <span class="col-5 row justify-content-start align-content-center">
             <span class="text-info badge">{{$cat->description}}</span>
         </span>
             <span class="col-3 row justify-content-end">
-                <span data-category="{{$cat->id}}" class="mr-2 edit btn btn-primary badge p-2">Izmeni</span>
-                <span data-category="{{$cat->id}}" class="delete btn btn-danger badge p-2">Obriši</span>
+                <span data-category="{{$cat->id}}" class="mr-2 edit-category btn btn-primary badge p-2">Izmeni</span>
+                <span data-category="{{$cat->id}}" class="delete-category btn btn-danger badge p-2">Obriši</span>
             </span>
         </div>
     @endforeach

@@ -34,11 +34,7 @@ class RegisterController extends Controller
             if($image->isValid())
                $path = public_path('images/' . $image_name);
 
-
-            Image::make($image->getRealPath())->resize(75,75,function ($aspectRatio) {
-                 $aspectRatio->aspectRatio();
-            })->save($path,100);
-
+            Image::make($image->getRealPath())->resize(60, 60)->save($path, 100);
 
             $user = new User;
 

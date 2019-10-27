@@ -120,16 +120,21 @@ class UsersController extends Controller
                 if ($image->isValid()) {
                     $path = public_path('images/' . $image_name);
 
-                    Image::make($image->getRealPath())->resize(75, 75, function ($aspectRatio) {
-                        $aspectRatio->aspectRatio();
-                    })->save($path, 100);
+                    Image::make($image->getRealPath())->resize(60, 60)->save($path, 100);
 
                     $name = Picture::findOldImage($id);
                     Picture::updateImageForUser($id, $image_name);
 
                     unlink((public_path('images/' . $name->image_name)));
+
+                    session()->get('user')->image_name = $image_name;
                 }
             }
+            session()->get('user')->email = $email;
+            session()->get('user')->first_name = $firstname;
+            session()->get('user')->last_name = $lastname;
+
+
             return response(null,200);
         }
         catch(QueryException $e) {
