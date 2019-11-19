@@ -15,9 +15,9 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::withoutTrashed()->get();
-        return  view('pages.home')
-            ->with('categories', $categories);
+            $categories = Category::withoutTrashed()->get();
+            return view('pages.home')
+                ->with('categories', $categories);
     }
     /**
      * Show the form for creating a new resource.
@@ -96,17 +96,23 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = $request->post('category');
-        $desc = $request->post('desc');
+        try{
+            $category = $request->post('category');
+            $desc = $request->post('desc');
 
 
-        Category::find($id)->update([
-            'category_name' => $category,
-            'description' => $desc
+            Category::find($id)->update([
+                'category_name' => $category,
+                'description' => $desc
             ]);
 
-        $results = Category::all();
-        return response(['results' => $results],200);
+            $results = Category::all();
+            return response(['results' => $results],200);
+        }
+        catch (\Exception $e){
+            Log::alert($e->getMessage());
+            return redirect()->back();
+        }
     }
 
     /**
@@ -117,8 +123,15 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        Category::find($id)->delete();
-        $results = Category::withoutTrashed()->get();
-        return response(['results' => $results],200);
+        try{
+            Category::find($id)->delete();
+            $results = Category::withoutTrashed()->get();
+            return response(['results' => $results],200);
+        }
+        catch(\Exception $e){
+            Log::alert($e->getMessage());
+            return redirect()->back();
+        }
+
     }
 }

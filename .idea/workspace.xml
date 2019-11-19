@@ -3,24 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="5a745732-cb20-4cf0-b5b8-8fa43306573e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Moderator/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Moderator/CategoriesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/1570030196_Screenshot (3).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/functions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/moderator/categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/moderator/categories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AdminMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AdminMiddleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Result.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Result.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_04_175221_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_04_175221_create_categories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_04_175509_create_answers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_04_175509_create_answers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_10_213733_create_quizzes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_10_213733_create_quizzes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/1571692707_istockphoto-1036152282-1024x1024.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/moderator/questions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/moderator/questions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/administrator-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/administrator-content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/moderator-categories.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/moderator-categories.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/moderator-questions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/moderator-questions.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/moderator-statistics-user-one.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/moderator-statistics-user-one.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/moderator-statistics-users.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/moderator-statistics-users.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/tester-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/tester-content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/tester-results.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/tester-results.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/header.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +163,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/plugins" />
+    <property name="last_opened_file_path" value="C:/Xampp/htdocs/citrus" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -295,6 +287,10 @@
       <workItem from="1571914200792" duration="16240000" />
       <workItem from="1572081191300" duration="21633000" />
       <workItem from="1572173259365" duration="2717000" />
+      <workItem from="1572612208364" duration="7248000" />
+      <workItem from="1572704602769" duration="15792000" />
+      <workItem from="1572787924167" duration="5132000" />
+      <workItem from="1573055740550" duration="534000" />
     </task>
     <servers />
   </component>

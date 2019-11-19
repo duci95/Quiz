@@ -71,10 +71,10 @@ $(document).ready(function(){
                     })
                 },
                 error:function(){
-                    $.notify('Trenutno nije moguće izmeniti korisnika!',{
-                        className : 'error',
-                        position:'bottom right'
-                    })
+                    //$.notify('Trenutno nije moguće izmeniti korisnika!',{
+                      //  className : 'error',
+                        //position:'bottom right'
+                    //})
                 }
             })
       }
@@ -106,10 +106,10 @@ $(document).ready(function(){
                               });
                           },
                           error:function(){
-                              $.notify('Trenutno nije moguće brisanje korisnika!',{
-                                  className : 'error',
-                                  position:'bottom right'
-                              })
+                              //$.notify('Trenutno nije moguće brisanje korisnika!',{
+                                //  className : 'error',
+                                  //position:'bottom right'
+                              //})
                           }
                       })
                   }
@@ -176,10 +176,10 @@ $(document).ready(function(){
             },
             error : function(){
                 $('.modal').modal('hide');
-                $.notify('Trenutno nije moguće dodati korisnika!',{
-                    className : 'error',
-                    position:'bottom right'
-                });
+                //$.notify('Trenutno nije moguće dodati korisnika!',{
+                  //  className : 'error',
+                    //position:'bottom right'
+                //});
             }
         });
       }

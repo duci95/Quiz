@@ -64,11 +64,11 @@ $(document).ready(function (){
                        className : 'success'
                    });
                },
-               error:function(r,s,e){
-                   $.notify("Izmena nije uspešna!",{
-                       position: "bottom right",
-                       className : 'error'
-                   });
+               error:function(){
+                   //$.notify("Izmena nije uspešna!",{
+                     //  position: "bottom right",
+                       //className : 'error'
+                   //});
                }
            });
        }

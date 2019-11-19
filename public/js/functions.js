@@ -217,7 +217,7 @@ function stopWatch() {
             clearInterval(time);
             sendAjaxRequestForTest();
         }
-    }, 100);
+    }, 1000);
 }
 function printCategoriesAfterAjax(data){
     var element ='';
@@ -260,7 +260,7 @@ function printQuestionsAndAnswersAfterAjax(data){
                             <span data-category='${item.category_id}' data-question="${item.id}" class="question p-1 badge">${item.question}</span>
                         </div>
                         <div class="float-right">
-                            <span class=" badge edit-q btn-primary" ><i class="text-white fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                            <span data-question-name="${item.question}" data-question="${item.id}" class=" badge edit-q btn-primary" ><i class="text-white fa fa-pencil-square-o" aria-hidden="true"></i></span>
                             <span data-category='${item.category_id}' data-question="${item.id}" class="btn-danger delete-q badge"><i class="fa fa-times" aria-hidden="true"></i></span>
                         </div>            
                     </div>
@@ -305,7 +305,7 @@ function printQuestionsAndAnswersAfterAjax(data){
 function printUsers(data){
     var element = '';
     for(var item of data){
-        element += `<div class="row justify-content-between border-bottom border-top p-1 m-2">
+        element += `<div class="row justify-content-between border-bottom border-top p-1 w-75 m-auto">
                 <div class="row col-xl-1">
                         <img src="images/${item.picture.image_name}" alt="${item.picture.image_name.substring(0,10)}" title="{{substr($r->picture->image_name,0,10)}}">
                 </div>

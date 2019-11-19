@@ -192,7 +192,7 @@ $(document).ready(function (){
        const answer = $(this).data('id');
        const category = $(this).data('category');
        bootbox.dialog({
-           title : 'Brisanje pitanja',
+           title : 'Brisanje odgovora',
            message: 'Da li ste sigurni?',
            buttons : {
                cancel:{

@@ -214,7 +214,7 @@ class AdminsController extends Controller
             return response(null, 400);
         }
         catch (\Exception $e){
-            Log:alert($e->getMessage());
+            Log::alert($e->getMessage());
             return response(null ,500);
         }
     }
