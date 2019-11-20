@@ -10,8 +10,8 @@
 @foreach($categories as $cat)
 <div class="row justify-content-sm-between m-auto p-2 border-top border-bottom mb-3 w-75">
     @if(session()->has('blocked'))
-        <div class="row col-3 justify-content-center w-100 p-2">
-            <span class="p-2 btn-secondary restrict badge text-white" data-category-name="{{$cat->category_name}}" data-category="{{$cat->id}}" data-user="{{session()->get('user')->id}}" >{{$cat->category_name}}</span>
+        <div class="row col-3 w-100">
+            <span class="p-2 btn-secondary restrict badge text-white w-100" data-category-name="{{$cat->category_name}}" data-category="{{$cat->id}}" data-user="{{session()->get('user')->id}}" >{{$cat->category_name}}</span>
         </div>
     @else
         <div class="row col-3 w-100">
