@@ -1,0 +1,3 @@
+[2020-02-14 21:58:31] local.CRITICAL: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'dusan.krsmanovic.95@gmail.com' for key 'users_email_unique' (SQL: insert into `users` (`first_name`, `last_name`, `email`, `password`, `token`, `updated_at`, `created_at`) values (Dusan, Krsmanovic, dusan.krsmanovic.95@gmail.com, 80d4a3e0d52d99b1429122023ba55b169e182b3c, 0a6a6b192093969a6eee193a0b88d66908c94197, 2020-02-14 21:58:31, 2020-02-14 21:58:31))  
+[2020-02-14 22:00:57] local.CRITICAL: Error while sending email  
+[2020-02-14 22:01:07] local.CRITICAL: Error while sending email  

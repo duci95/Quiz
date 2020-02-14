@@ -1,0 +1,1 @@
+[2019-11-20 09:53:42] local.ALERT: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'dusan.krsmanovic.28.16@gmail.com' for key 'users_email_unique' (SQL: update `users` set `first_name` = Jovan, `last_name` = Jovanović, `email` = dusan.krsmanovic.28.16@gmail.com, `users`.`updated_at` = 2019-11-20 09:53:41 where `id` = 23)  
