@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a745732-cb20-4cf0-b5b8-8fa43306573e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/bootstrap/cache/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Quiz.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Moderator/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Moderator/CategoriesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AdminMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AdminMiddleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Result.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Result.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_04_175221_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_04_175221_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_04_175509_create_answers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_04_175509_create_answers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_10_213733_create_quizzes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_10_213733_create_quizzes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/1571692707_istockphoto-1036152282-1024x1024.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/moderator/questions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/moderator/questions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/cache/_gitignore.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,6 +141,7 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Re1j8JkMSDEIusgXezfkQjWUgG" />
@@ -160,10 +155,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/Xampp/htdocs/citrus" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TestingAuthWithEmail" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -188,18 +184,6 @@
       <recent name="D:\Dusan\Quiz\public" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="JavaScript Debug.home.blade.php">
     <configuration name="home.blade.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Quiz/resources/views/pages/home.blade.php" useBuiltInWebServerPort="true">
       <method v="2" />
@@ -213,6 +197,18 @@
         <item itemvalue="JavaScript Debug.home.blade.php" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -291,6 +287,7 @@
       <workItem from="1572704602769" duration="15792000" />
       <workItem from="1572787924167" duration="5132000" />
       <workItem from="1573055740550" duration="534000" />
+      <workItem from="1583619634695" duration="356000" />
     </task>
     <servers />
   </component>
@@ -328,73 +325,9 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="500" y="184" key="FileChooserDialogImpl" timestamp="1570020577139">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1583619988990">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="500" y="184" key="FileChooserDialogImpl/0.0.1440.860@0.0.1440.860" timestamp="1570020577139" />
-    <state width="1397" height="278" key="GridCell.Tab.0.bottom" timestamp="1570062374905">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1570062374905" />
-    <state width="1397" height="278" key="GridCell.Tab.0.center" timestamp="1570062374904">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1570062374904" />
-    <state width="1397" height="278" key="GridCell.Tab.0.left" timestamp="1570062374904">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1570062374904" />
-    <state width="1397" height="278" key="GridCell.Tab.0.right" timestamp="1570062374905">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1570062374905" />
-    <state width="1397" height="278" key="GridCell.Tab.1.bottom" timestamp="1570062374907">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.1.bottom/0.0.1440.860@0.0.1440.860" timestamp="1570062374907" />
-    <state width="1397" height="278" key="GridCell.Tab.1.center" timestamp="1570062374906">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.1.center/0.0.1440.860@0.0.1440.860" timestamp="1570062374906" />
-    <state width="1397" height="278" key="GridCell.Tab.1.left" timestamp="1570062374906">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.1.left/0.0.1440.860@0.0.1440.860" timestamp="1570062374906" />
-    <state width="1397" height="278" key="GridCell.Tab.1.right" timestamp="1570062374906">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.1.right/0.0.1440.860@0.0.1440.860" timestamp="1570062374906" />
-    <state width="1397" height="278" key="GridCell.Tab.2.bottom" timestamp="1570062374910">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.2.bottom/0.0.1440.860@0.0.1440.860" timestamp="1570062374910" />
-    <state width="1397" height="278" key="GridCell.Tab.2.center" timestamp="1570062374908">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.2.center/0.0.1440.860@0.0.1440.860" timestamp="1570062374908" />
-    <state width="1397" height="278" key="GridCell.Tab.2.left" timestamp="1570062374908">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.2.left/0.0.1440.860@0.0.1440.860" timestamp="1570062374908" />
-    <state width="1397" height="278" key="GridCell.Tab.2.right" timestamp="1570062374909">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="1397" height="278" key="GridCell.Tab.2.right/0.0.1440.860@0.0.1440.860" timestamp="1570062374909" />
-    <state x="300" y="172" key="IDE.errors.dialog" timestamp="1570123623951">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="300" y="172" key="IDE.errors.dialog/0.0.1440.860@0.0.1440.860" timestamp="1570123623951" />
-    <state x="554" y="349" key="NewPhpFileDialog" timestamp="1570135003578">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="554" y="349" key="NewPhpFileDialog/0.0.1440.860@0.0.1440.860" timestamp="1570135003578" />
-    <state x="283" y="141" key="SettingsEditor" timestamp="1570124839974">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="283" y="141" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1570124839974" />
-    <state x="376" y="195" key="run.anything.popup" timestamp="1570125177072">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="376" y="195" key="run.anything.popup/0.0.1440.860@0.0.1440.860" timestamp="1570125177072" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/269.-900.1440.860@0.0.1920.1040" timestamp="1583619988990" />
   </component>
 </project>
